@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="[章峰]" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="["hugo", "academic", "静态网站"], 免费创建个人静态网站最佳实践, " />
+
+<meta property="og:title" content="&#34;免费创建个人静态网站最佳实践：hugo+github+netlify&#34;  - &#34;&#34; "/>
+<meta property="og:url" content="/mian-fei-chuang-jian-ge-ren-jing-tai-wang-zhan-zui-jia-shi-jian-hugogithubnetlify.html" />
+<meta property="og:description" content="&#34;利用hugo+github+netlify创建个人静态网站最佳方式，专注写作而不是网页控件。&#34;" />
+<meta property="og:site_name" content="test_site" />
+<meta property="og:article:author" content="[章峰]" />
+<meta property="og:article:published_time" content="2020-05-25T15:56:11+08:00" />
+<meta name="twitter:title" content="&#34;免费创建个人静态网站最佳实践：hugo+github+netlify&#34;  - &#34;&#34; ">
+<meta name="twitter:description" content="&#34;利用hugo+github+netlify创建个人静态网站最佳方式，专注写作而不是网页控件。&#34;">
+
+        <title>&#34;免费创建个人静态网站最佳实践：hugo+github+netlify&#34;  - &#34;&#34;  · test_site
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>test_site</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/mian-fei-chuang-jian-ge-ren-jing-tai-wang-zhan-zui-jia-shi-jian-hugogithubnetlify.html">
+                "免费创建个人静态网站最佳实践：hugo+github+netlify"
+                <small class="subtitle">
+                    ""
+                </small>
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h1>Featured image</h1>
+<h1>To use, add an image named <code>featured.jpg/png</code> to your page's folder.</h1>
+<h1>Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width</h1>
+<h1>Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight</h1>
+<p>image:
+  placement: 1
+  caption: ''
+  focal_point: "Smart"
+  preview_only: false</p>
+<hr>
+<p>{{% toc %}}</p>
+<h2>一、前言</h2>
+<p>关于搭建一个博客或个人网站的好处不用我多说，但创建网站的难度可能会让人望而却步。本人从网络上获得过很多帮助，学到很多。很早就萌发了自己建网站并分享知识的想法，但是又不想在简书这类的网站上写作。原谅我是个拖延控，有时间就写一点，很可能一篇文章写好久，也不喜欢在网上编辑。此外，知识需要积累形成框架，由于平时我所有的笔记都放在有道云笔记中，复制粘贴到简书有时候格式不对，又不想进行二次编辑。最重要的是不够Geek（装逼）。</p>
+<p>其实中间有过一段时间，利用hexo、github和github page创建过静态网站。但是用得不太顺手，原因有很多，比如：老是花时间在怎么改网页主题上，而不是专注在写作上；markdown（md）文件中的图片迁移很麻烦，网上的图片老是会丢失；github page 在国内打开很慢而且SEO不容易搜索到。因此，一直耽误到现在，但一直贼心不死，想得到一个不太需要维护，可以专注写作，文档可以同步（在别的电脑上也可以编辑），又很geek的网站。我的想法是把所有笔记保存在有道云笔记中进行维护和整理，需要分享的话可以在本地用typora写md文档。此外，md文档中的图片用图床解决移动问题，然后托管到git自动渲染成网页。这样只要图床不挂，分享或上传到其它平台就很方便，因为只要复制md文档就行。为什么不直接用有道云笔记中的md呢？因为插入图片得是VIP才行，而导出来的md文档里所有图片的超链接是私人链接，移到别的地方根本没办法显示图片。最终我觉得搭网站最好的方式是：hugo+github+Netlify。适合我的笔记保存和写作的最佳方式是：有道云笔记+typora+picgo。如果觉得太麻烦了，不想把博客和有道云笔记等之类的笔记工具连接在一起，也不会传到其它平台上，可以直接用typora写作，利用hugo的page bundle绑定图片。</p>
+<p>关于利用hugo和Github建网站的博客很多，但是有些博客内容有些出入，可能是由于英文翻译或版本更新所造成的。这里建议大家直接看hugo的<a href="https://gohugo.io/getting-started/quick-start/">英文官网</a>和<a href="https://livebook.manning.com/book/hugo-in-action/about-this-meap/v-4/">hugo in action</a>，或者<a href="https://s0gohugo0io.icopy.site">官方翻译</a>。此外，网上的博客可以进行参考。这篇博客主要针对搭建过程中可能遇到的问题进行记录，希望对大家有所帮助。  </p>
+<h2>二、原理</h2>
+<p>那么如何用静态网页创建网站呢？很多博客一上来就直接讲方法，怎么一步步运行，得到一个简陋的网页。但是不知其所以然，因此这里想先介绍一下基本原理，方便理解和后面的debug。</p>
+<ol>
+<li>首先你得在本地生成静态网页文件。这里推荐用hugo或hexo。</li>
+<li>然后把静态网页文件托管到github仓库。这里推荐使用git和gitlab工具。</li>
+<li>把远程的静态网页文件进行渲染，形成让大家可根据网址直接阅览的网页。可用github page和Netlify.</li>
+<li>找到有道云笔记的md文件，用typora进行编辑，并用图床解决图片容易丢失问题。</li>
+</ol>
+<p>关于hugo和hexo，github和gitlab，github page和Netlify的差别网上有很多博客，这里就不赘述了。目前我觉得最好的方式是：hugo+github+Netlify。</p>
+<h2>三、快速入门</h2>
+<p>如果有相关静态网页生成的经历，可以直接忽略快速入门，直接到下一节：进阶。</p>
+<h3>1、本地生成静态网页文件</h3>
+<p>如果不想看英文的，可以参考<a href="https://jdhao.github.io/2018/10/10/hexo_to_hugo/">这篇</a>和<a href="https://mogeko.me/2018/018/">这篇</a>中文入门。</p>
+<p>下面简要阐述过程：  </p>
+<div class="highlight"><pre><span></span><code><span class="nx">hugo</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">site</span><span class="w"> </span><span class="nx">hugo</span><span class="w"> </span><span class="err">#</span><span class="nx">建立站点以后</span><span class="err">，</span><span class="nx">博客根目录下默认有这些文件和子目录</span><span class="err">：</span><span class="nx">archetypes</span><span class="o">/</span><span class="w">  </span><span class="nx">config</span><span class="p">.</span><span class="nx">toml</span><span class="w">  </span><span class="nx">content</span><span class="o">/</span><span class="w">     </span><span class="nx">data</span><span class="o">/</span><span class="w">        </span><span class="nx">layouts</span><span class="o">/</span><span class="w">     </span><span class="nx">static</span><span class="o">/</span><span class="w">      </span><span class="nx">themes</span><span class="o">/</span>
+<span class="nx">cd</span><span class="w"> </span><span class="nx">hugo</span>
+<span class="nx">git</span><span class="w"> </span><span class="nx">init</span>
+<span class="nx">git</span><span class="w"> </span><span class="nx">submodule</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//github.com/budparr/gohugo-theme-ananke.git themes/ananke # 安装主题</span>
+<span class="nx">echo</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">theme</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;ananke&quot;</span><span class="err">&#39;</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">toml</span>
+<span class="nx">hugo</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">posts</span><span class="o">/</span><span class="nx">my</span><span class="o">-</span><span class="nx">first</span><span class="o">-</span><span class="nx">post</span><span class="p">.</span><span class="nx">md</span>
+<span class="nx">hugo</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span>
+</code></pre></div>
+
+<p>这时出现类似下面的信息，说明生成静态网页成功。可以在浏览器上输入 http://localhost:1313/ 进行浏览。  </p>
+<div class="highlight"><pre><span></span><code><span class="nx">Building</span><span class="w"> </span><span class="nx">sites</span><span class="w"> </span><span class="err">…</span>
+<span class="w">                   </span><span class="o">|</span><span class="w"> </span><span class="nx">EN</span>
+<span class="o">-------------------+-----</span>
+<span class="w">  </span><span class="nx">Pages</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="mi">11</span>
+<span class="w">  </span><span class="nx">Paginator</span><span class="w"> </span><span class="nx">pages</span><span class="w">  </span><span class="o">|</span><span class="w">  </span><span class="mi">0</span>
+<span class="w">  </span><span class="nx">Non</span><span class="o">-</span><span class="nx">page</span><span class="w"> </span><span class="nx">files</span><span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="mi">1</span>
+<span class="w">  </span><span class="nx">Static</span><span class="w"> </span><span class="nx">files</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">39</span>
+<span class="w">  </span><span class="nx">Processed</span><span class="w"> </span><span class="nx">images</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">0</span>
+<span class="w">  </span><span class="nx">Aliases</span><span class="w">          </span><span class="o">|</span><span class="w">  </span><span class="mi">2</span>
+<span class="w">  </span><span class="nx">Sitemaps</span><span class="w">         </span><span class="o">|</span><span class="w">  </span><span class="mi">1</span>
+<span class="w">  </span><span class="nx">Cleaned</span><span class="w">          </span><span class="o">|</span><span class="w">  </span><span class="mi">0</span>
+
+<span class="nx">Built</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">37</span><span class="w"> </span><span class="nx">ms</span>
+<span class="nx">Watching</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">changes</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">E</span><span class="p">:</span><span class="err">\</span><span class="nx">blogs</span><span class="err">\</span><span class="nx">hugo</span><span class="err">\</span><span class="p">{</span><span class="nx">archetypes</span><span class="p">,</span><span class="nx">content</span><span class="p">,</span><span class="nx">data</span><span class="p">,</span><span class="nx">layouts</span><span class="p">,</span><span class="nx">static</span><span class="p">,</span><span class="nx">themes</span><span class="p">}</span>
+<span class="nx">Watching</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="nx">changes</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">E</span><span class="p">:</span><span class="err">\</span><span class="nx">blogs</span><span class="err">\</span><span class="nx">hugo</span><span class="err">\</span><span class="nx">config</span><span class="p">.</span><span class="nx">toml</span>
+<span class="nx">Environment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;development&quot;</span>
+<span class="nx">Serving</span><span class="w"> </span><span class="nx">pages</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">memory</span>
+<span class="nx">Running</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">Fast</span><span class="w"> </span><span class="nx">Render</span><span class="w"> </span><span class="nx">Mode</span><span class="p">.</span><span class="w"> </span><span class="nx">For</span><span class="w"> </span><span class="nx">full</span><span class="w"> </span><span class="nx">rebuilds</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">change</span><span class="p">:</span><span class="w"> </span><span class="nx">hugo</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">--</span><span class="nx">disableFastRender</span>
+<span class="nx">Web</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">available</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:1313/ (bind address 127.0.0.1)</span>
+<span class="nx">Press</span><span class="w"> </span><span class="nx">Ctrl</span><span class="o">+</span><span class="nx">C</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">stop</span>
+</code></pre></div>
+
+<p>如果出现下面的错误：  </p>
+<div class="highlight"><pre><span></span><code>hugo new posts/my-first-post.md
+Error: &quot;E:\blogs\quickstart\config.toml:3:1&quot;: unmarshal failed: Near line 3 (last key parsed &#39;&#39;): bare keys cannot contain &#39;\x00&#39;
+</code></pre></div>
+
+<p>这是因为E:\blogs\hugo\config.toml里面有一些NUL的间隔符，可能是由于echo的命令产生的。手动把它们删除就行了。</p>
+<h3>2、托管到github</h3>
+<p>把我们本地生成的静态网页托管到<a href="https://github.com">github</a>上进行保存，而不用自己进行维护。<br>
+首先在github上新建账号，并创建一个新的仓库，以仓库名为test为例。再下载安装<a href="https://git-scm.com/">git</a> 。</p>
+<div class="highlight"><pre><span></span><code>cd .\public
+git init
+git add .
+git commit -m &quot;update&quot;
+git remote add origin https://github.com/你的git账户/test.git
+git push origin master:master
+</code></pre></div>
+
+<p>这样就把东西上传到github上了。</p>
+<p>为了方便发布网页，可以写成一个脚本，然后每次发布只要右键选择git bash here后运行./deploy.sh就可以。</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;</span>
+
+<span class="c1"># build the project</span>
+hugo
+git<span class="w"> </span>add<span class="w"> </span>.
+
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;rebuilding site `date`&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span>
+<span class="w">  </span><span class="k">then</span><span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$msg</span><span class="s2">&quot;</span>
+
+<span class="c1"># push source to github</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master:master<span class="w"> </span>
+</code></pre></div>
+
+<h3>3、用Netlify渲染网页</h3>
+<p>最后我们用<a href="https://www.netlify.com">Netlify</a>对托管到github上的静态网页进行渲染。很简单，可以看这篇<a href="https://kuleyu.github.io/hexolog/post/31808.html">教程</a>。至此一个简陋的网页就建好了。记得改一下Netlify自动分配给你的域名，不过只能更改前缀。要求不高也还好了。<br>
+下面简单描述一下操作步骤：
+1. 用github的账号登陆<a href="https://www.netlify.com">Netlify</a>。
+2. 点击右上角的Create new site
+3. 跳转到第一步，connect to git provider，选github
+4. pick a repository，选择存放代码的仓库。
+5. Build options and deploy。点击Deploying就ok了。
+6. 等待一会配置，就会出现网址了。类似这样的https://priceless-morse-029791.netlify.app。
+7. 复制粘贴网址就大功告成。</p>
+<p>目前我们可以以网站形式来展示内容，但是初始化的见面一点也不cool啊。客官别急，请看下面进阶教程。</p>
+<h2>四、进阶</h2>
+<h3>1、添加主题</h3>
+<p>首先我们可以到<a href="https://themes.gohugo.io">hugo主题库</a>中找一个自己喜欢的主题。我比较喜欢的一个主题是academic，B站上还有人介绍<a href="https://www.bilibili.com/video/BV1Tt411g7jx?p=2">Academic视频</a>。
+由于大部分主题都已经有站点所需要的各种文件夹，所以不用自己再建站点。直接clone下来，把主题换成子模块的就行。快速入门的什么的可以忘记了^_^。</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/sourcethemes/academic-kickstart.git My_Website
+cd My_Website
+git submodule update --init --recursive
+</code></pre></div>
+
+<h3>2、修改网页布局</h3>
+<p>我们可以根据<a href="https://sourcethemes.com/academic/docs/">academic文档</a>进行修改，变成你自己喜欢的样式。这个academic帮助文档讲得很清楚，这里就不赘述。</p>
+<p>不过这里提一下添加评论系统，这应该是一个刚需。要不然没有互动在那孤芳自赏？</p>
+<p>由于academic主题设置commento很方便，这里图方便直接用了：</p>
+<ol>
+<li>把config/_default/params.toml中的<code>engine = 0</code>改成<code>engine = 2</code>。  </li>
+<li>~~注册<a href="https://commento.io">commento</a>账号，把你自己博客域名进行绑定即可。~~
+commento后来发现是收费的，现改成valine。</li>
+<li>valine的加载有点麻烦，可以参考<a href="https://www.smslit.top/2018/07/08/hugo-valine/">博客</a>。<br>
+此外，国外用的比较多的有Disqus，国内有valine和Gittalk。不过<a href="https://github.com/gitalk/gitalk/">Gitalk</a>有点复杂，可参考这篇<a href="https://mogeko.me/2018/024/">博客</a>进行安装。</li>
+</ol>
+<h2>五、写作</h2>
+<h3>1、图片管理</h3>
+<p>在md文档中插入的图片是一个麻烦事。一般来说有三种解决方案。如下所示</p>
+<h4>放置在static中</h4>
+<p>可以直接把图片放在static中，不过以后图片一多就麻烦了。如果后面想迁移什么的就太麻烦了。</p>
+<h4>利用page bundle</h4>
+<p>可以在post下面新建文件夹，重命名为你想要的博客名后新建md文件。这个md文档名称一定得是<strong>index.md</strong>，然后我们就可在同一目录下放置图片。md可以使用相对位置进行引用。</p>
+<p>其实如果不是为了在有道云笔记中同时显示md文件中的图片，这种方式是最方便的，而且免费。</p>
+<h4>利用图床</h4>
+<p>这里利用picgo工具，把图片复制后，按一个快捷键就会自动上传到picgo内设置的图床上。  </p>
+<p><a href="https://picgo.github.io/PicGo-Doc/zh/">picgo教程</a>支持8大图床。可以选免费的<strong>smms</strong>和github（虽然github慢了点），也可以氪金买云服务。</p>
+<p>同时typora还支持picgo的插件，直接复制图片就可以实现上传到云端。不过配置可能会遇到些问题，可以参考这篇<a href="https://www.jianshu.com/p/4cd14d4ceb1d">博客排坑</a>。</p>
+<hr>
+<p>综上，图床是最方便的，但需要点时间配置各个软件。page bundle是最简单的，但是如果没法移动到其它平台。</p>
+<h3>2、更新博客的流程</h3>
+<p>日后更新博客时就只需要在本地的hugo\content\post文件夹中编辑新的md文件，然后<code>./deploy.sh</code>就会自动编译静态网页然后上传至github，同时Netlify会检测Github中库的动态，并及时更新发布的网站内容。  </p>
+<h3>3、在另一台电脑上写作</h3>
+<p>由于静态网页是托管到github，可以很方便地进行同步。直接用<code>git pull</code>把github拉下来就行，写完后<code>git push</code> 到仓库就万事大吉了。</p>
+<hr>
+<p>以上就是免费创建个人静态网站地最佳实践。全免费，渲染快捷且可以专注写作，不用费心维护。</p>
+<h2>六、域名</h2>
+<p>最后为了装一下，怎么也得换个个性化的域名啊。网上到处看了看，感觉比较复杂。因为在国内买域名还得备案，听说很麻烦。后来直接到name.com购买了域名。</p>
+<h3>域名解析</h3>
+<p>可以参考这篇<a href="https://www.cnblogs.com/codernie/p/9062104.html">博客</a>。值得注意的是：在你的域名购买商处管理DNS的时候，要加两条DNS。一条是没有www，一条是有www。</p>
+<p><img alt="image-20200526113018470" src="https://i.loli.net/2020/05/26/3kwRGpLSuICDW8d.png"></p>
+<h2>七、Debug</h2>
+<ul>
+<li>push error</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git push academic master
+remote: Permission to Feng-Zhang/academic-kickstart.git denied to xiaofeng007.
+fatal: unable to access &#39;https://github.com/Feng-Zhang/academic-kickstart.git/&#39;: The requested URL returned error: 403
+</code></pre></div>
+
+<p>控制面板-用户帐户-凭据管理器-找到git:https://github.com-编辑<br>
+对这个凭据进行编辑，把要远程的账号和密码加上。 </p>
+<p><img alt="image-20200526130114714" src="https://i.loli.net/2020/05/26/Ox6Gdy9sVJzlm71.png"></p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-05-25T15:56:11+08:00">May 25, 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#mian-fei-chuang-jian-ge-ren-jing-tai-wang-zhan-zui-jia-shi-jian-ref">免费创建个人静态网站最佳实践</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#academic-ref">"academic"
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#hugo-ref">["hugo"
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#jing-tai-wang-zhan-ref">"静态网站"]
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
