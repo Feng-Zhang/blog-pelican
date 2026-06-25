@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +9,40 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta property="og:title" content="test_site"/>
-<meta name="twitter:title" content="test_site">
+<meta property="og:title" content="关于我"/>
+<meta name="twitter:title" content="关于我">
 <meta property="og:url" content="http://localhost:8000" />
-<meta property="og:site_name" content="test_site" />
+<meta property="og:site_name" content="生信小屋" />
 <meta property="og:article:author" content="Feng" />
-        <title>test_site - 网络 tag</title>
+        <title>生信小屋 - 网络 tag</title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/elegant.prod.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/custom.css" media="screen">
+        <style>
+            .language-menu .dropdown-toggle {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .language-menu .dropdown-toggle svg {
+                width: 18px;
+                height: 18px;
+                vertical-align: middle;
+                fill: currentColor;
+            }
+
+            .language-menu .dropdown-menu {
+                left: auto;
+                right: 0;
+                min-width: 120px;
+            }
+
+            .language-menu .dropdown-menu .active > a,
+            .language-menu .dropdown-menu .active > a:hover {
+                background: #f5f5f5;
+                color: #333;
+            }
+        </style>
 
 
     </head>
@@ -31,18 +56,32 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="http://localhost:8000/"><span class=site-name>test_site</span></a>
+                        <a class="brand" href="http://localhost:8000/"><span class=site-name>生信小屋</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
                                     <a href=
                                        http://localhost:8000
-                                    >Home</a>
+                                    >首页</a>
                                 </li>
-                                <li ><a href="http://localhost:8000/categories.html">Categories</a></li>
-                                <li ><a href="http://localhost:8000/{lang}/tags.html">Tags</a></li>
-                                <li ><a href="http://localhost:8000/{lang}/archives.html">Archives</a></li>
-                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                                <li ><a href="http://localhost:8000/books.html">书籍</a></li>
+                                <li ><a href="http://localhost:8000/books.html">书籍</a></li>
+                                <li ><a href="http://localhost:8000/categories.html">分类</a></li>
+                                <li ><a href="http://localhost:8000/tags.html">标签</a></li>
+                                <li ><a href="http://localhost:8000/archives.html">归档</a></li>
+                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                                <li class="dropdown language-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-label="Language menu" title="语言切换">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.51 2.53 2 3.96h-4c.49-1.43 1.17-2.76 2-3.96zM4.26 14A8.14 8.14 0 0 1 4 12c0-.69.09-1.36.26-2h3.42a16.8 16.8 0 0 0 0 4H4.26zm.81 2h2.95a15.65 15.65 0 0 0 1.38 3.56A8.03 8.03 0 0 1 5.07 16zM8.02 8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96A13.56 13.56 0 0 1 10 16h4c-.49 1.43-1.17 2.76-2 3.96zM14.34 14H9.66a14.9 14.9 0 0 1 0-4h4.68c.22.64.32 1.31.32 2s-.1 1.36-.32 2zm.26 5.56A15.65 15.65 0 0 0 15.98 16h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.32 14a16.8 16.8 0 0 0 0-4h3.42c.17.64.26 1.31.26 2s-.09 1.36-.26 2h-3.42z"></path>
+                                        </svg>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="active"><a href="http://localhost:8000/">中文</a></li>
+                                        <li><a href="http://localhost:8000/en/">English</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -55,19 +94,41 @@
 
 
 <div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://localhost:8000">关于我</a></h1>
+    </header>
 
     <div class="row-fluid">
+        <div class="span8 offset2">
+            <header>
+                <h1 id="about-me">个人简介</h1>
+            </header>
+            <div class="article-content">
+                <ul>
+<li>Jiang Q., Chen M., Yang X., Zhuge D., Yin Q., Tian D., Li L., Zhang X., Xu W., Liu S., Li F., Weng C., Lin Y., Wang H., Rao D., Chen Y., Cai Q., Yan L., Wang L., Wang F., Lu X., Wen B., Zhao Y.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code>, <strong>Zhang F.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code></strong>, Xia W.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code>, Zhu H.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code>, and Chen Y.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code>, Doxorubicin Detoxification in Healthy Organs Improves Tolerability to High Drug Doses for Enhanced Antitumor Therapy. ACS Nano, 2023. 17(8): p. 7705-7720. <a href="https://pubmed.ncbi.nlm.nih.gov/37022161/">Pubmed</a></li>
+<li>Yang Y., Yu J., Xiong Y., Xiao J., Dai D.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code>, and <strong>Zhang F.<code>&lt;sup&gt;</code>*<code>&lt;/sup&gt;</code></strong>, Prognostic Analysis of Differentially Expressed DNA Damage Repair Genes in Bladder Cancer. Pathol Oncol Res, 2022. 28: p. 1610267. <a href="https://pubmed.ncbi.nlm.nih.gov/35685866/">Pubmed</a></li>
+<li><strong>Zhang, F.</strong>, Y. Wang, R. Mukiibi, L. <em>et al.</em> Genetic architecture of quantitative traits in beef cattle revealed by genome wide association studies of imputed whole genome sequence variants: I: feed efficiency and component traits. BMC Genomics, 2020. 21(1):36. <a href="https://pubmed.ncbi.nlm.nih.gov/31931702/">Pubmed</a></li>
+<li><strong>Zhang F.</strong>, Zeng L.P., Cai Q.M. et al. Comprehensive analysis of long noncoding RNA-associated competing endogenous RNA network in Wilms’ tumor. Cancer Control. 2020, 27(2): 1073274820936991 <a href="https://pubmed.ncbi.nlm.nih.gov/32597194/">Pubmed</a></li>
+<li><strong>Zhang F.</strong>, Ekine-Dzivenu C., Vinsky M. et al. Phenotypic and genetic relationships of residual feed intake measures and their component traits with fatty acid composition in subcutaneous adipose of beef cattle. Journal of Animal Science. 2017  <a href="https://pubmed.ncbi.nlm.nih.gov/28727111/">Pubmed</a></li>
+<li>Xin W.<code>&lt;sup&gt;</code>1<code>&lt;/sup&gt;</code>, <strong>Zhang F.<code>&lt;sup&gt;</code>1<code>&lt;/sup&gt;</code></strong>, Yan G. et al. A Whole Genome Sequence Association study for Puberty in a large Duroc x Erhualian F2 Population. Animal Genetics. 2017 <a href="https://pubmed.ncbi.nlm.nih.gov/29194674/">Pubmed</a></li>
+<li><strong>Zhang F.</strong>, Zhang Z., He Y., et al. RegionPlot: an R package for regional plot association results of pigs. Animal Genetics. 2015, 46(1): 94-95 <a href="https://pubmed.ncbi.nlm.nih.gov/25393053/">Pubmed</a></li>
+<li><strong>Zhang F.</strong>, Zhang Z., Yan X., et al. Genome-wide association studies for hematological traits in Chinese Sutai pigs. BMC Genetics. 2014, 15(1): 41 <a href="https://pubmed.ncbi.nlm.nih.gov/24674592/">Pubmed</a></li>
+<li><strong>Zhang F.</strong>, Li J., Huang L.S. and Zhang Z.Y. Bioinformatics analysis of ELOVL7 gene in Sutai pig. China Journal of Bioinformatics, 2014, (4):242-248. <a href="https://www.cnki.com.cn/Article/CJFDTotal-XXSW201404002.htm">Pubmed</a></li>
+<li>Ai H., Fang X., Yang B., Huang Z., Chen H., Mao L.,<strong>Zhang F.</strong> et al. Adaptation and possible ancient interspecies introgression in pigs identified by whole-genome sequencing. Nature Genetics. 2015, 47(3):217-225. <a href="https://pubmed.ncbi.nlm.nih.gov/25621459/">Pubmed</a></li>
+</ul>
+            </div>
+        </div>
 
     </div>
 
     <div class="row-fluid">
         <div class="span8 offset2">
             <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="http://localhost:8000/{lang}/archives.html">all posts</a></h1>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="http://localhost:8000/archives.html">all posts</a></h1>
             </header>
         <div class="recent-posts">
             <div itemscope class="recent-posts-article">
-                <a href="http://localhost:8000/en/business-cloud-storage-and-private-cloud-setup.html">
+                <a href="http://localhost:8000/business-cloud-storage-and-private-cloud-setup.html">
                     商业网盘推荐和私有网盘构建
                 </a>
                 <div class="recent-posts-posted">

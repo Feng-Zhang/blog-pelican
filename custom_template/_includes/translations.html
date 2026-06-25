@@ -1,0 +1,11 @@
+{% macro translations_for(article) %}
+{% if article.translations %}
+{% set is_zh = DEFAULT_LANG == 'zh' %}
+<p id="list-of-translations">
+{{ '这篇文章也有以下语言版本：' if is_zh else 'This post is also available in:' }}
+    {% for translation in article.translations|sort(attribute='lang') %}
+    <a href="{{ SITEURL }}/{{ translation.url }}">{{ '中文' if translation.lang == 'zh' else 'English' if translation.lang == 'en' else translation.lang }}</a>{% if loop.index0 + 2 == loop.length %}{{ ' 和' if is_zh else ' and' }}{% elif not loop.last %}, {% endif %}
+    {% endfor %}
+</p>
+{% endif %}
+{% endmacro %}

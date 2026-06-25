@@ -6,6 +6,7 @@ Tags: 生信,anaconda,conda,r-base,RNA-seq
 Slug: conda
 Authors: Feng Zhang
 Summary: 较为全面地介绍Anaconda的使用方法，并以RNA-seq环境和R环境的安装进行举例
+Lang: zh
 
 ---
 

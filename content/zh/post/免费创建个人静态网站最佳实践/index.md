@@ -6,6 +6,7 @@ Tags: hugo, academic, 静态网站
 Slug: hugo-github-netlify
 Authors: Alexis Metaireau, Conan Doyle
 Summary: 利用hugo+github+netlify创建个人静态网站最佳方式，专注写作而不是网页控件。
+Lang: zh
 
 ---
 

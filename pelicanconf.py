@@ -1,33 +1,33 @@
 AUTHOR = 'Feng'
-SITENAME = 'test_site'
+SITENAME = '生信小屋'
 SITEURL = "http://localhost:8000"
 
 PATH = "content"
 
 TIMEZONE = 'Asia/Shanghai'
 
-DEFAULT_LANG = 'en'
+DEFAULT_LANG = 'zh'
 LOCALE = ['C.utf8']
 # LANGUAGES = { 
 #     'en': 'English',
 #     'zh': '中文',
 # }
 
-ARTICLE_URL = '{lang}/{slug}.html'
-ARTICLE_SAVE_AS = '{lang}/{slug}.html'
+ARTICLE_URL = '{slug}.html'
+ARTICLE_SAVE_AS = '{slug}.html'
 
-PAGE_URL = '{lang}/{slug}.html'
-PAGE_SAVE_AS = '{lang}/{slug}.html'
+PAGE_URL = '{slug}.html'
+PAGE_SAVE_AS = '{slug}.html'
 
-ARCHIVES_URL = '{lang}/archives.html'
-ARCHIVES_SAVE_AS = '{lang}/archives.html'
+ARCHIVES_URL = 'archives.html'
+ARCHIVES_SAVE_AS = 'archives.html'
+LANDING_PAGE_TITLE = '关于我'
 
-
-TAGS_URL = '{lang}/tags.html'
-TAGS_SAVE_AS = '{lang}/tags.html'
+TAGS_URL = 'tags.html'
+TAGS_SAVE_AS = 'tags.html'
 MENUITEMS = [
     ('English', '/en/'),
-    ('中文', '/zh/'),
+    ('中文', '/'),
 ]
 
 # Feed generation is usually not desired when developing
@@ -57,20 +57,23 @@ DEFAULT_PAGINATION = 10
 # RELATIVE_URLS = True
 THEME = 'pelican-themes/elegant'
 # THEME_STATIC_DIR = 'pelican-themes'
-# THEME_TEMPLATES_OVERRIDES = ['custom_template']
+THEME_TEMPLATES_OVERRIDES = ['custom_template']
 
 # plugin
-PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = [ 'i18n_subsites'] #'extract_toc',
+PLUGIN_PATHS = ['pelican-plugins', 'pelican-plugins/tipue_search/pelican/plugins']
+PLUGINS = ['i18n_subsites', 'tipue_search'] #, 'extract_toc'
 # PLUGINS = [ ]
 I18N_SUBSITES = {
-    'en': {},
-    'zh': {},
+    'en': {
+        'LANDING_PAGE_TITLE': 'About Me',
+    },
 }
+DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {
     "extension_configs": {
         "markdown.extensions.extra": {},
         "markdown.extensions.codehilite": {},
+        "markdown.extensions.meta": {},
         "markdown.extensions.toc": {
             "permalink": True,
         },

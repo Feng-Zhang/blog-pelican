@@ -7,6 +7,7 @@ Tags: "生信","转录组","PCA","批次效应"
 Slug: RNA-seq-batch-effect
 Authors: Feng Zhang
 Summary: 使用不同方法对转录组数据进行规一化、PCA和批次效应矫正，并比较其差异
+Lang: zh
 ---
 [toc]
 

@@ -7,6 +7,7 @@ Tags:publication
 Slug: publication
 Authors: Feng Zhang
 Summary: Slected publication
+Lang: en
 ---
 - Jiang Q., Chen M., Yang X., Zhuge D., Yin Q., Tian D., Li L., Zhang X., Xu W., Liu S., Li F., Weng C., Lin Y., Wang H., Rao D., Chen Y., Cai Q., Yan L., Wang L., Wang F., Lu X., Wen B., Zhao Y.`<sup>`\*`</sup>`, **Zhang F.`<sup>`\*`</sup>`**, Xia W.`<sup>`\*`</sup>`, Zhu H.`<sup>`\*`</sup>`, and Chen Y.`<sup>`\*`</sup>`, Doxorubicin Detoxification in Healthy Organs Improves Tolerability to High Drug Doses for Enhanced Antitumor Therapy. ACS Nano, 2023. 17(8): p. 7705-7720. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/37022161/)
 - Yang Y., Yu J., Xiong Y., Xiao J., Dai D.`<sup>`\*`</sup>`, and **Zhang F.`<sup>`\*`</sup>`**, Prognostic Analysis of Differentially Expressed DNA Damage Repair Genes in Bladder Cancer. Pathol Oncol Res, 2022. 28: p. 1610267. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/35685866/)

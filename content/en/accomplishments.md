@@ -6,6 +6,11 @@ Tags: accomplishment
 Slug: accomplishment
 Authors: Feng Zhang
 Summary: accomplishment list
+Lang: en
+
+---
+
+
 
 - organization : "Department of Education of Jiangxi Province"
   organization_url : "http://jyt.jiangxi.gov.cn/"
