@@ -25,10 +25,7 @@ LANDING_PAGE_TITLE = '关于我'
 
 TAGS_URL = 'tags.html'
 TAGS_SAVE_AS = 'tags.html'
-MENUITEMS = [
-    ('English', '/en/'),
-    ('中文', '/'),
-]
+MENUITEMS = []
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -61,13 +58,8 @@ THEME_TEMPLATES_OVERRIDES = ['custom_template']
 
 # plugin
 PLUGIN_PATHS = ['pelican-plugins', 'pelican-plugins/tipue_search/pelican/plugins']
-PLUGINS = ['i18n_subsites', 'tipue_search'] #, 'extract_toc'
+PLUGINS = ['tipue_search'] #, 'extract_toc'
 # PLUGINS = [ ]
-I18N_SUBSITES = {
-    'en': {
-        'LANDING_PAGE_TITLE': 'About Me',
-    },
-}
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {
     "extension_configs": {

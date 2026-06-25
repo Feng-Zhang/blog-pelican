@@ -41,31 +41,6 @@
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/elegant.prod.css" media="screen">
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/custom.css" media="screen">
         {% endif %}
-        <style>
-            .language-menu .dropdown-toggle {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .language-menu .dropdown-toggle svg {
-                width: 18px;
-                height: 18px;
-                vertical-align: middle;
-                fill: currentColor;
-            }
-
-            .language-menu .dropdown-menu {
-                left: auto;
-                right: 0;
-                min-width: 120px;
-            }
-
-            .language-menu .dropdown-menu .active > a,
-            .language-menu .dropdown-menu .active > a:hover {
-                background: #f5f5f5;
-                color: #333;
-            }
-        </style>
         {% endblock head_links %}
         {% include '_includes/favicon_links.html' %}
         {% block feed_links %}
@@ -95,32 +70,19 @@
                                        {% endif %}
                                     >{{ '首页' if is_zh else 'Home' }}</a>
                                 </li>
-                                <li {% if page and page.slug == 'books' %} class="active"{% endif %}><a href="{{ main_siteurl }}/books.html">书籍</a></li>
+                                <li {% if page and page.slug == 'books' %} class="active"{% endif %}><a href="{{ SITEURL }}/books.html">书籍</a></li>
                                 {% if DISPLAY_PAGES_ON_MENU %}
                                 {% for p in pages %}
+                                {% if p.slug != 'books' %}
                                 <li {% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                                {% endif %}
                                 {% endfor %}
                                 {% endif %}
                                 {% from '_includes/_defaults.html' import TAGS_URL, CATEGORIES_URL, ARCHIVES_URL, SEARCH_URL with context %}
                                 <li {% if page_name == 'categories' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ CATEGORIES_URL }}">{{ '分类' if is_zh else 'Categories' }}</a></li>
                                 <li {% if page_name == 'tags' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ TAGS_URL }}">{{ '标签' if is_zh else 'Tags' }}</a></li>
                                 <li {% if page_name == 'archives' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">{{ '归档' if is_zh else 'Archives' }}</a></li>
-                                <li><form class="navbar-search" action="{{ SITEURL }}/{{ SEARCH_URL }}" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="{{ '搜索' if is_zh else 'Search' }}" name="q" id="tipue_search_input"></form></li>
-                                {% if lang_siteurls %}
-                                <li class="dropdown language-menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-label="Language menu" title="{{ '语言切换' if is_zh else 'Language switcher' }}">
-                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.51 2.53 2 3.96h-4c.49-1.43 1.17-2.76 2-3.96zM4.26 14A8.14 8.14 0 0 1 4 12c0-.69.09-1.36.26-2h3.42a16.8 16.8 0 0 0 0 4H4.26zm.81 2h2.95a15.65 15.65 0 0 0 1.38 3.56A8.03 8.03 0 0 1 5.07 16zM8.02 8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96A13.56 13.56 0 0 1 10 16h4c-.49 1.43-1.17 2.76-2 3.96zM14.34 14H9.66a14.9 14.9 0 0 1 0-4h4.68c.22.64.32 1.31.32 2s-.1 1.36-.32 2zm.26 5.56A15.65 15.65 0 0 0 15.98 16h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.32 14a16.8 16.8 0 0 0 0-4h3.42c.17.64.26 1.31.26 2s-.09 1.36-.26 2h-3.42z"></path>
-                                        </svg>
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        {% for lang, url in lang_siteurls.items() %}
-                                        <li{% if lang == DEFAULT_LANG %} class="active"{% endif %}><a href="{{ url }}/">{{ '中文' if lang == 'zh' else 'English' if lang == 'en' else lang }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                {% endif %}
+                                <li><form class="navbar-search" action="{{ SITEURL }}/{{ SEARCH_URL }}" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>
                     </div>
