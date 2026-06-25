@@ -1,29 +1,16 @@
----
-# Documentation: https://sourcethemes.com/academic/docs/managing-content/
-
-title: "Visium空间转录组分析流程"
-subtitle: ""
-summary: "Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析"
-authors: [章峰]
-tags: ["Visium","聚类","差异表达","反卷积"]
-categories: ["生信"]
-date: 2023-05-9
-lastmod: 2023-05-9
-featured: false
-draft: false
-
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-image:
-  caption: ""
-  focal_point: "Smart"
-  preview_only: false
+Title: Visium空间转录组分析流程
+Date: 2023-05-09
+Modified: 2023-05-09
+Category: 生信
+Tags: Visium, 聚类, 差异表达, 反卷积
+Slug: visium-spatial-transcriptomics-analysis-workflow
+Authors: 章峰
+Summary: Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析
+toc: true
 
 ---
 
-
+[toc]
 
 ```R
 # Analysis, visualization, and integration of spatial datasets with Seurat at https://satijalab.org/seurat/articles/spatial_vignette.html
@@ -50,12 +37,12 @@ prefix <- "Seurat-3-"
 output_prefix <- paste0(output_dir,prefix)
 ```
 
-##  创建一些函数
+## 创建一些函数
 
 ```R
 # functions -------------
 run_clustering <- function(data, resolution = 0.1, npcs=30) {
-    
+  
   data <- SCTransform(data, assay = "Spatial", verbose = TRUE)
   data <- RunPCA(data, assay = "SCT", verbose = TRUE)
   data <- FindNeighbors(data, reduction = "pca", dims = 1:npcs)
@@ -132,14 +119,13 @@ plot_rctd <- function(RCTD,seu_obj, image_name="VLP43_kidney_A1",r=3){
 
 ## Visium空间转录组技术
 
-当前时代的空间转录组技术大致分为五类方向：激光显微切割（laser capture microdissection，LCM），单分子荧光原位杂交（single molecular fluorescent in situ hybridization, smFISH），靶向原位测序（In situ sequencing，ISS），原位阵列捕获（In situ array capture, Array） 和 其他非成像技术（No imaging）。 
+当前时代的空间转录组技术大致分为五类方向：激光显微切割（laser capture microdissection，LCM），单分子荧光原位杂交（single molecular fluorescent in situ hybridization, smFISH），靶向原位测序（In situ sequencing，ISS），原位阵列捕获（In situ array capture, Array） 和 其他非成像技术（No imaging）。
 
 目前商业用的最广的还是Visium平台，因此我们以Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析。使用的工具是Seurat，spacexr等包。在单细胞下游分析中，Seurat是一个非常强大的R包，不仅有强大的社区、详细文档说明还有很多内置数据。这里以[Analysis, visualization, and integration of spatial datasets with Seurat ](https://satijalab.org/seurat/articles/spatial_vignette.html)数据为例进行空间转录组分析。
 
 ## 1. 数据探索
 
 查看测序数据质量，是否符合生物学背景。如果质量不好，需要进行质量控制。`stxBrain`已经是过滤后的数据，我们不需要进行质量控制。
-
 
 ```R
 #InstallData("stxBrain") # 如果由于网络问题，安装失败。可以将url放在浏览器中下载tar.gz文件，然后本地安装。
@@ -153,15 +139,11 @@ wrap_plots(plot1, plot2)
 # 例如，神经元（例如皮质白质）耗竭的组织区域可再现地显示出较低的分子数。
 ```
 
-
-​    
 ![png](output_4_0.png)
-​    
 
 ## 2. 聚类
 
 和单细胞数据类似，我们需要对数据进行聚类。也可以使用`run_clustering`函数。
-
 
 ```R
 brain <- SCTransform(brain, assay = "Spatial", verbose = FALSE)
@@ -185,14 +167,12 @@ p1 + p2
 
 ![png](output_6_0.png)
 ![png](output_6_2.png)
-    
+
 ![png](output_6_3.png)
-    
 
 ## 3. 检测亚群特异和空间特异差异基因
 
 对不同亚群进行差异分析，对不同空间分布中的细胞进行基因差异分析。
-
 
 ```R
 # Detecting spatially-variable features 
@@ -205,7 +185,7 @@ SpatialFeaturePlot(object = brain, features = rownames(de_markers)[1:3], alpha =
 <caption>A data.frame: 6 * 5</caption>
 <thead>
 	<tr><th></th><th scope=col>p_val</th><th scope=col>avg_log2FC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
-	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+	<tr><th></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th></tr>
 </thead>
 <tbody>
 	<tr><th scope=row>Calb2</th><td>6.427214e-69</td><td> 3.336874</td><td>1.000</td><td>0.537</td><td>1.135560e-64</td></tr>
@@ -217,15 +197,7 @@ SpatialFeaturePlot(object = brain, features = rownames(de_markers)[1:3], alpha =
 </tbody>
 </table>
 
-
-
-
-
-
 ![png](output_8_1.png)
-    
-
-
 
 ```R
 #在没有预注释的情况下搜索表现出空间模式的特征
@@ -233,26 +205,19 @@ brain <- FindSpatiallyVariableFeatures(brain, assay = "SCT", features = Variable
 #top.features <- head(SpatiallyVariableFeatures(brain, selection.method = "moransi"), 6)
 top.features <- c("Calb2","Gng4","Ttr","S100a5","Nrgn","Doc2g")
 SpatialFeaturePlot(brain, features = top.features, ncol = 3, alpha = c(0.1, 1))
-
 ```
 
     Computing Moran's I
 
-
-
-
 ![png](output_9_1.png)
-    
 
 ## 4. 检测分组特异差异基因
 
 由于此数据没有分组信息，我们导入另一个数据进行演示。由于直接对分组细胞进行差异分析会造成假阳性，这里我们用psudo-bulk差异分析
 
-
 ```R
 brain <- readRDS("/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-cluster.RData")
 ```
-
 
 ```R
 # DEG group--------
@@ -267,15 +232,11 @@ res <- dga_treat(DGEList=y,ref_level = "young")
 head(res$table)
 ```
 
-
-​     aged young 
-​    10715 11479 
-
-
+    aged young
+    10715 11479
 
     DataFrame with 6 rows and 11 columns
-                orig.ident nCount_Spatial nFeature_Spatial       group nCount_SCT
-               <character>      <numeric>        <integer> <character>  <numeric>
+                orig.ident nCount_Spatial nFeature_Spatial       group nCount_SCT`<character>`      `<numeric>`        `<integer>` `<character>`  `<numeric>`
     VLP40_1A_1    VLP40_1A             NA               NA       young         NA
     VLP40_1A_2    VLP40_1A             NA               NA       young         NA
     VLP40_1A_3    VLP40_1A             NA               NA       young         NA
@@ -283,7 +244,7 @@ head(res$table)
     VLP40_1B_2    VLP40_1B             NA               NA       young         NA
     VLP40_1B_3    VLP40_1B             NA               NA       young         NA
                nFeature_SCT SCT_snn_res.0.1 seurat_clusters sudo_sample_id
-                  <integer>        <factor>        <factor>    <character>
+                  `<integer>`        `<factor>`        `<factor>`    `<character>`
     VLP40_1A_1           NA              NA              NA     VLP40_1A_1
     VLP40_1A_2           NA              NA              NA     VLP40_1A_2
     VLP40_1A_3           NA              NA              NA     VLP40_1A_3
@@ -291,7 +252,7 @@ head(res$table)
     VLP40_1B_2           NA              NA              NA     VLP40_1B_2
     VLP40_1B_3           NA              NA              NA     VLP40_1B_3
                        ids    ncells
-               <character> <integer>
+               `<character>` `<integer>`
     VLP40_1A_1  VLP40_1A_1      1023
     VLP40_1A_2  VLP40_1A_2      1041
     VLP40_1A_3  VLP40_1A_3      1025
@@ -299,18 +260,16 @@ head(res$table)
     VLP40_1B_2  VLP40_1B_2       915
     VLP40_1B_3  VLP40_1B_3       865
 
-
 ```
 -1     0     1 
- 87 14105   203 
+ 87 14105   203
 ```
-
 
 <table class="dataframe">
 <caption>A data.frame: 6 * 6</caption>
 <thead>
 	<tr><th></th><th scope=col>logFC</th><th scope=col>unshrunk.logFC</th><th scope=col>logCPM</th><th scope=col>PValue</th><th scope=col>FDR</th><th scope=col>regulate</th></tr>
-	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+	<tr><th></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><chr></th></tr>
 </thead>
 <tbody>
 	<tr><th scope=row>Lyz2</th><td>2.6841911</td><td>2.6854073</td><td>5.326010</td><td>2.446786e-17</td><td>2.992338e-13</td><td>Up</td></tr>
@@ -321,8 +280,6 @@ head(res$table)
 	<tr><th scope=row>Fcgr2b</th><td>1.4622417</td><td>1.4650595</td><td>2.751271</td><td>1.811064e-14</td><td>4.032808e-11</td><td>Up</td></tr>
 </tbody>
 </table>
-
-
 
 ## 5. Deconvolution分析
 
@@ -350,22 +307,19 @@ brain <- AddMetaData(brain,metadata = meta_data)
 saveRDS(brain,file = "/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData"))
 ```
 
-
 ```R
 brain <- readRDS("/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData")
 ```
-
 
 ```R
 head(brain@meta.data)
 ```
 
-
 <table class="dataframe">
 <caption>A data.frame: 6 * 17</caption>
 <thead>
 	<tr><th></th><th scope=col>orig.ident</th><th scope=col>nCount_Spatial</th><th scope=col>nFeature_Spatial</th><th scope=col>group</th><th scope=col>nCount_SCT</th><th scope=col>nFeature_SCT</th><th scope=col>SCT_snn_res.0.1</th><th scope=col>seurat_clusters</th><th scope=col>Astrocytes</th><th scope=col>Ependymal</th><th scope=col>Immune</th><th scope=col>Microglia</th><th scope=col>Neurons</th><th scope=col>Oligos</th><th scope=col>PeripheralGlia</th><th scope=col>Vascular</th><th scope=col>max_cell</th></tr>
-	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+	<tr><th></th><th scope=col><chr></th><th scope=col><dbl></th><th scope=col><int></th><th scope=col><chr></th><th scope=col><dbl></th><th scope=col><int></th><th scope=col><fct></th><th scope=col><fct></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><chr></th></tr>
 </thead>
 <tbody>
 	<tr><th scope=row>AAACAAGTATCTCCCA-1_1_1_1</th><td>VLP40_1A</td><td> 8421</td><td>3160</td><td>young</td><td>15335</td><td>3514</td><td>3</td><td>3</td><td>0.19143611</td><td>0.0006158916</td><td>0.0049827905</td><td>0.004197530</td><td>0.3236210</td><td>0.433052200</td><td>0.011450442</td><td>0.030644049</td><td>Oligos </td></tr>
@@ -377,7 +331,6 @@ head(brain@meta.data)
 </tbody>
 </table>
 
-
 ## 6. 绘图
 
 ```R
@@ -388,9 +341,8 @@ p_brain <- plot_rctd(myRCTD_full,brain,image_name = slice_id)+ggtitle(slice_id)+
     guides(colour = "none")
 p_brain
 ```
+
 ![](brain-rctd.png)
 
-
 ```R
-
 ```

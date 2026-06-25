@@ -1,28 +1,17 @@
 ---
-title: " 在win10中使用ubuntu子系统WSL如何安装g++"  
-subtitle: ""  
-summary: "windows下使用linux (WSL)系统时如何正确安装g++"  
-authors: [章峰]  
-tags: ["win10","ubuntu","g++ install","安装"]  
-categories: [windows]  
-date: 2020-09-15
-lastmod: 2020-09-16
-featured: false
-draft: false
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
-# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-image:
-  placement: 1
-  caption: ''
-  focal_point: "Smart"
-  preview_only: false
-  
+Title: 在win10中使用ubuntu子系统WSL如何安装g++
+Date: 2020-09-15
+Modified: 2020-09-16
+Category: windows
+Tags: win10, ubuntu, g++ install, 安装
+Slug: install-gpp-in-windows10-wsl-ubuntu
+Authors: 章峰
+Summary: windows下使用linux (WSL)系统时如何正确安装g++
 ---
 
-{{% toc %}}
+
+
+[toc]
 
 ## 前言
 
@@ -52,8 +41,6 @@ E: Unable to locate package build-essentials
 ```
 
 不过[一直学的博客](https://zhuanlan.zhihu.com/p/76032647)也谈到这个问题，这是因为软件源不行，得换国内的软件源。参考网上的说法，觉得中科大的软件源比较好用。于是成功按照步骤进行更换。没问题…个鬼啊，这是个巨坑。后面安装R软件包的时候会详细描述。
-
-
 
 ### 安装R软件
 
@@ -86,8 +73,6 @@ GNU General Public License versions 2 or 3.
 For more information about these matters see
 https://www.gnu.org/licenses/.
 ```
-
-
 
 ### 安装R软件包
 
@@ -187,7 +172,7 @@ Warning messages:
   installation of package ‘httr’ had non-zero exit status
 ```
 
-仔细看错误信息，这应该是g++没有安装。`q()`关闭R交互窗口，返回bash。我们查看一下g++的情况：`g++ --version` 。bash会给出下面的信息```g++: command not found```。这说明g++是没安装的。`sudo apt-get install g++`安装起走，但是结果却出人意料：
+仔细看错误信息，这应该是g++没有安装。`q()`关闭R交互窗口，返回bash。我们查看一下g++的情况：`g++ --version` 。bash会给出下面的信息``g++: command not found``。这说明g++是没安装的。`sudo apt-get install g++`安装起走，但是结果却出人意料：
 
 ```
 Reading package lists... Done
@@ -233,7 +218,6 @@ deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe
 # deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
 deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
 # deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
-
 ```
 
 3. 更新ubuntu的源及相关软件
@@ -281,4 +265,3 @@ The downloaded source packages are in
 ```
 
 　　Finally，搞定WSL的基本配置，可以愉快地使用`bash`了。
-

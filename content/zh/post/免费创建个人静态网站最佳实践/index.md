@@ -1,20 +1,15 @@
+Title: 免费创建个人静态网站最佳实践：hugo+github+netlify
+Date: 2020-05-25 10:20
+Modified: 2020-07-06 19:30
+Category: 网站
+Tags: hugo, academic, 静态网站
+Slug: hugo-github-netlify
+Authors: Alexis Metaireau, Conan Doyle
+Summary: 利用hugo+github+netlify创建个人静态网站最佳方式，专注写作而不是网页控件。
 
-title: 免费创建个人静态网站最佳实践：hugo+github+netlify
-summary: "利用hugo+github+netlify创建个人静态网站最佳方式，专注写作而不是网页控件。"  
-author: 章峰  
-tags: hugo, academic, 静态网站
-category: 网站
-date: 2020-05-25T15:56:11+08:00
-modified: 2020-07-06T15:56:11+08:00
-lang: zh
+---
 
-
-
-
-[TOC]
-<div class="toc"> 
-{{% toc %}}
-
+[toc]
 
 
 ## 一、前言
@@ -23,8 +18,7 @@ lang: zh
 
 其实中间有过一段时间，利用hexo、github和github page创建过静态网站。但是用得不太顺手，原因有很多，比如：老是花时间在怎么改网页主题上，而不是专注在写作上；markdown（md）文件中的图片迁移很麻烦，网上的图片老是会丢失；github page 在国内打开很慢而且SEO不容易搜索到。因此，一直耽误到现在，但一直贼心不死，想得到一个不太需要维护，可以专注写作，文档可以同步（在别的电脑上也可以编辑），又很geek的网站。我的想法是把所有笔记保存在有道云笔记中进行维护和整理，需要分享的话可以在本地用typora写md文档。此外，md文档中的图片用图床解决移动问题，然后托管到git自动渲染成网页。这样只要图床不挂，分享或上传到其它平台就很方便，因为只要复制md文档就行。为什么不直接用有道云笔记中的md呢？因为插入图片得是VIP才行，而导出来的md文档里所有图片的超链接是私人链接，移到别的地方根本没办法显示图片。最终我觉得搭网站最好的方式是：hugo+github+Netlify。适合我的笔记保存和写作的最佳方式是：有道云笔记+typora+picgo。如果觉得太麻烦了，不想把博客和有道云笔记等之类的笔记工具连接在一起，也不会传到其它平台上，可以直接用typora写作，利用hugo的page bundle绑定图片。
 
-
-关于利用hugo和Github建网站的博客很多，但是有些博客内容有些出入，可能是由于英文翻译或版本更新所造成的。这里建议大家直接看hugo的[英文官网](https://gohugo.io/getting-started/quick-start/)和[hugo in action](https://livebook.manning.com/book/hugo-in-action/about-this-meap/v-4/)，或者[官方翻译](https://s0gohugo0io.icopy.site)。此外，网上的博客可以进行参考。这篇博客主要针对搭建过程中可能遇到的问题进行记录，希望对大家有所帮助。  
+关于利用hugo和Github建网站的博客很多，但是有些博客内容有些出入，可能是由于英文翻译或版本更新所造成的。这里建议大家直接看hugo的[英文官网](https://gohugo.io/getting-started/quick-start/)和[hugo in action](https://livebook.manning.com/book/hugo-in-action/about-this-meap/v-4/)，或者[官方翻译](https://s0gohugo0io.icopy.site)。此外，网上的博客可以进行参考。这篇博客主要针对搭建过程中可能遇到的问题进行记录，希望对大家有所帮助。
 
 ## 二、原理
 
@@ -45,7 +39,7 @@ lang: zh
 
 如果不想看英文的，可以参考[这篇](https://jdhao.github.io/2018/10/10/hexo_to_hugo/)和[这篇](https://mogeko.me/2018/018/)中文入门。
 
-下面简要阐述过程：  
+下面简要阐述过程：
 
 ```
 hugo new site hugo #建立站点以后，博客根目录下默认有这些文件和子目录：archetypes/  config.toml  content/     data/        layouts/     static/      themes/
@@ -54,10 +48,10 @@ git init
 git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke # 安装主题
 echo 'theme = "ananke"' >> config.toml
 hugo new posts/my-first-post.md
-hugo server 
+hugo server
 ```
 
-这时出现类似下面的信息，说明生成静态网页成功。可以在浏览器上输入 http://localhost:1313/ 进行浏览。  
+这时出现类似下面的信息，说明生成静态网页成功。可以在浏览器上输入 http://localhost:1313/ 进行浏览。
 
 ```
 Building sites …
@@ -82,7 +76,7 @@ Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Press Ctrl+C to stop
 ```
 
-如果出现下面的错误：  
+如果出现下面的错误：
 
 ```
 hugo new posts/my-first-post.md
@@ -91,10 +85,9 @@ Error: "E:\blogs\quickstart\config.toml:3:1": unmarshal failed: Near line 3 (las
 
 这是因为E:\blogs\hugo\config.toml里面有一些NUL的间隔符，可能是由于echo的命令产生的。手动把它们删除就行了。
 
-
 ### 2、托管到github
 
-把我们本地生成的静态网页托管到[github](https://github.com)上进行保存，而不用自己进行维护。  
+把我们本地生成的静态网页托管到[github](https://github.com)上进行保存，而不用自己进行维护。
 首先在github上新建账号，并创建一个新的仓库，以仓库名为test为例。再下载安装[git](https://git-scm.com/) 。
 
 ```
@@ -128,17 +121,13 @@ fi
 git commit -m "$msg"
 
 # push source to github
-git push origin master:master 
+git push origin master:master
 ```
-
-
-
-
 
 ### 3、用Netlify渲染网页
 
-最后我们用[Netlify](https://www.netlify.com)对托管到github上的静态网页进行渲染。很简单，可以看这篇[教程](https://kuleyu.github.io/hexolog/post/31808.html)。至此一个简陋的网页就建好了。记得改一下Netlify自动分配给你的域名，不过只能更改前缀。要求不高也还好了。  
-下面简单描述一下操作步骤：
+最后我们用[Netlify](https://www.netlify.com)对托管到github上的静态网页进行渲染。很简单，可以看这篇[教程](https://kuleyu.github.io/hexolog/post/31808.html)。至此一个简陋的网页就建好了。记得改一下Netlify自动分配给你的域名，不过只能更改前缀。要求不高也还好了。下面简单描述一下操作步骤：
+
 1. 用github的账号登陆[Netlify](https://www.netlify.com)。
 2. 点击右上角的Create new site
 3. 跳转到第一步，connect to git provider，选github
@@ -147,11 +136,7 @@ git push origin master:master
 6. 等待一会配置，就会出现网址了。类似这样的https://priceless-morse-029791.netlify.app。
 7. 复制粘贴网址就大功告成。
 
-
 目前我们可以以网站形式来展示内容，但是初始化的见面一点也不cool啊。客官别急，请看下面进阶教程。
-
-
-
 
 ## 四、进阶
 
@@ -174,13 +159,11 @@ git submodule update --init --recursive
 
 由于academic主题设置commento很方便，这里图方便直接用了：
 
-1. 把config/_default/params.toml中的```engine = 0```改成```engine = 2```。  
+1. 把config/_default/params.toml中的``engine = 0``改成``engine = 2``。
 2. ~~注册[commento](https://commento.io)账号，把你自己博客域名进行绑定即可。~~
-commento后来发现是收费的，现改成valine。
-3. valine的加载有点麻烦，可以参考[博客](https://www.smslit.top/2018/07/08/hugo-valine/)。  
-此外，国外用的比较多的有Disqus，国内有valine和Gittalk。不过[Gitalk](https://github.com/gitalk/gitalk/)有点复杂，可参考这篇[博客](https://mogeko.me/2018/024/)进行安装。
-
-
+   commento后来发现是收费的，现改成valine。
+3. valine的加载有点麻烦，可以参考[博客](https://www.smslit.top/2018/07/08/hugo-valine/)。
+   此外，国外用的比较多的有Disqus，国内有valine和Gittalk。不过[Gitalk](https://github.com/gitalk/gitalk/)有点复杂，可参考这篇[博客](https://mogeko.me/2018/024/)进行安装。
 
 ## 五、写作
 
@@ -200,7 +183,7 @@ commento后来发现是收费的，现改成valine。
 
 #### 利用图床
 
-这里利用picgo工具，把图片复制后，按一个快捷键就会自动上传到picgo内设置的图床上。  
+这里利用picgo工具，把图片复制后，按一个快捷键就会自动上传到picgo内设置的图床上。
 
 [picgo教程](https://picgo.github.io/PicGo-Doc/zh/)支持8大图床。可以选免费的**smms**和github（虽然github慢了点），也可以氪金买云服务。
 
@@ -210,23 +193,17 @@ commento后来发现是收费的，现改成valine。
 
 综上，图床是最方便的，但需要点时间配置各个软件。page bundle是最简单的，但是如果没法移动到其它平台。
 
-
-
 ### 2、更新博客的流程
 
-日后更新博客时就只需要在本地的hugo\content\post文件夹中编辑新的md文件，然后```./deploy.sh```就会自动编译静态网页然后上传至github，同时Netlify会检测Github中库的动态，并及时更新发布的网站内容。  
-
-
+日后更新博客时就只需要在本地的hugo\content\post文件夹中编辑新的md文件，然后``./deploy.sh``就会自动编译静态网页然后上传至github，同时Netlify会检测Github中库的动态，并及时更新发布的网站内容。
 
 ### 3、在另一台电脑上写作
 
-由于静态网页是托管到github，可以很方便地进行同步。直接用```git pull```把github拉下来就行，写完后```git push``` 到仓库就万事大吉了。
+由于静态网页是托管到github，可以很方便地进行同步。直接用``git pull``把github拉下来就行，写完后``git push`` 到仓库就万事大吉了。
 
-----
+---
 
 以上就是免费创建个人静态网站地最佳实践。全免费，渲染快捷且可以专注写作，不用费心维护。
-
-
 
 ## 六、域名
 
@@ -248,7 +225,7 @@ remote: Permission to Feng-Zhang/academic-kickstart.git denied to xiaofeng007.
 fatal: unable to access 'https://github.com/Feng-Zhang/academic-kickstart.git/': The requested URL returned error: 403
 ```
 
-控制面板-用户帐户-凭据管理器-找到git:https://github.com-编辑  
-对这个凭据进行编辑，把要远程的账号和密码加上。 
+控制面板-用户帐户-凭据管理器-找到git:https://github.com-编辑
+对这个凭据进行编辑，把要远程的账号和密码加上。
 
 ![image-20200526130114714](https://i.loli.net/2020/05/26/Ox6Gdy9sVJzlm71.png)

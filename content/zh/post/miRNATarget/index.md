@@ -1,36 +1,20 @@
----
-# Documentation: https://sourcethemes.com/academic/docs/managing-content/
-
-title: "miRNA的靶基因预测详细教程"
-subtitle: ""
-summary: "miRNA的靶基因预测详细教程，自动化代码实现预测分析"
-authors: [章峰]
-tags: ["生信","miRNA","靶基因","自动化"]
-categories: [生信]
-date: 2020-11-11T18:49:15+08:00
-lastmod: 2020-11-12T18:49:15+08:00
-featured: false
-draft: false
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-image:
-  caption: ""
-  focal_point: "Smart"
-  preview_only: false
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
+Title: miRNA的靶基因预测详细教程
+Date: 2020-11-11 10:20
+Modified: 2020-11-12 19:30
+Category: miRNA
+Tags: miRNA,靶基因,自动化
+Slug: miRNA
+Authors: Feng Zhang
+Summary: miRNA的靶基因预测详细教程，自动化代码实现预测分析
 
 ---
 
-{{% toc %}}
 
-　　最近发现很多人对预测miRNA的靶基因感兴趣，因此分享一下这方面的知识。通过生信算法预测miRNA靶基因的网站有很多，下面例举3个常见网站，并给出详细使用教程。
+[toc]
+
+　　
+
+    最近发现很多人对预测miRNA的靶基因感兴趣，因此分享一下这方面的知识。通过生信算法预测miRNA靶基因的网站有很多，下面例举3个常见网站，并给出详细使用教程。
 
 　　一般来说，预测网站的假阳性会比较高，我们可以同时用这些网站进行预测，然后取交集来提高准确率。下面以miR-320为例进行说明。
 
@@ -42,23 +26,17 @@ image:
 
 其中值得注意的是：所有的相互作用对来源于6种证据，有reporter assay, western blot, qPCR, Microarray, NGS, PSILAC。前面三种证据的可靠较强。
 
-
-
 ### [miRDB](http://www.mirdb.org/index.html)
 
 ![miRDB例子](20201112211031.png)
 
 miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点击相对应的Details可以查看相匹配的位点。
 
-
-
 ### [TargetScan](http://www.targetscan.org/vert_72/)
 
 TargetScan 则通过搜索mRNA的保守 8mer, 7mer, 和6mer 位点来与miRNA相匹配。然后按一个总的得分进行排序。
 
 ![TargetScan例子](20201112083335140.png)
-
-
 
 ### 批量分析
 
@@ -95,7 +73,6 @@ targetscan_mRNA = targetscan[str_detect(targetscan$miRNA,paste0('^',source,'$|^'
 res = merge(miRTarBase_mRNA,targetscan_mRNA,by.x="Target.Gene",by.y="Gene.Symbol")
 res = merge(res,miRDB_mRNA,by.x="Target.Gene",by.y="hgnc_symbol")
 write.csv(res,file="miRNAtargetGene.csv",row.names = F,col.names = F)
-
 ```
 
 这个代码还不完善，之后有机会把它们做成一个R软件包，更方便使用。

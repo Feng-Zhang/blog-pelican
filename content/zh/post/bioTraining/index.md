@@ -1,30 +1,17 @@
----
-# Documentation: https://sourcethemes.com/academic/docs/managing-content/
-
-title: "生物信息最佳入门实践路线图"
-subtitle: "生信是一门交叉学科，要学习的东西非常多。如何快速入门是个问题，本文提供了一些入门的路线图。"
-summary: "生信是一门交叉学科，要学习的东西非常多。如何快速入门是个问题，本文提供了一些入门的路线图。"
-authors: [章峰]
-tags: ["生信","生物信息","入门","教程","路线图","实践"]
-categories: [生信]
-date: 2020-10-10
-lastmod: 2021-11-27
-featured: false
-draft: false
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-image:
-  caption: "生信入门路线图"
-  focal_point: ""
-  preview_only: false
+Title: 生物信息最佳入门实践路线图
+Date: 2020-10-10 10:20
+Modified: 2021-11-27 19:30
+Category: 基础
+Tags: 生信,生物信息,入门,教程,路线图,实践
+Slug: plan
+Authors:  章峰
+Summary: 生信是一门交叉学科，要学习的东西非常多。如何快速入门是个问题，本文提供了一些入门的路线图。
 
 ---
 
 
+[toc]
 
-{{< toc >}}
 
 # 生物信息最佳入门实践路线图
 
@@ -47,24 +34,16 @@ image:
 #### R语言资料
 
 - 如果你是一位喜欢视听学习这种方式的，请参考[生信技能树的生信人应该这样学R语言](https://www.bilibili.com/video/av25643438)。
-
 - 如果你是一位喜欢阅读学习这种方式，请参考**R for beginners**和**R现代统计图形**。如果你有余力还可以学习**R语言实战**及**ggplot2:数据分析与图形艺术**等深入内容。
-
 - 最后进行这[20个R语言习题](http://www.bio-info-trainee.com/3409.html)进行实践，加深印象。如果你没有时间，而且入门资料都能看得懂，也可以跳过这步，在项目实践阶段结合自己课题进行练习。
-
-
 
 ### linux
 
 如果要对测序后的原始数据进行上游分析的话，你一定得学会Linux。如果你不用处理多组学数据的原始序列，那么这个可以跳过。
 
 - 入门视频：https://www.bilibili.com/video/av28813815
-
 - 书籍：**[鸟哥的linux私房菜](http://linux.vbird.org/linux_basic/)**是繁体字，也有转成[简体中文](http://shouce.jb51.net/vbird-linux-basic-4/index-2.html)版本。
-
 - linux 实践：http://www.bio-info-trainee.com/2900.html
-
-
 
 ### python
 
@@ -74,13 +53,10 @@ python是一门胶水语言，基本上什么都干，尤其是在机器学习�
 - 机器学习入门：python机器学习基础教程（Andreas C.Muller and Sarah Guido著， 张亮译）
 - 神经网络入门：[Python深度学习（Francois Chollet 著， 张亮译）
 
-
-
 ### 项目实践
 
 目前没找到好的开源项目进行实践，这个跟课题组的研究内容相关。不过下面列出一些组学的内容可以用来实践。
 
 - 转录组：https://www.bilibili.com/video/av28453557
 - 单细胞组：https://www.bilibili.com/video/av38741055
-- 肿瘤免疫的生信分析，分享一些文献进行具体实战。链接：https://pan.baidu.com/s/10nUWgVR4SRT83Qwmwuy0pg  提取码：qapd 
-
+- 肿瘤免疫的生信分析，分享一些文献进行具体实战。链接：https://pan.baidu.com/s/10nUWgVR4SRT83Qwmwuy0pg  提取码：qapd

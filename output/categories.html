@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
 
 <meta property="og:title" content="All Categories · test_site"/>
 <meta name="twitter:title" content="All Categories · test_site">
-<meta property="og:url" content="/categories.html" />
+<meta property="og:url" content="http://localhost:8000/categories.html" />
 <meta property="og:description" content="All categories of the test_site blog" />
 <meta name="twitter:description" content="All categories of the test_site blog">
 <meta property="og:site_name" content="test_site" />
@@ -19,8 +19,8 @@
         <title>All Categories · test_site
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/custom.css" media="screen">
 
 
 
@@ -35,18 +35,18 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="/"><span class=site-name>test_site</span></a>
+                        <a class="brand" href="http://localhost:8000/"><span class=site-name>test_site</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
                                     <a href=
-                                       "/"
+                                       http://localhost:8000
                                     >Home</a>
                                 </li>
-                                <li  class="active"><a href="/categories.html">Categories</a></li>
-                                <li ><a href="/{lang}/tags.html">Tags</a></li>
-                                <li ><a href="/{lang}/archives.html">Archives</a></li>
-                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                                <li  class="active"><a href="http://localhost:8000/categories.html">Categories</a></li>
+                                <li ><a href="http://localhost:8000/{lang}/tags.html">Tags</a></li>
+                                <li ><a href="http://localhost:8000/{lang}/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="span10">
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="/categories.html">All Categories</a></h1>
+    <h1><a href="http://localhost:8000/categories.html">All Categories</a></h1>
     </header>
 </div>
 
@@ -68,22 +68,56 @@
         <div class="accordion" id="accordion2">
             <div class="accordion-group">
                 <div class="accordion-heading">
-                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#anaconda-ref">
-                        anaconda<span>1</span>
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#about-ref">
+                        About<span>3</span>
                     </a>
                 </div>
-                <div id="anaconda-ref" class="accordion-body collapse">
+                <div id="about-ref" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <ul class="list-articles-category">
                             <li itemscope>
-                                <time itemprop="dateCreated" datetime="2021-10-21T00:00:00+02:00">
+                                <time itemprop="dateCreated" datetime="2018-12-03T10:20:00+08:00">
+                                    Mon 03 December 2018
+                                </time>
+                                    <a href="http://localhost:8000/en/accomplishment.html">
+                                        My accomplishment
+                                    </a>
+                            </li>
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2018-12-03T10:20:00+08:00">
+                                    Mon 03 December 2018
+                                </time>
+                                    <a href="http://localhost:8000/en/experience.html">
+                                        My experience
+                                    </a>
+                            </li>
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2018-12-03T10:20:00+08:00">
+                                    Mon 03 December 2018
+                                </time>
+                                    <a href="http://localhost:8000/en/publication.html">
+                                        My Publication
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#conda-ref">
+                        conda<span>1</span>
+                    </a>
+                </div>
+                <div id="conda-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2021-10-21T10:20:00+08:00">
                                     Thu 21 October 2021
                                 </time>
-                                    <a href="/zh/anacondashi-yong-jiao-cheng.html">
-                                        "Anaconda使用教程"
-                                        <small class="subtitle">
-                                            ""
-                                        </small>
+                                    <a href="http://localhost:8000/en/conda.html">
+                                        Anaconda使用教程
                                     </a>
                             </li>
                         </ul>
@@ -92,22 +126,19 @@
             </div>
             <div class="accordion-group">
                 <div class="accordion-heading">
-                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#hmm-ref">
-                        hmm<span>1</span>
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#dan-xi-bao-ref">
+                        单细胞<span>1</span>
                     </a>
                 </div>
-                <div id="hmm-ref" class="accordion-body collapse">
+                <div id="dan-xi-bao-ref" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <ul class="list-articles-category">
                             <li itemscope>
-                                <time itemprop="dateCreated" datetime="2020-09-22T15:56:11+08:00">
-                                    Tue 22 September 2020
+                                <time itemprop="dateCreated" datetime="2021-09-06T10:20:00+08:00">
+                                    Mon 06 September 2021
                                 </time>
-                                    <a href="/zh/yin-ma-er-ke-fu-mo-xing.html">
-                                        "隐马尔可夫模型"
-                                        <small class="subtitle">
-                                            ""
-                                        </small>
+                                    <a href="http://localhost:8000/en/scRNA.html">
+                                        single cell RNA-seq全流程复现HCC文章
                                     </a>
                             </li>
                         </ul>
@@ -116,19 +147,19 @@
             </div>
             <div class="accordion-group">
                 <div class="accordion-heading">
-                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#review-ref">
-                        Review<span>1</span>
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#ji-chu-ref">
+                        基础<span>1</span>
                     </a>
                 </div>
-                <div id="review-ref" class="accordion-body collapse">
+                <div id="ji-chu-ref" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <ul class="list-articles-category">
                             <li itemscope>
-                                <time itemprop="dateCreated" datetime="2010-12-03T10:20:00+01:00">
-                                    Fri 03 December 2010
+                                <time itemprop="dateCreated" datetime="2020-10-10T10:20:00+08:00">
+                                    Sat 10 October 2020
                                 </time>
-                                    <a href="/zh/my-first-review.html">
-                                        My First Review
+                                    <a href="http://localhost:8000/en/plan.html">
+                                        生物信息最佳入门实践路线图
                                     </a>
                             </li>
                         </ul>
@@ -137,22 +168,124 @@
             </div>
             <div class="accordion-group">
                 <div class="accordion-heading">
-                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#wsl-ref">
-                        wsl<span>1</span>
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#mirna-ref">
+                        miRNA<span>1</span>
                     </a>
                 </div>
-                <div id="wsl-ref" class="accordion-body collapse">
+                <div id="mirna-ref" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <ul class="list-articles-category">
                             <li itemscope>
-                                <time itemprop="dateCreated" datetime="2020-09-15T00:00:00+02:00">
+                                <time itemprop="dateCreated" datetime="2020-11-11T10:20:00+08:00">
+                                    Wed 11 November 2020
+                                </time>
+                                    <a href="http://localhost:8000/en/miRNA.html">
+                                        miRNA的靶基因预测详细教程
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#sheng-xin-ref">
+                        生信<span>1</span>
+                    </a>
+                </div>
+                <div id="sheng-xin-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2023-05-09T00:00:00+08:00">
+                                    Tue 09 May 2023
+                                </time>
+                                    <a href="http://localhost:8000/en/visium-spatial-transcriptomics-analysis-workflow.html">
+                                        Visium空间转录组分析流程
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#wang-luo-ref">
+                        网络<span>1</span>
+                    </a>
+                </div>
+                <div id="wang-luo-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2022-05-13T00:00:00+08:00">
+                                    Fri 13 May 2022
+                                </time>
+                                    <a href="http://localhost:8000/en/business-cloud-storage-and-private-cloud-setup.html">
+                                        商业网盘推荐和私有网盘构建
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#wang-zhan-ref">
+                        网站<span>1</span>
+                    </a>
+                </div>
+                <div id="wang-zhan-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2020-05-25T10:20:00+08:00">
+                                    Mon 25 May 2020
+                                </time>
+                                    <a href="http://localhost:8000/en/hugo-github-netlify.html">
+                                        免费创建个人静态网站最佳实践：hugo+github+netlify
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#windows-ref">
+                        windows<span>1</span>
+                    </a>
+                </div>
+                <div id="windows-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2020-09-15T00:00:00+08:00">
                                     Tue 15 September 2020
                                 </time>
-                                    <a href="/zh/zai-win10zhong-shi-yong-ubuntuzi-xi-tong-wslru-he-an-zhuang-g.html">
-                                        " 在win10中使用ubuntu子系统WSL如何安装g++"
-                                        <small class="subtitle">
-                                            ""
-                                        </small>
+                                    <a href="http://localhost:8000/en/install-gpp-in-windows10-wsl-ubuntu.html">
+                                        在win10中使用ubuntu子系统WSL如何安装g++
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle list-of-categories" data-toggle="collapse" data-parent="#accordion2" href="#zhuan-lu-zu-ref">
+                        转录组<span>1</span>
+                    </a>
+                </div>
+                <div id="zhuan-lu-zu-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-category">
+                            <li itemscope>
+                                <time itemprop="dateCreated" datetime="2018-12-03T10:20:00+08:00">
+                                    Mon 03 December 2018
+                                </time>
+                                    <a href="http://localhost:8000/en/RNA-seq-batch-effect.html">
+                                        使用不同方法规一化、PCA和批次效应矫正的差异
                                     </a>
                             </li>
                         </ul>
