@@ -9,7 +9,7 @@ Authors: Feng Zhang
 Summary: 使用不同方法对转录组数据进行规一化、PCA和批次效应矫正，并比较其差异
 Lang: zh
 ---
-[toc]
+[TOC]
 
 ### 1）规一化表达矩阵
 
@@ -93,7 +93,7 @@ Lang: zh
     corrplot(corr, add = TRUE, type = "lower", method = "number", order = "original",
              tl.pos="full",cl.pos="n")
 
-![](unnamed-chunk-1-1.png)
+![v](unnamed-chunk-1-1.png)
 
 从数值来看，不同方法相差不大。从相关性来看，不同方法规一化的数据差异也不大，以第一个样本为例，相关性都达到0.94以上。因此，不同规一化方法差别不是特别大，选择其中一个就好。
 

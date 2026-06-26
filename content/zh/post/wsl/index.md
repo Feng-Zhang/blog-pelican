@@ -9,7 +9,7 @@ Authors: 章峰
 Summary: windows下使用linux (WSL)系统时如何正确安装g++
 Lang: zh
 ---
-[toc]
+[TOC]
 
 ## 前言
 

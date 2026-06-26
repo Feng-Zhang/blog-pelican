@@ -10,7 +10,7 @@ Lang: zh
 
 ---
 
-[toc]
+[TOC]
 
 　　
 

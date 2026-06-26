@@ -10,7 +10,7 @@ Lang: zh
 
 ---
 
-[toc]
+[TOC]
 
 [Single-cell RNA sequencing shows the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8211687/)是2021年6月刚发表在NC上的文章，主要是利用单细胞转录组分析HCC患者的肿瘤异质性和免疫相关内容。本文主要复现这篇文章的生物信息分析方面的结果，包括上游的比对和定量，下游的异质性和细胞互作等内容。
 

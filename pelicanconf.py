@@ -79,7 +79,7 @@ THEME_TEMPLATES_OVERRIDES = ['custom_template']
 
 # plugin
 PLUGIN_PATHS = ['pelican-plugins', 'pelican-plugins/tipue_search/pelican/plugins']
-PLUGINS = ['tipue_search', 'extract_toc'] #
+PLUGINS = ['tipue_search', 'extract_toc', 'relative_images']
 # PLUGINS = [ ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {

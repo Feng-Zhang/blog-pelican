@@ -345,5 +345,4 @@ p_brain
 
 ![](brain-rctd.png)
 
-```R
-```
+
