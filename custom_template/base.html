@@ -40,6 +40,66 @@
         {% else %}
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/elegant.prod.css" media="screen">
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/custom.css" media="screen">
+        {% if page_name == 'archives' %}
+        <style>
+            .blog-archives-grid .archive-row {
+                display: flex;
+                align-items: flex-start;
+                font-size: 1.1em;
+                padding: 0.3em 0.2em;
+                gap: 1.5em;
+            }
+
+            .blog-archives-grid .archive-row.last-entry-of-year {
+                border-bottom: 1px dotted #aaa;
+                margin-bottom: 1em;
+            }
+
+            .blog-archives-grid .archive-year {
+                width: 4.5em;
+                flex: 0 0 4.5em;
+                margin: 0;
+            }
+
+            .blog-archives-grid .archive-year-empty {
+                visibility: hidden;
+            }
+
+            .blog-archives-grid .archive-entry {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .blog-archives-grid .archive-entry time {
+                float: right;
+                text-align: right;
+                color: #8f8f8f;
+                font: 0.9em "PT Sans", "Helvetica Neue", Arial, Sans-Serif;
+            }
+
+            @media (max-width: 767px) {
+                .blog-archives-grid .archive-row {
+                    display: block;
+                    gap: 0;
+                }
+
+                .blog-archives-grid .archive-year {
+                    width: auto;
+                    flex: initial;
+                }
+
+                .blog-archives-grid .archive-year-empty {
+                    display: none;
+                }
+
+                .blog-archives-grid .archive-entry time {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                }
+            }
+        </style>
+        {% endif %}
         {% endif %}
         {% endblock head_links %}
         {% include '_includes/favicon_links.html' %}
@@ -61,6 +121,7 @@
                         <a class="brand" href="{{ SITEURL }}/"><span class=site-name>{{ SITENAME }}</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
+                                {% from '_includes/_defaults.html' import TAGS_URL, CATEGORIES_URL, ARCHIVES_URL, SEARCH_URL with context %}
                                 <li {% if page_name == 'index' %} class="active"{% endif %}>
                                     <a href=
                                        {% if SITEURL %}
@@ -70,18 +131,17 @@
                                        {% endif %}
                                     >{{ '首页' if is_zh else 'Home' }}</a>
                                 </li>
+                                <li {% if page_name == 'categories' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ CATEGORIES_URL }}">{{ '博客' if is_zh else 'Blog' }}</a></li>
                                 <li {% if page and page.slug == 'books' %} class="active"{% endif %}><a href="{{ SITEURL }}/books.html">书籍</a></li>
+                                <li {% if page_name == 'tags' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ TAGS_URL }}">{{ '标签' if is_zh else 'Tags' }}</a></li>
+                                <li {% if page_name == 'archives' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">{{ '归档' if is_zh else 'Archives' }}</a></li>
                                 {% if DISPLAY_PAGES_ON_MENU %}
                                 {% for p in pages %}
-                                {% if p.slug != 'books' %}
+                                {% if p.slug != 'books' and (not p.category or p.category.name != 'Books') %}
                                 <li {% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
                                 {% endif %}
                                 {% endfor %}
                                 {% endif %}
-                                {% from '_includes/_defaults.html' import TAGS_URL, CATEGORIES_URL, ARCHIVES_URL, SEARCH_URL with context %}
-                                <li {% if page_name == 'categories' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ CATEGORIES_URL }}">{{ '分类' if is_zh else 'Categories' }}</a></li>
-                                <li {% if page_name == 'tags' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ TAGS_URL }}">{{ '标签' if is_zh else 'Tags' }}</a></li>
-                                <li {% if page_name == 'archives' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">{{ '归档' if is_zh else 'Archives' }}</a></li>
                                 <li><form class="navbar-search" action="{{ SITEURL }}/{{ SEARCH_URL }}" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>

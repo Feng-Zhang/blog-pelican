@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Feng Zhang" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+
+<meta property="og:title" content="逻辑 "/>
+<meta property="og:url" content="../../drafts/pages/books-math-notation-chapter-3.html" />
+<meta property="og:description" content="数学符号手册，翻译至Mathematical Notation by Edward R. Scheinerman。如何表示逻辑关系。" />
+<meta property="og:site_name" content="生信小屋" />
+<meta property="og:article:author" content="Feng Zhang" />
+<meta property="og:article:published_time" content="2020-09-14T00:00:00+08:00" />
+<meta name="twitter:title" content="逻辑 ">
+<meta name="twitter:description" content="数学符号手册，翻译至Mathematical Notation by Edward R. Scheinerman。如何表示逻辑关系。">
+
+        <title>逻辑  · 生信小屋
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../../theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../../theme/css/custom.css" media="screen">
+
+<style>
+    .table-of-content nav {
+        position: sticky;
+        top: 72px;
+        max-height: calc(100vh - 88px);
+        overflow-y: auto;
+        padding-right: 6px;
+    }
+
+    .table-of-content nav.toc-follow-fixed {
+        position: fixed;
+        top: 72px;
+        z-index: 10;
+    }
+
+    @media (max-width: 979px) {
+        .table-of-content nav {
+            position: static;
+            top: auto;
+            max-height: none;
+            overflow: visible;
+            padding-right: 0;
+        }
+    }
+</style>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../../"><span class=site-name>生信小屋</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ../..
+                                    >首页</a>
+                                </li>
+                                <li ><a href="../../categories.html">博客</a></li>
+                                <li ><a href="../../books.html">书籍</a></li>
+                                <li ><a href="../../tags.html">标签</a></li>
+                                <li ><a href="../../archives.html">归档</a></li>
+                                <li ><a href="../../landing-page-about-hidden.html">个人简介</a></li>
+                                <li><form class="navbar-search" action="../../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="../../drafts/pages/books-math-notation-chapter-3.html"> 逻辑  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#1">1. 布尔操作和证明符号</a></li>
+<li><a href="#2">2. 量词</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+<h2 id="1">1. 布尔操作和证明符号<a class="headerlink" href="#1" title="Permanent link">¶</a></h2>
+<p>数学中专业词汇：<em>和</em>，<em>或</em>，<em>非</em> 等一般都有特殊符号来表示。</p>
+<ul>
+<li><strong>和</strong>。$p \wedge q$这个符号表示我们常说的“p 和q”。有时候也会用符号&amp;表示和。</li>
+<li><strong>或</strong>。$p \vee q$符号则表示"p 或q"。有时候也用竖线$|$表示或。</li>
+<li><strong>非</strong>。我们常说的"非p"用$\lnot p$或$\sim p$表示。注意很多数学关系符号会在上面加右斜线表示非的意思。比如说$\not =$（不等于）、$\not \in$ （不属于）和$\not \subseteq$ （不包含）等等。</li>
+<li><strong>异或</strong>。$p\veebar q$表示$p$或$q$但是不包含$p$和$q$的交集。有时候也会用$\oplus$符号或缩写“$XOR$或$xor$”来表示异或。</li>
+<li><strong>与非</strong>。$p \barwedge q$表示$\lnot (p \vee q)$。缩写为"nand".</li>
+<li><strong>推出</strong>。$a \Rightarrow b$表示如果$a$成立时那么可推出$b$，或b也成立。</li>
+<li><strong>被推出</strong>。$a \Leftarrow b$表示$a$可由$b$推出，或如果b成立那么a也成立。</li>
+<li><strong>当且仅当</strong>。$a\iff b$表示如果$a$成立时则$b$一定成立，而且如果$b$成立时则$a$也一定成立。通常缩写成 iff。</li>
+<li><strong>所以</strong>。三个点$\therefore$表示所以。</li>
+<li><strong>因为</strong>。倒立的三个点$\because$表示因为。</li>
+<li><strong>矛盾</strong>。符号$\Rightarrow \Leftarrow$表示证明过程中有矛盾。也就是说：我们证明过程中发现相互矛盾的地方，因此这个假设是错误的。</li>
+<li><strong>证明结束</strong>。当一个数学证明结束时，我们用方形$\square$或实方形$\blacksquare$来表示。缩写字符$QED$也可以表示“证明结束”。它是"<em>Quod Erat Demonstrandum</em>"的缩写。</li>
+</ul>
+<hr/>
+<center> 第11页 </center>
+<h2 id="2">2. 量词<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
+<p>数学符号$\forall$和$\exists$通常可以当作是“<em>经常（always）</em>”和“<em>有时（sometimes）</em>”的缩写。符号$\forall$是被叫作“<em>全称量词（universal quantifier</em>）”，意思是任意（for all）。例如，$\forall x \in {\Bbb R}, x^2 \geq 0$。这可以理解成：每个实数$x$都有一种属性，即$x^2$是大于0的。更通俗易懂可以理解成：所有实数的平方都会大于或者等于0。</p>
+<p>符号$\exists$被称作“<em>存在量词（existential quantifier）</em>”，意思是“<em>至少存在一个</em>”。比如：$\exists x \in {\Bbb R}, x^2=2$。这句话的意思是：肯定存在一个实数，它的平方等于2。这里我们知道是指$\sqrt{2}$。</p>
+<p>为了使这个注释可以发音，有些人把"such that"的缩写s.t.插入到量词注释中：$\exists x \in {\Bbb R} \ {s.t.}\ x^2 =2 $可以读成“有一个实数$x$使得$x^2=2$。</p>
+<p>当$\exists$后面跟着一个感叹号，它表示有一个“<em>惟一</em>”的对象满足条件。例如：$\exists ! \in {\Bbb R},x^2=0$。这是说有一个实数，它的平方等于0，且只有惟一一个这样的实数。</p>
+<p>量词可以组合起来表示更复杂的意思。比如，加法的特性是可以相互交换，可以写成这样：$\forall x \in {\Bbb R},\forall y \in {\Bbb R}, x+y=y+x$。然而，量词交换顺序会让注释很难解析。比如，$\forall x \in {\Bbb R},\exists y \in {\Bbb R}, x+y=0$ 这表示无论什么时候我们选一个实数$x$，我们都可以找一个实数$y$，使得$x+y=0$。当然，这个$y$应该是$-x$。但是$\exists y \in {\Bbb R},\forall x \in {\Bbb R}, x+y=0$ 这就是一个错误的推断，这是说存在一个魔幻数字$y$，它和任意一个实数$x$相加都等于0。</p>
+<hr/>
+<center> 第12页 </center>
+            
+
+
+
+
+
+
+        </div>
+    </div>
+    </article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+        (function () {
+            function setupTocFollow() {
+                var tocNav = document.querySelector('.table-of-content nav');
+                var tocCol = document.querySelector('.table-of-content');
+                if (!tocNav || !tocCol) {
+                    return;
+                }
+
+                var desktop = window.innerWidth > 979;
+                if (!desktop) {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.width = '';
+                    tocNav.style.left = '';
+                    return;
+                }
+
+                var topOffset = 72;
+                var navStartY = tocCol.getBoundingClientRect().top + window.pageYOffset;
+
+                function updateFixedState() {
+                    var shouldFix = window.pageYOffset >= (navStartY - topOffset);
+                    if (shouldFix) {
+                        var rect = tocCol.getBoundingClientRect();
+                        tocNav.classList.add('toc-follow-fixed');
+                        tocNav.style.left = rect.left + 'px';
+                        tocNav.style.width = rect.width + 'px';
+                    } else {
+                        tocNav.classList.remove('toc-follow-fixed');
+                        tocNav.style.left = '';
+                        tocNav.style.width = '';
+                    }
+                }
+
+                updateFixedState();
+                window.addEventListener('scroll', updateFixedState, { passive: true });
+                window.addEventListener('resize', function () {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.left = '';
+                    tocNav.style.width = '';
+                    setupTocFollow();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupTocFollow);
+            } else {
+                setupTocFollow();
+            }
+        })();
+    </script>
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

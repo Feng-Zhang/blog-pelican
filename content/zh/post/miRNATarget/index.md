@@ -1,7 +1,7 @@
 Title: miRNA的靶基因预测详细教程
 Date: 2020-11-11 10:20
 Modified: 2020-11-12 19:30
-Category: miRNA
+Category: 生信
 Tags: miRNA,靶基因,自动化
 Slug: miRNA
 Authors: Feng Zhang
@@ -9,7 +9,6 @@ Summary: miRNA的靶基因预测详细教程，自动化代码实现预测分析
 Lang: zh
 
 ---
-
 
 [toc]
 
@@ -23,13 +22,13 @@ Lang: zh
 
 以hsa-miR-320a为例，查询后的结果如下图所示：
 
-![miRTarBase例子](20201112210815.png)
+![miRTarBase例子]({static}/zh/post/miRNATarget/20201112210815.png)
 
 其中值得注意的是：所有的相互作用对来源于6种证据，有reporter assay, western blot, qPCR, Microarray, NGS, PSILAC。前面三种证据的可靠较强。
 
 ### [miRDB](http://www.mirdb.org/index.html)
 
-![miRDB例子](20201112211031.png)
+![miRDB例子]({static}/zh/post/miRNATarget/20201112211031.png)
 
 miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点击相对应的Details可以查看相匹配的位点。
 
@@ -37,7 +36,7 @@ miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点
 
 TargetScan 则通过搜索mRNA的保守 8mer, 7mer, 和6mer 位点来与miRNA相匹配。然后按一个总的得分进行排序。
 
-![TargetScan例子](20201112083335140.png)
+![TargetScan例子]({static}/zh/post/miRNATarget/20201112083335140.png)
 
 ### 批量分析
 

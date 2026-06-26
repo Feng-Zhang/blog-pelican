@@ -11,7 +11,7 @@ toc: true
 
 ---
 
-[toc]
+[TOC]
 
 ```R
 # Analysis, visualization, and integration of spatial datasets with Seurat at https://satijalab.org/seurat/articles/spatial_vignette.html

@@ -1,7 +1,7 @@
 Title: Anaconda使用教程
 Date: 2021-10-21 10:20
 Modified: 2021-10-28 19:30
-Category: conda
+Category: 生信
 Tags: 生信,anaconda,conda,r-base,RNA-seq
 Slug: conda
 Authors: Feng Zhang
@@ -9,7 +9,6 @@ Summary: 较为全面地介绍Anaconda的使用方法，并以RNA-seq环境和R�
 Lang: zh
 
 ---
-
 
 [toc]
 

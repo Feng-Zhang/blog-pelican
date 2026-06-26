@@ -9,10 +9,10 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="网络, 网盘, 同步, 私有, 网络, " />
+<meta name="keywords" content="网络, 网盘, 同步, 私有, 高效工具, " />
 
 <meta property="og:title" content="商业网盘推荐和私有网盘构建 "/>
-<meta property="og:url" content="http://localhost:8000/business-cloud-storage-and-private-cloud-setup.html" />
+<meta property="og:url" content="./business-cloud-storage-and-private-cloud-setup.html" />
 <meta property="og:description" content="推荐好用的同步网盘，及构建私有网盘策" />
 <meta property="og:site_name" content="生信小屋" />
 <meta property="og:article:author" content="章峰" />
@@ -24,9 +24,69 @@
         <title>商业网盘推荐和私有网盘构建  · 生信小屋
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/elegant.prod.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
 
+<style>
+    .article-meta-bottom {
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid #ddd;
+    }
+
+    .article-meta-inline {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .article-meta-inline li {
+        display: block;
+        margin: 6px 0;
+        line-height: 1.7;
+    }
+
+    .article-meta-inline .meta-label {
+        font-weight: 600;
+        margin-right: 6px;
+    }
+
+    .article-meta-inline .tags-in-article {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    .article-meta-inline .tags-in-article li {
+        display: inline;
+    }
+
+    .table-of-content nav {
+        position: sticky;
+        top: 72px;
+        max-height: calc(100vh - 88px);
+        overflow-y: auto;
+        padding-right: 6px;
+    }
+
+    .table-of-content nav.toc-follow-fixed {
+        position: fixed;
+        top: 72px;
+        z-index: 10;
+    }
+
+    @media (max-width: 979px) {
+        .table-of-content nav {
+            position: static;
+            top: auto;
+            max-height: none;
+            overflow: visible;
+            padding-right: 0;
+        }
+    }
+</style>
 
 
     </head>
@@ -40,19 +100,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="http://localhost:8000/"><span class=site-name>生信小屋</span></a>
+                        <a class="brand" href="./"><span class=site-name>生信小屋</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
                                     <a href=
-                                       http://localhost:8000
+                                       .
                                     >首页</a>
                                 </li>
-                                <li ><a href="http://localhost:8000/books.html">书籍</a></li>
-                                <li ><a href="http://localhost:8000/categories.html">分类</a></li>
-                                <li ><a href="http://localhost:8000/tags.html">标签</a></li>
-                                <li ><a href="http://localhost:8000/archives.html">归档</a></li>
-                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                                <li ><a href="./categories.html">博客</a></li>
+                                <li ><a href="./books.html">书籍</a></li>
+                                <li ><a href="./tags.html">标签</a></li>
+                                <li ><a href="./archives.html">归档</a></li>
+                                <li ><a href="./landing-page-about-hidden.html">个人简介</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +127,7 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="http://localhost:8000/business-cloud-storage-and-private-cloud-setup.html">
+            <a href="./business-cloud-storage-and-private-cloud-setup.html">
                 商业网盘推荐和私有网盘构建
             </a>
         </h1>
@@ -184,44 +245,34 @@ apt-get install docker-compose -y
 
 
             <hr/>
+
+            <hr/>
+            <section class="article-meta-bottom">
+                <ul class="article-meta-inline">
+
+                <li><span class="meta-label">Published:</span><time itemprop="dateCreated" datetime="2022-05-13T00:00:00+08:00">2022年05月13日</time></li>
+
+
+                <li><span class="meta-label">Category:</span><a class="category-link" href="./categories.html#gao-xiao-gong-ju-ref">高效工具</a></li>
+
+                <li><span class="meta-label">Tags:</span><ul class="list-of-tags tags-in-article">
+                    <li><a href="./tags.html#si-you-ref">私有
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#tong-bu-ref">同步
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#wang-luo-ref">网络
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#wang-pan-ref">网盘
+                        <span>1</span>
+</a></li>
+                </ul></li>
+
+                </ul>
+            </section>
         </div>
-        <section id="article-sidebar" class="span2">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2022-05-13T00:00:00+08:00">May 13, 2022</time>
-
-            <h4>Category</h4>
-            <a class="category-link" href="http://localhost:8000/categories.html#wang-luo-ref">网络</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="http://localhost:8000/tags.html#si-you-ref">私有
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#tong-bu-ref">同步
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#wang-luo-ref">网络
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#wang-pan-ref">网盘
-                    <span>1</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-<div id="sidebar-social-link">
-</div>
-            
-
-
-
-
-
-            
-
-
-
-
-
-        </section>
 </div>
 </article>
                     </div>
@@ -247,6 +298,57 @@ apt-get install docker-compose -y
             }
         </script>
 
+    <script>
+        (function () {
+            function setupTocFollow() {
+                var tocNav = document.querySelector('.table-of-content nav');
+                var tocCol = document.querySelector('.table-of-content');
+                if (!tocNav || !tocCol) {
+                    return;
+                }
+
+                var desktop = window.innerWidth > 979;
+                if (!desktop) {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.width = '';
+                    tocNav.style.left = '';
+                    return;
+                }
+
+                var topOffset = 72;
+                var navStartY = tocCol.getBoundingClientRect().top + window.pageYOffset;
+
+                function updateFixedState() {
+                    var shouldFix = window.pageYOffset >= (navStartY - topOffset);
+                    if (shouldFix) {
+                        var rect = tocCol.getBoundingClientRect();
+                        tocNav.classList.add('toc-follow-fixed');
+                        tocNav.style.left = rect.left + 'px';
+                        tocNav.style.width = rect.width + 'px';
+                    } else {
+                        tocNav.classList.remove('toc-follow-fixed');
+                        tocNav.style.left = '';
+                        tocNav.style.width = '';
+                    }
+                }
+
+                updateFixedState();
+                window.addEventListener('scroll', updateFixedState, { passive: true });
+                window.addEventListener('resize', function () {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.left = '';
+                    tocNav.style.width = '';
+                    setupTocFollow();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupTocFollow);
+            } else {
+                setupTocFollow();
+            }
+        })();
+    </script>
     <script>
     (function () {
         if (window.location.hash.match(/^#comment-\d+$/)) {

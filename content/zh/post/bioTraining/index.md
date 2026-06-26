@@ -1,7 +1,7 @@
 Title: 生物信息最佳入门实践路线图
 Date: 2020-10-10 10:20
 Modified: 2021-11-27 19:30
-Category: 基础
+Category: 生信
 Tags: 生信,生物信息,入门,教程,路线图,实践
 Slug: plan
 Authors:  章峰
@@ -10,9 +10,7 @@ Lang: zh
 
 ---
 
-
 [toc]
-
 
 # 生物信息最佳入门实践路线图
 

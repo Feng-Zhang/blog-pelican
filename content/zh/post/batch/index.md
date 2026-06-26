@@ -2,7 +2,7 @@
 Title: 使用不同方法规一化、PCA和批次效应矫正的差异
 Date: 2018-12-03 10:20
 Modified: 2026-06-25 14:51
-Category: 转录组
+Category: 生信
 Tags: "生信","转录组","PCA","批次效应"
 Slug: RNA-seq-batch-effect
 Authors: Feng Zhang

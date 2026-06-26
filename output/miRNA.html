@@ -9,10 +9,10 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="miRNA, 靶基因, 自动化, miRNA, " />
+<meta name="keywords" content="miRNA, 靶基因, 自动化, 生信, " />
 
 <meta property="og:title" content="miRNA的靶基因预测详细教程 "/>
-<meta property="og:url" content="http://localhost:8000/miRNA.html" />
+<meta property="og:url" content="./miRNA.html" />
 <meta property="og:description" content="miRNA的靶基因预测详细教程，自动化代码实现预测分析" />
 <meta property="og:site_name" content="生信小屋" />
 <meta property="og:article:author" content="Feng Zhang" />
@@ -24,9 +24,69 @@
         <title>miRNA的靶基因预测详细教程  · 生信小屋
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/elegant.prod.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
 
+<style>
+    .article-meta-bottom {
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid #ddd;
+    }
+
+    .article-meta-inline {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .article-meta-inline li {
+        display: block;
+        margin: 6px 0;
+        line-height: 1.7;
+    }
+
+    .article-meta-inline .meta-label {
+        font-weight: 600;
+        margin-right: 6px;
+    }
+
+    .article-meta-inline .tags-in-article {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    .article-meta-inline .tags-in-article li {
+        display: inline;
+    }
+
+    .table-of-content nav {
+        position: sticky;
+        top: 72px;
+        max-height: calc(100vh - 88px);
+        overflow-y: auto;
+        padding-right: 6px;
+    }
+
+    .table-of-content nav.toc-follow-fixed {
+        position: fixed;
+        top: 72px;
+        z-index: 10;
+    }
+
+    @media (max-width: 979px) {
+        .table-of-content nav {
+            position: static;
+            top: auto;
+            max-height: none;
+            overflow: visible;
+            padding-right: 0;
+        }
+    }
+</style>
 
 
     </head>
@@ -40,19 +100,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="http://localhost:8000/"><span class=site-name>生信小屋</span></a>
+                        <a class="brand" href="./"><span class=site-name>生信小屋</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
                                     <a href=
-                                       http://localhost:8000
+                                       .
                                     >首页</a>
                                 </li>
-                                <li ><a href="http://localhost:8000/books.html">书籍</a></li>
-                                <li ><a href="http://localhost:8000/categories.html">分类</a></li>
-                                <li ><a href="http://localhost:8000/tags.html">标签</a></li>
-                                <li ><a href="http://localhost:8000/archives.html">归档</a></li>
-                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                                <li ><a href="./categories.html">博客</a></li>
+                                <li ><a href="./books.html">书籍</a></li>
+                                <li ><a href="./tags.html">标签</a></li>
+                                <li ><a href="./archives.html">归档</a></li>
+                                <li ><a href="./landing-page-about-hidden.html">个人简介</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +127,7 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="http://localhost:8000/miRNA.html">
+            <a href="./miRNA.html">
                 miRNA的靶基因预测详细教程
             </a>
         </h1>
@@ -84,14 +145,14 @@
 <p>一般来说，预测网站的假阳性会比较高，我们可以同时用这些网站进行预测，然后取交集来提高准确率。下面以miR-320为例进行说明。</p>
 <h3 id="mirtarbase"><a href="http://mirtarbase.cuhk.edu.cn/php/index.php">miRTarBase</a><a class="headerlink" href="#mirtarbase" title="Permanent link">&para;</a></h3>
 <p>以hsa-miR-320a为例，查询后的结果如下图所示：</p>
-<p><img alt="miRTarBase例子" src="20201112210815.png"></p>
+<p><img alt="miRTarBase例子" src="./zh/post/miRNATarget/20201112210815.png"></p>
 <p>其中值得注意的是：所有的相互作用对来源于6种证据，有reporter assay, western blot, qPCR, Microarray, NGS, PSILAC。前面三种证据的可靠较强。</p>
 <h3 id="mirdb"><a href="http://www.mirdb.org/index.html">miRDB</a><a class="headerlink" href="#mirdb" title="Permanent link">&para;</a></h3>
-<p><img alt="miRDB例子" src="20201112211031.png"></p>
+<p><img alt="miRDB例子" src="./zh/post/miRNATarget/20201112211031.png"></p>
 <p>miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点击相对应的Details可以查看相匹配的位点。</p>
 <h3 id="targetscan"><a href="http://www.targetscan.org/vert_72/">TargetScan</a><a class="headerlink" href="#targetscan" title="Permanent link">&para;</a></h3>
 <p>TargetScan 则通过搜索mRNA的保守 8mer, 7mer, 和6mer 位点来与miRNA相匹配。然后按一个总的得分进行排序。</p>
-<p><img alt="TargetScan例子" src="20201112083335140.png"></p>
+<p><img alt="TargetScan例子" src="./zh/post/miRNATarget/20201112083335140.png"></p>
 <h3 id="_1">批量分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>除了单个miRNA输入查询外，这3个网站同时也提供了数据下载服务。我们可以把miRNA-mRNA相互作用的关系对下载下来，然后用R语言处理一下，就可以批量分析miRNA的靶基因了。</p>
 <p>下面是针对人类的预测分析：</p>
@@ -140,43 +201,32 @@
 
 
             <hr/>
+
+            <hr/>
+            <section class="article-meta-bottom">
+                <ul class="article-meta-inline">
+
+                <li><span class="meta-label">Published:</span><time itemprop="dateCreated" datetime="2020-11-11T10:20:00+08:00">2020年11月11日</time></li>
+
+                <li><span class="meta-label">Last Updated:</span><time datetime="2020-11-12T19:30:00+08:00">2020年11月12日</time></li>
+
+                <li><span class="meta-label">Category:</span><a class="category-link" href="./categories.html#sheng-xin-ref">生信</a></li>
+
+                <li><span class="meta-label">Tags:</span><ul class="list-of-tags tags-in-article">
+                    <li><a href="./tags.html#ba-ji-yin-ref">靶基因
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#mirna-ref">miRNA
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#zi-dong-hua-ref">自动化
+                        <span>1</span>
+</a></li>
+                </ul></li>
+
+                </ul>
+            </section>
         </div>
-        <section id="article-sidebar" class="span2">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-11-11T10:20:00+08:00">Nov 11, 2020</time>
-<h4>Last Updated</h4>
-<time datetime="2020-11-12T19:30:00+08:00">Nov 12, 2020</time>
-
-            <h4>Category</h4>
-            <a class="category-link" href="http://localhost:8000/categories.html#mirna-ref">miRNA</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="http://localhost:8000/tags.html#ba-ji-yin-ref">靶基因
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#mirna-ref">miRNA
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#zi-dong-hua-ref">自动化
-                    <span>1</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-<div id="sidebar-social-link">
-</div>
-            
-
-
-
-
-
-            
-
-
-
-
-
-        </section>
 </div>
 </article>
                     </div>
@@ -202,6 +252,57 @@
             }
         </script>
 
+    <script>
+        (function () {
+            function setupTocFollow() {
+                var tocNav = document.querySelector('.table-of-content nav');
+                var tocCol = document.querySelector('.table-of-content');
+                if (!tocNav || !tocCol) {
+                    return;
+                }
+
+                var desktop = window.innerWidth > 979;
+                if (!desktop) {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.width = '';
+                    tocNav.style.left = '';
+                    return;
+                }
+
+                var topOffset = 72;
+                var navStartY = tocCol.getBoundingClientRect().top + window.pageYOffset;
+
+                function updateFixedState() {
+                    var shouldFix = window.pageYOffset >= (navStartY - topOffset);
+                    if (shouldFix) {
+                        var rect = tocCol.getBoundingClientRect();
+                        tocNav.classList.add('toc-follow-fixed');
+                        tocNav.style.left = rect.left + 'px';
+                        tocNav.style.width = rect.width + 'px';
+                    } else {
+                        tocNav.classList.remove('toc-follow-fixed');
+                        tocNav.style.left = '';
+                        tocNav.style.width = '';
+                    }
+                }
+
+                updateFixedState();
+                window.addEventListener('scroll', updateFixedState, { passive: true });
+                window.addEventListener('resize', function () {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.left = '';
+                    tocNav.style.width = '';
+                    setupTocFollow();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupTocFollow);
+            } else {
+                setupTocFollow();
+            }
+        })();
+    </script>
     <script>
     (function () {
         if (window.location.hash.match(/^#comment-\d+$/)) {

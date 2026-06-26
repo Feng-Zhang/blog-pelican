@@ -12,7 +12,7 @@
 <meta name="keywords" content="Visium, 聚类, 差异表达, 反卷积, 生信, " />
 
 <meta property="og:title" content="Visium空间转录组分析流程 "/>
-<meta property="og:url" content="http://localhost:8000/visium-spatial-transcriptomics-analysis-workflow.html" />
+<meta property="og:url" content="./visium-spatial-transcriptomics-analysis-workflow.html" />
 <meta property="og:description" content="Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析" />
 <meta property="og:site_name" content="生信小屋" />
 <meta property="og:article:author" content="章峰" />
@@ -24,9 +24,69 @@
         <title>Visium空间转录组分析流程  · 生信小屋
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/elegant.prod.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
 
+<style>
+    .article-meta-bottom {
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid #ddd;
+    }
+
+    .article-meta-inline {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .article-meta-inline li {
+        display: block;
+        margin: 6px 0;
+        line-height: 1.7;
+    }
+
+    .article-meta-inline .meta-label {
+        font-weight: 600;
+        margin-right: 6px;
+    }
+
+    .article-meta-inline .tags-in-article {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    .article-meta-inline .tags-in-article li {
+        display: inline;
+    }
+
+    .table-of-content nav {
+        position: sticky;
+        top: 72px;
+        max-height: calc(100vh - 88px);
+        overflow-y: auto;
+        padding-right: 6px;
+    }
+
+    .table-of-content nav.toc-follow-fixed {
+        position: fixed;
+        top: 72px;
+        z-index: 10;
+    }
+
+    @media (max-width: 979px) {
+        .table-of-content nav {
+            position: static;
+            top: auto;
+            max-height: none;
+            overflow: visible;
+            padding-right: 0;
+        }
+    }
+</style>
 
 
     </head>
@@ -40,19 +100,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="http://localhost:8000/"><span class=site-name>生信小屋</span></a>
+                        <a class="brand" href="./"><span class=site-name>生信小屋</span></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav pull-right top-menu">
                                 <li >
                                     <a href=
-                                       http://localhost:8000
+                                       .
                                     >首页</a>
                                 </li>
-                                <li ><a href="http://localhost:8000/books.html">书籍</a></li>
-                                <li ><a href="http://localhost:8000/categories.html">分类</a></li>
-                                <li ><a href="http://localhost:8000/tags.html">标签</a></li>
-                                <li ><a href="http://localhost:8000/archives.html">归档</a></li>
-                                <li><form class="navbar-search" action="http://localhost:8000/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                                <li ><a href="./categories.html">博客</a></li>
+                                <li ><a href="./books.html">书籍</a></li>
+                                <li ><a href="./tags.html">标签</a></li>
+                                <li ><a href="./archives.html">归档</a></li>
+                                <li ><a href="./landing-page-about-hidden.html">个人简介</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +127,7 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="http://localhost:8000/visium-spatial-transcriptomics-analysis-workflow.html">
+            <a href="./visium-spatial-transcriptomics-analysis-workflow.html">
                 Visium空间转录组分析流程
             </a>
         </h1>
@@ -77,50 +138,60 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        true
+        <div class="toc">
+<ul>
+<li><a href="#_1">创建一些函数</a></li>
+<li><a href="#visium">Visium空间转录组技术</a></li>
+<li><a href="#1">1. 数据探索</a></li>
+<li><a href="#2">2. 聚类</a></li>
+<li><a href="#3">3. 检测亚群特异和空间特异差异基因</a></li>
+<li><a href="#4">4. 检测分组特异差异基因</a></li>
+<li><a href="#5-deconvolution">5. Deconvolution分析</a></li>
+<li><a href="#6">6. 绘图</a></li>
+</ul>
+</div>
         </nav>
     </div>
-    <div class="span8 article-content">
+    <div class="span10 article-content">
             
-            <hr>
-<p>[toc]</p>
+            <hr/>
+
 <div class="codehilite"><pre><span></span><code><span class="c1"># Analysis, visualization, and integration of spatial datasets with Seurat at https://satijalab.org/seurat/articles/spatial_vignette.html</span>
 <span class="c1"># set path ------------------------------------------</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">());</span><span class="nf">options</span><span class="p">(</span><span class="n">stringsAsFactors</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">project_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rprojroot</span><span class="o">::</span><span class="nf">find_rstudio_root_file</span><span class="p">()</span>
-<span class="n">raw_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/raw-data/&quot;</span><span class="p">)</span>
-<span class="n">process_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/process-data/&quot;</span><span class="p">)</span>
-<span class="n">output_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/output-results/&quot;</span><span class="p">)</span>
-<span class="n">temp_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/temp-data/&quot;</span><span class="p">)</span>
-<span class="n">bin_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/bin/&quot;</span><span class="p">)</span>
-<span class="n">script_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">&quot;/workflow-scripts/&quot;</span><span class="p">)</span>
+<span class="n">raw_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/raw-data/"</span><span class="p">)</span>
+<span class="n">process_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/process-data/"</span><span class="p">)</span>
+<span class="n">output_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/output-results/"</span><span class="p">)</span>
+<span class="n">temp_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/temp-data/"</span><span class="p">)</span>
+<span class="n">bin_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/bin/"</span><span class="p">)</span>
+<span class="n">script_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span><span class="s">"/workflow-scripts/"</span><span class="p">)</span>
 <span class="n">work_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">output_dir</span>
 <span class="nf">setwd</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span>
 
 <span class="c1"># library and set default parameter  ----------------</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">SeuratData</span><span class="p">)</span><span class="w"> </span><span class="c1">#devtools::install_github(&#39;satijalab/seurat-data&#39;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">SeuratData</span><span class="p">)</span><span class="w"> </span><span class="c1">#devtools::install_github('satijalab/seurat-data')</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">edgeR</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">SingleCellExperiment</span><span class="p">)</span>
-<span class="n">prefix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Seurat-3-&quot;</span>
+<span class="n">prefix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"Seurat-3-"</span>
 <span class="n">output_prefix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span><span class="n">prefix</span><span class="p">)</span>
 </code></pre></div>
-
-<h2 id="_1">创建一些函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">创建一些函数<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="c1"># functions -------------</span>
 <span class="n">run_clustering</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">npcs</span><span class="o">=</span><span class="m">30</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SCTransform</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spatial&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunPCA</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SCT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pca&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">npcs</span><span class="p">)</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SCTransform</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Spatial"</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunPCA</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"SCT"</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"pca"</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">npcs</span><span class="p">)</span>
 <span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindClusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
 <span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunUMAP</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">npcs</span><span class="p">)</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">pooling_seu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">seu_obj</span><span class="p">,</span><span class="n">assay</span><span class="o">=</span><span class="s">&quot;SCT&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">pooling_seu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">seu_obj</span><span class="p">,</span><span class="n">assay</span><span class="o">=</span><span class="s">"SCT"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">cell_metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seu_obj</span><span class="o">@</span><span class="n">meta.data</span>
 
 <span class="w">  </span><span class="c1"># create sudo id by random sample into 3 sets from each patients</span>
@@ -131,10 +202,10 @@
 <span class="w">    </span><span class="nf">set.seed</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="w">    </span><span class="n">temp_sample_idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">cell_metadata</span><span class="o">$</span><span class="n">orig.ident</span><span class="o">==</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="w">    </span><span class="n">sample_sudo_idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nrg</span><span class="p">),</span><span class="nf">length</span><span class="p">(</span><span class="n">temp_sample_idx</span><span class="p">),</span><span class="n">replace</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">prob</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">nrg</span><span class="p">,</span><span class="n">nrg</span><span class="p">))</span><span class="w"> </span><span class="c1"># random sample into 3 sets</span>
-<span class="w">    </span><span class="n">cell_metadata</span><span class="p">[</span><span class="n">temp_sample_idx</span><span class="p">,</span><span class="s">&#39;sudo_sample_id&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">sample_sudo_idx</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;_&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">cell_metadata</span><span class="p">[</span><span class="n">temp_sample_idx</span><span class="p">,</span><span class="s">'sudo_sample_id'</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">sample_sudo_idx</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">'_'</span><span class="p">)</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">sce</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SingleCellExperiment</span><span class="p">(</span><span class="n">assays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">GetAssayData</span><span class="p">(</span><span class="n">seu_obj</span><span class="p">,</span><span class="n">slot</span><span class="o">=</span><span class="s">&quot;count&quot;</span><span class="p">,</span><span class="n">assay</span><span class="o">=</span><span class="n">assay</span><span class="p">)),</span><span class="w"> </span><span class="n">colData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell_metadata</span><span class="p">)</span>
-<span class="w">  </span><span class="n">summed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scuttle</span><span class="o">::</span><span class="nf">aggregateAcrossCells</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)[,</span><span class="s">&#39;sudo_sample_id&#39;</span><span class="p">])</span><span class="w"> </span><span class="c1"># aggregate counts by id</span>
+<span class="w">  </span><span class="n">sce</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SingleCellExperiment</span><span class="p">(</span><span class="n">assays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">GetAssayData</span><span class="p">(</span><span class="n">seu_obj</span><span class="p">,</span><span class="n">slot</span><span class="o">=</span><span class="s">"count"</span><span class="p">,</span><span class="n">assay</span><span class="o">=</span><span class="n">assay</span><span class="p">)),</span><span class="w"> </span><span class="n">colData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell_metadata</span><span class="p">)</span>
+<span class="w">  </span><span class="n">summed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scuttle</span><span class="o">::</span><span class="nf">aggregateAcrossCells</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)[,</span><span class="s">'sudo_sample_id'</span><span class="p">])</span><span class="w"> </span><span class="c1"># aggregate counts by id</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
 <span class="p">}</span>
 
@@ -158,128 +229,119 @@
 <span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="nf">decideTests</span><span class="p">(</span><span class="n">lrt</span><span class="p">)))</span>
 <span class="w">  </span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">topTags</span><span class="p">(</span><span class="n">lrt</span><span class="p">,</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">DGEList</span><span class="p">))</span>
 <span class="w">  </span><span class="kr">if</span><span class="p">(</span><span class="n">set_regulate</span><span class="p">){</span>
-<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Normal&quot;</span>
-<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="p">[</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">logFC</span><span class="o">&gt;</span><span class="m">0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">FDR</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Up&quot;</span>
-<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="p">[</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">logFC</span><span class="o">&lt;</span><span class="m">0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">FDR</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Down&quot;</span>
+<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"Normal"</span>
+<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="p">[</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">logFC</span><span class="o">&gt;</span><span class="m">0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">FDR</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"Up"</span>
+<span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">regulate</span><span class="p">[</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">logFC</span><span class="o">&lt;</span><span class="m">0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">FDR</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"Down"</span>
 <span class="w">    </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="o">$</span><span class="n">FDR</span><span class="p">),]</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">plot_rctd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">RCTD</span><span class="p">,</span><span class="n">seu_obj</span><span class="p">,</span><span class="w"> </span><span class="n">image_name</span><span class="o">=</span><span class="s">&quot;VLP43_kidney_A1&quot;</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="m">3</span><span class="p">){</span>
-<span class="w">  </span><span class="nf">stopifnot</span><span class="p">(</span><span class="s">&quot;RCTD&quot;</span><span class="o">%in%</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">RCTD</span><span class="p">))</span>
-<span class="w">  </span><span class="nf">stopifnot</span><span class="p">(</span><span class="s">&quot;FindClusters&quot;</span><span class="o">%in%</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">seu_obj</span><span class="o">@</span><span class="n">commands</span><span class="p">))</span>
+<span class="n">plot_rctd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">RCTD</span><span class="p">,</span><span class="n">seu_obj</span><span class="p">,</span><span class="w"> </span><span class="n">image_name</span><span class="o">=</span><span class="s">"VLP43_kidney_A1"</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="m">3</span><span class="p">){</span>
+<span class="w">  </span><span class="nf">stopifnot</span><span class="p">(</span><span class="s">"RCTD"</span><span class="o">%in%</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">RCTD</span><span class="p">))</span>
+<span class="w">  </span><span class="nf">stopifnot</span><span class="p">(</span><span class="s">"FindClusters"</span><span class="o">%in%</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">seu_obj</span><span class="o">@</span><span class="n">commands</span><span class="p">))</span>
 <span class="w">  </span><span class="n">norm_weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">normalize_weights</span><span class="p">(</span><span class="n">RCTD</span><span class="o">@</span><span class="n">results</span><span class="o">$</span><span class="n">weights</span><span class="p">)</span><span class="w"> </span><span class="c1"># normalize the cell type proportions to sum to 1.</span>
 <span class="w">  </span><span class="n">query</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">subset</span><span class="p">(</span><span class="n">seu_obj</span><span class="p">,</span><span class="n">cells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">row.names</span><span class="p">(</span><span class="n">RCTD</span><span class="o">@</span><span class="n">spatialRNA</span><span class="o">@</span><span class="n">coords</span><span class="p">))</span>
 <span class="w">  </span><span class="n">pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">RCTD</span><span class="o">@</span><span class="n">spatialRNA</span><span class="o">@</span><span class="n">coords</span>
 <span class="w">  </span><span class="n">annot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">query</span><span class="o">$</span><span class="n">seurat_clusters</span>
 <span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">vizAllTopics</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">norm_weights</span><span class="p">),</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span>
-<span class="w">                    </span><span class="c1">#topicCols = qualitative_hcl(n=ncol(norm_weights),palette=&quot;Dynamic&quot;),</span>
-<span class="w">                    </span><span class="n">topicCols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">norm_weights</span><span class="p">),</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Paired&quot;</span><span class="p">),</span>
+<span class="w">                    </span><span class="c1">#topicCols = qualitative_hcl(n=ncol(norm_weights),palette="Dynamic"),</span>
+<span class="w">                    </span><span class="n">topicCols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">brewer.pal</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nf">ncol</span><span class="p">(</span><span class="n">norm_weights</span><span class="p">),</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Paired"</span><span class="p">),</span>
 <span class="w">                    </span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">annot</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">group_cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">annot</span><span class="p">))),</span>
 <span class="w">                    </span><span class="c1">#group_cols = rainbow_hcl(length(levels(annot))),</span>
 <span class="w">                    </span><span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">image_name</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="c1">#ggplot2::guides(colour = &quot;none&quot;) +</span>
-<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ggplot2</span><span class="o">::</span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">),</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">15</span><span class="p">))</span>
+<span class="w">    </span><span class="c1">#ggplot2::guides(colour = "none") +</span>
+<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ggplot2</span><span class="o">::</span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"white"</span><span class="p">),</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">15</span><span class="p">))</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
-<h2 id="visium">Visium空间转录组技术<a class="headerlink" href="#visium" title="Permanent link">&para;</a></h2>
+<h2 id="visium">Visium空间转录组技术<a class="headerlink" href="#visium" title="Permanent link">¶</a></h2>
 <p>当前时代的空间转录组技术大致分为五类方向：激光显微切割（laser capture microdissection，LCM），单分子荧光原位杂交（single molecular fluorescent in situ hybridization, smFISH），靶向原位测序（In situ sequencing，ISS），原位阵列捕获（In situ array capture, Array） 和 其他非成像技术（No imaging）。</p>
 <p>目前商业用的最广的还是Visium平台，因此我们以Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析。使用的工具是Seurat，spacexr等包。在单细胞下游分析中，Seurat是一个非常强大的R包，不仅有强大的社区、详细文档说明还有很多内置数据。这里以<a href="https://satijalab.org/seurat/articles/spatial_vignette.html">Analysis, visualization, and integration of spatial datasets with Seurat </a>数据为例进行空间转录组分析。</p>
-<h2 id="1">1. 数据探索<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h2 id="1">1. 数据探索<a class="headerlink" href="#1" title="Permanent link">¶</a></h2>
 <p>查看测序数据质量，是否符合生物学背景。如果质量不好，需要进行质量控制。<code>stxBrain</code>已经是过滤后的数据，我们不需要进行质量控制。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">#InstallData(&quot;stxBrain&quot;) # 如果由于网络问题，安装失败。可以将url放在浏览器中下载tar.gz文件，然后本地安装。</span>
-<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">LoadData</span><span class="p">(</span><span class="s">&quot;stxBrain&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;anterior1&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">#InstallData("stxBrain") # 如果由于网络问题，安装失败。可以将url放在浏览器中下载tar.gz文件，然后本地安装。</span>
+<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">LoadData</span><span class="p">(</span><span class="s">"stxBrain"</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"anterior1"</span><span class="p">)</span>
 
 <span class="c1"># Data preprocessing: Normalization </span>
-<span class="n">plot1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VlnPlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nCount_Spatial&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pt.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">NoLegend</span><span class="p">()</span>
-<span class="n">plot2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;nCount_Spatial&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plot1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VlnPlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"nCount_Spatial"</span><span class="p">,</span><span class="w"> </span><span class="n">pt.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">NoLegend</span><span class="p">()</span>
+<span class="n">plot2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"nCount_Spatial"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"right"</span><span class="p">)</span>
 <span class="nf">wrap_plots</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span><span class="w"> </span><span class="n">plot2</span><span class="p">)</span>
 <span class="c1"># 斑点上分子计数的变化不仅是技术上的问题，而且还取决于组织的解剖结构。</span>
 <span class="c1"># 例如，神经元（例如皮质白质）耗竭的组织区域可再现地显示出较低的分子数。</span>
 </code></pre></div>
-
-<p><img alt="png" src="output_4_0.png"></p>
-<h2 id="2">2. 聚类<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><img alt="png" src="output_4_0.png"/></p>
+<h2 id="2">2. 聚类<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
 <p>和单细胞数据类似，我们需要对数据进行聚类。也可以使用<code>run_clustering</code>函数。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SCTransform</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spatial&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SCTransform</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Spatial"</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="c1"># Gene expression visualization</span>
-<span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Hpca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ttr&quot;</span><span class="p">))</span>
-<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ttr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pt.size.factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
-<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ttr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+<span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"Hpca"</span><span class="p">,</span><span class="w"> </span><span class="s">"Ttr"</span><span class="p">))</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Ttr"</span><span class="p">,</span><span class="w"> </span><span class="n">pt.size.factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Ttr"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
 <span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span>
 
 <span class="c1"># Dimensionality reduction, clustering </span>
-<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunPCA</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SCT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
-<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pca&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
+<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunPCA</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"SCT"</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"pca"</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
 <span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindClusters</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
-<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunUMAP</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pca&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
+<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunUMAP</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"pca"</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
 
 <span class="c1"># visualization</span>
-<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DimPlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;umap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DimPlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"umap"</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">SpatialDimPlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">label.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
 <span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span>
 </code></pre></div>
-
-<p><img alt="png" src="output_6_0.png">
-<img alt="png" src="output_6_2.png"></p>
-<p><img alt="png" src="output_6_3.png"></p>
-<h2 id="3">3. 检测亚群特异和空间特异差异基因<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p><img alt="png" src="output_6_0.png"/>
+<img alt="png" src="output_6_2.png"/></p>
+<p><img alt="png" src="output_6_3.png"/></p>
+<h2 id="3">3. 检测亚群特异和空间特异差异基因<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
 <p>对不同亚群进行差异分析，对不同空间分布中的细胞进行基因差异分析。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Detecting spatially-variable features </span>
 <span class="n">de_markers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindMarkers</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">ident.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">ident.2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">de_markers</span><span class="p">)</span>
 <span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">de_markers</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
 </code></pre></div>
-
 <table class="dataframe">
 <caption>A data.frame: 6 * 5</caption>
 <thead>
-    <tr><th></th><th scope=col>p_val</th><th scope=col>avg_log2FC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
-    <tr><th></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th></tr>
+<tr><th></th><th scope="col">p_val</th><th scope="col">avg_log2FC</th><th scope="col">pct.1</th><th scope="col">pct.2</th><th scope="col">p_val_adj</th></tr>
+<tr><th></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th></tr>
 </thead>
 <tbody>
-    <tr><th scope=row>Calb2</th><td>6.427214e-69</td><td> 3.336874</td><td>1.000</td><td>0.537</td><td>1.135560e-64</td></tr>
-    <tr><th scope=row>Camk2n1</th><td>1.519204e-68</td><td>-2.450388</td><td>1.000</td><td>1.000</td><td>2.684130e-64</td></tr>
-    <tr><th scope=row>Nrgn</th><td>1.573095e-68</td><td>-3.229826</td><td>0.971</td><td>1.000</td><td>2.779344e-64</td></tr>
-    <tr><th scope=row>Stx1a</th><td>2.104119e-68</td><td>-2.238353</td><td>0.784</td><td>1.000</td><td>3.717558e-64</td></tr>
-    <tr><th scope=row>Nptxr</th><td>9.820482e-68</td><td>-1.918293</td><td>0.942</td><td>1.000</td><td>1.735083e-63</td></tr>
-    <tr><th scope=row>Lingo1</th><td>2.124777e-67</td><td>-1.913281</td><td>0.880</td><td>1.000</td><td>3.754056e-63</td></tr>
+<tr><th scope="row">Calb2</th><td>6.427214e-69</td><td> 3.336874</td><td>1.000</td><td>0.537</td><td>1.135560e-64</td></tr>
+<tr><th scope="row">Camk2n1</th><td>1.519204e-68</td><td>-2.450388</td><td>1.000</td><td>1.000</td><td>2.684130e-64</td></tr>
+<tr><th scope="row">Nrgn</th><td>1.573095e-68</td><td>-3.229826</td><td>0.971</td><td>1.000</td><td>2.779344e-64</td></tr>
+<tr><th scope="row">Stx1a</th><td>2.104119e-68</td><td>-2.238353</td><td>0.784</td><td>1.000</td><td>3.717558e-64</td></tr>
+<tr><th scope="row">Nptxr</th><td>9.820482e-68</td><td>-1.918293</td><td>0.942</td><td>1.000</td><td>1.735083e-63</td></tr>
+<tr><th scope="row">Lingo1</th><td>2.124777e-67</td><td>-1.913281</td><td>0.880</td><td>1.000</td><td>3.754056e-63</td></tr>
 </tbody>
 </table>
-
-<p><img alt="png" src="output_8_1.png"></p>
+<p><img alt="png" src="output_8_1.png"/></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">#在没有预注释的情况下搜索表现出空间模式的特征</span>
-<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindSpatiallyVariableFeatures</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SCT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">VariableFeatures</span><span class="p">(</span><span class="n">brain</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">],</span><span class="n">selection.method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;moransi&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># moransi mothed, markvariogram too slow</span>
-<span class="c1">#top.features &lt;- head(SpatiallyVariableFeatures(brain, selection.method = &quot;moransi&quot;), 6)</span>
-<span class="n">top.features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Calb2&quot;</span><span class="p">,</span><span class="s">&quot;Gng4&quot;</span><span class="p">,</span><span class="s">&quot;Ttr&quot;</span><span class="p">,</span><span class="s">&quot;S100a5&quot;</span><span class="p">,</span><span class="s">&quot;Nrgn&quot;</span><span class="p">,</span><span class="s">&quot;Doc2g&quot;</span><span class="p">)</span>
+<span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindSpatiallyVariableFeatures</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"SCT"</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">VariableFeatures</span><span class="p">(</span><span class="n">brain</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">],</span><span class="n">selection.method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"moransi"</span><span class="p">)</span><span class="w"> </span><span class="c1"># moransi mothed, markvariogram too slow</span>
+<span class="c1">#top.features &lt;- head(SpatiallyVariableFeatures(brain, selection.method = "moransi"), 6)</span>
+<span class="n">top.features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"Calb2"</span><span class="p">,</span><span class="s">"Gng4"</span><span class="p">,</span><span class="s">"Ttr"</span><span class="p">,</span><span class="s">"S100a5"</span><span class="p">,</span><span class="s">"Nrgn"</span><span class="p">,</span><span class="s">"Doc2g"</span><span class="p">)</span>
 <span class="nf">SpatialFeaturePlot</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">top.features</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Computing Moran&#39;s I
+<div class="codehilite"><pre><span></span><code>Computing Moran's I
 </code></pre></div>
-
-<p><img alt="png" src="output_9_1.png"></p>
-<h2 id="4">4. 检测分组特异差异基因<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><img alt="png" src="output_9_1.png"/></p>
+<h2 id="4">4. 检测分组特异差异基因<a class="headerlink" href="#4" title="Permanent link">¶</a></h2>
 <p>由于此数据没有分组信息，我们导入另一个数据进行演示。由于直接对分组细胞进行差异分析会造成假阳性，这里我们用psudo-bulk差异分析</p>
-<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-cluster.RData&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">"/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-cluster.RData"</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="codehilite"><pre><span></span><code><span class="c1"># DEG group--------</span>
 <span class="nf">table</span><span class="p">(</span><span class="n">brain</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">group</span><span class="p">)</span>
 <span class="n">summed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pooling_seu</span><span class="p">(</span><span class="n">brain</span><span class="p">)</span>
 <span class="nf">class</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">summed</span><span class="o">@</span><span class="n">colData</span><span class="p">)</span>
-<span class="n">is_ribo</span><span class="o">&lt;-</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&#39;Rps|Rpl&#39;</span><span class="p">,</span><span class="nf">row.names</span><span class="p">(</span><span class="n">summed</span><span class="p">))</span>
-<span class="n">is_mito</span><span class="o">&lt;-</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&#39;mt-&#39;</span><span class="p">,</span><span class="nf">row.names</span><span class="p">(</span><span class="n">summed</span><span class="p">))</span>
+<span class="n">is_ribo</span><span class="o">&lt;-</span><span class="nf">grepl</span><span class="p">(</span><span class="s">'Rps|Rpl'</span><span class="p">,</span><span class="nf">row.names</span><span class="p">(</span><span class="n">summed</span><span class="p">))</span>
+<span class="n">is_mito</span><span class="o">&lt;-</span><span class="nf">grepl</span><span class="p">(</span><span class="s">'mt-'</span><span class="p">,</span><span class="nf">row.names</span><span class="p">(</span><span class="n">summed</span><span class="p">))</span>
 <span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DGEList</span><span class="p">(</span><span class="nf">counts</span><span class="p">(</span><span class="n">summed</span><span class="p">)[(</span><span class="o">!</span><span class="n">is_ribo</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="o">!</span><span class="n">is_mito</span><span class="p">),],</span><span class="w"> </span><span class="n">samples</span><span class="o">=</span><span class="nf">colData</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span><span class="o">$</span><span class="n">sudo_sample_id</span><span class="p">,</span><span class="n">group</span><span class="o">=</span><span class="nf">colData</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="c1"># DE between types</span>
-<span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dga_treat</span><span class="p">(</span><span class="n">DGEList</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">ref_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;young&quot;</span><span class="p">)</span>
+<span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dga_treat</span><span class="p">(</span><span class="n">DGEList</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">ref_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"young"</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">table</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="codehilite"><pre><span></span><code>aged young
 10715 11479
 
@@ -308,82 +370,74 @@ VLP40_1B_1  VLP40_1B_1       915
 VLP40_1B_2  VLP40_1B_2       915
 VLP40_1B_3  VLP40_1B_3       865
 </code></pre></div>
-
 <div class="codehilite"><pre><span></span><code>-1     0     1 
  87 14105   203
 </code></pre></div>
-
 <table class="dataframe">
 <caption>A data.frame: 6 * 6</caption>
 <thead>
-    <tr><th></th><th scope=col>logFC</th><th scope=col>unshrunk.logFC</th><th scope=col>logCPM</th><th scope=col>PValue</th><th scope=col>FDR</th><th scope=col>regulate</th></tr>
-    <tr><th></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><chr></th></tr>
+<tr><th></th><th scope="col">logFC</th><th scope="col">unshrunk.logFC</th><th scope="col">logCPM</th><th scope="col">PValue</th><th scope="col">FDR</th><th scope="col">regulate</th></tr>
+<tr><th></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><chr></chr></th></tr>
 </thead>
 <tbody>
-    <tr><th scope=row>Lyz2</th><td>2.6841911</td><td>2.6854073</td><td>5.326010</td><td>2.446786e-17</td><td>2.992338e-13</td><td>Up</td></tr>
-    <tr><th scope=row>C4b</th><td>3.0082676</td><td>3.0088154</td><td>6.819937</td><td>5.386843e-17</td><td>2.992338e-13</td><td>Up</td></tr>
-    <tr><th scope=row>Itgax</th><td>3.8597675</td><td>3.9129263</td><td>1.172032</td><td>6.236203e-17</td><td>2.992338e-13</td><td>Up</td></tr>
-    <tr><th scope=row>Cd52</th><td>1.3891682</td><td>1.3899204</td><td>4.541512</td><td>1.229941e-15</td><td>4.426248e-12</td><td>Up</td></tr>
-    <tr><th scope=row>Pcdhb9</th><td>0.9295853</td><td>0.9301349</td><td>4.305468</td><td>2.580643e-15</td><td>7.429671e-12</td><td>Up</td></tr>
-    <tr><th scope=row>Fcgr2b</th><td>1.4622417</td><td>1.4650595</td><td>2.751271</td><td>1.811064e-14</td><td>4.032808e-11</td><td>Up</td></tr>
+<tr><th scope="row">Lyz2</th><td>2.6841911</td><td>2.6854073</td><td>5.326010</td><td>2.446786e-17</td><td>2.992338e-13</td><td>Up</td></tr>
+<tr><th scope="row">C4b</th><td>3.0082676</td><td>3.0088154</td><td>6.819937</td><td>5.386843e-17</td><td>2.992338e-13</td><td>Up</td></tr>
+<tr><th scope="row">Itgax</th><td>3.8597675</td><td>3.9129263</td><td>1.172032</td><td>6.236203e-17</td><td>2.992338e-13</td><td>Up</td></tr>
+<tr><th scope="row">Cd52</th><td>1.3891682</td><td>1.3899204</td><td>4.541512</td><td>1.229941e-15</td><td>4.426248e-12</td><td>Up</td></tr>
+<tr><th scope="row">Pcdhb9</th><td>0.9295853</td><td>0.9301349</td><td>4.305468</td><td>2.580643e-15</td><td>7.429671e-12</td><td>Up</td></tr>
+<tr><th scope="row">Fcgr2b</th><td>1.4622417</td><td>1.4650595</td><td>2.751271</td><td>1.811064e-14</td><td>4.032808e-11</td><td>Up</td></tr>
 </tbody>
 </table>
-
-<h2 id="5-deconvolution">5. Deconvolution分析<a class="headerlink" href="#5-deconvolution" title="Permanent link">&para;</a></h2>
+<h2 id="5-deconvolution">5. Deconvolution分析<a class="headerlink" href="#5-deconvolution" title="Permanent link">¶</a></h2>
 <p>由于Visium平台的spot不是单细胞分辨率，一般有1-10个细胞，因此我们需要对其进行注释，分析不同细胞的比例。这里使用spacexr包进行分析。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">reference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&#39;/media/zhangfeng/myData/projects/sp-aging/output-results/4-brain-SCRef.rds&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">reference</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">'/media/zhangfeng/myData/projects/sp-aging/output-results/4-brain-SCRef.rds'</span><span class="p">)</span>
 <span class="c1"># control sample</span>
-<span class="n">spatial_controls</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RCTD_replicates</span><span class="p">(</span><span class="n">seu_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brain</span><span class="p">[,</span><span class="n">brain</span><span class="o">$</span><span class="n">group</span><span class="o">==</span><span class="s">&quot;young&quot;</span><span class="p">])</span>
+<span class="n">spatial_controls</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RCTD_replicates</span><span class="p">(</span><span class="n">seu_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brain</span><span class="p">[,</span><span class="n">brain</span><span class="o">$</span><span class="n">group</span><span class="o">==</span><span class="s">"young"</span><span class="p">])</span>
 <span class="n">RCTD_controls</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">create.RCTD.replicates</span><span class="p">(</span><span class="n">spatial_controls</span><span class="o">$</span><span class="n">spatialRNA_replicates</span><span class="p">,</span><span class="w"> </span><span class="n">reference</span><span class="p">,</span><span class="w"> </span><span class="n">spatial_controls</span><span class="o">$</span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">max_cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
-<span class="n">RCTD_controls</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">run.RCTD.replicates</span><span class="p">(</span><span class="n">RCTD_controls</span><span class="p">,</span><span class="w"> </span><span class="n">doublet_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">RCTD_controls</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">run.RCTD.replicates</span><span class="p">(</span><span class="n">RCTD_controls</span><span class="p">,</span><span class="w"> </span><span class="n">doublet_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">'full'</span><span class="p">)</span>
 
 <span class="c1"># treatment samples</span>
-<span class="n">spatial_treats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RCTD_replicates</span><span class="p">(</span><span class="n">seu_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brain</span><span class="p">[,</span><span class="n">brain</span><span class="o">$</span><span class="n">group</span><span class="o">==</span><span class="s">&quot;aged&quot;</span><span class="p">])</span>
+<span class="n">spatial_treats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RCTD_replicates</span><span class="p">(</span><span class="n">seu_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brain</span><span class="p">[,</span><span class="n">brain</span><span class="o">$</span><span class="n">group</span><span class="o">==</span><span class="s">"aged"</span><span class="p">])</span>
 <span class="n">RCTD_treats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">create.RCTD.replicates</span><span class="p">(</span><span class="n">spatial_treats</span><span class="o">$</span><span class="n">spatialRNA_replicates</span><span class="p">,</span><span class="w"> </span><span class="n">reference</span><span class="p">,</span><span class="w"> </span><span class="n">spatial_treats</span><span class="o">$</span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">max_cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
-<span class="n">RCTD_treats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">run.RCTD.replicates</span><span class="p">(</span><span class="n">RCTD_treats</span><span class="p">,</span><span class="w"> </span><span class="n">doublet_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">RCTD_treats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">run.RCTD.replicates</span><span class="p">(</span><span class="n">RCTD_treats</span><span class="p">,</span><span class="w"> </span><span class="n">doublet_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">'full'</span><span class="p">)</span>
 
 <span class="c1"># add into seurat</span>
 <span class="n">spot_weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">combine_weight</span><span class="p">(</span><span class="n">RCTD_controls</span><span class="p">,</span><span class="n">RCTD_treats</span><span class="p">)</span>
-<span class="n">meta_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">brain</span><span class="o">@</span><span class="n">meta.data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">&quot;spot_id&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
-<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">spot_weight</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="s">&quot;spot_id&quot;</span><span class="p">)</span>
+<span class="n">meta_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">brain</span><span class="o">@</span><span class="n">meta.data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">"spot_id"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">spot_weight</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="s">"spot_id"</span><span class="p">)</span>
 <span class="nf">all</span><span class="p">(</span><span class="n">meta_data</span><span class="o">$</span><span class="n">spot_id</span><span class="o">==</span><span class="nf">colnames</span><span class="p">(</span><span class="n">brain</span><span class="p">))</span><span class="w">  </span>
-<span class="n">meta_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="n">meta_data</span><span class="p">,</span><span class="s">&quot;spot_id&quot;</span><span class="p">)</span>
+<span class="n">meta_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="n">meta_data</span><span class="p">,</span><span class="s">"spot_id"</span><span class="p">)</span>
 <span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">AddMetaData</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meta_data</span><span class="p">)</span>
-<span class="nf">saveRDS</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData&quot;</span><span class="p">))</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData"</span><span class="p">))</span>
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">"/media/zhangfeng/myData/projects/sp-aging/output-results/70-visium-brain-RCTD.RData"</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="codehilite"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">brain</span><span class="o">@</span><span class="n">meta.data</span><span class="p">)</span>
 </code></pre></div>
-
 <table class="dataframe">
 <caption>A data.frame: 6 * 17</caption>
 <thead>
-    <tr><th></th><th scope=col>orig.ident</th><th scope=col>nCount_Spatial</th><th scope=col>nFeature_Spatial</th><th scope=col>group</th><th scope=col>nCount_SCT</th><th scope=col>nFeature_SCT</th><th scope=col>SCT_snn_res.0.1</th><th scope=col>seurat_clusters</th><th scope=col>Astrocytes</th><th scope=col>Ependymal</th><th scope=col>Immune</th><th scope=col>Microglia</th><th scope=col>Neurons</th><th scope=col>Oligos</th><th scope=col>PeripheralGlia</th><th scope=col>Vascular</th><th scope=col>max_cell</th></tr>
-    <tr><th></th><th scope=col><chr></th><th scope=col><dbl></th><th scope=col><int></th><th scope=col><chr></th><th scope=col><dbl></th><th scope=col><int></th><th scope=col><fct></th><th scope=col><fct></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><dbl></th><th scope=col><chr></th></tr>
+<tr><th></th><th scope="col">orig.ident</th><th scope="col">nCount_Spatial</th><th scope="col">nFeature_Spatial</th><th scope="col">group</th><th scope="col">nCount_SCT</th><th scope="col">nFeature_SCT</th><th scope="col">SCT_snn_res.0.1</th><th scope="col">seurat_clusters</th><th scope="col">Astrocytes</th><th scope="col">Ependymal</th><th scope="col">Immune</th><th scope="col">Microglia</th><th scope="col">Neurons</th><th scope="col">Oligos</th><th scope="col">PeripheralGlia</th><th scope="col">Vascular</th><th scope="col">max_cell</th></tr>
+<tr><th></th><th scope="col"><chr></chr></th><th scope="col"><dbl></dbl></th><th scope="col"><int></int></th><th scope="col"><chr></chr></th><th scope="col"><dbl></dbl></th><th scope="col"><int></int></th><th scope="col"><fct></fct></th><th scope="col"><fct></fct></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><dbl></dbl></th><th scope="col"><chr></chr></th></tr>
 </thead>
 <tbody>
-    <tr><th scope=row>AAACAAGTATCTCCCA-1_1_1_1</th><td>VLP40_1A</td><td> 8421</td><td>3160</td><td>young</td><td>15335</td><td>3514</td><td>3</td><td>3</td><td>0.19143611</td><td>0.0006158916</td><td>0.0049827905</td><td>0.004197530</td><td>0.3236210</td><td>0.433052200</td><td>0.011450442</td><td>0.030644049</td><td>Oligos </td></tr>
-    <tr><th scope=row>AAACACCAATAACTGC-1_1_1_1</th><td>VLP40_1A</td><td>23006</td><td>5649</td><td>young</td><td>16862</td><td>5507</td><td>0</td><td>0</td><td>0.11293516</td><td>0.0013890113</td><td>0.0006617161</td><td>0.011798306</td><td>0.8054124</td><td>0.062050025</td><td>0.002048477</td><td>0.003704872</td><td>Neurons</td></tr>
-    <tr><th scope=row>AAACAGAGCGACTCCT-1_1_1_1</th><td>VLP40_1A</td><td>25131</td><td>6224</td><td>young</td><td>16782</td><td>5926</td><td>0</td><td>0</td><td>0.04871926</td><td>0.0073010556</td><td>0.0026329875</td><td>0.009357506</td><td>0.9132606</td><td>0.004827619</td><td>0.002313284</td><td>0.011587694</td><td>Neurons</td></tr>
-    <tr><th scope=row>AAACAGCTTTCAGAAG-1_1_1_1</th><td>VLP40_1A</td><td>35993</td><td>7074</td><td>young</td><td>16298</td><td>5253</td><td>0</td><td>0</td><td>0.05981760</td><td>0.0019247194</td><td>0.0001026660</td><td>0.013729242</td><td>0.8918254</td><td>0.007285013</td><td>0.002966418</td><td>0.022348983</td><td>Neurons</td></tr>
-    <tr><th scope=row>AAACAGGGTCTATATT-1_1_1_1</th><td>VLP40_1A</td><td>37738</td><td>7220</td><td>young</td><td>16163</td><td>5196</td><td>0</td><td>0</td><td>0.05777206</td><td>0.0014648800</td><td>0.0009153018</td><td>0.007876570</td><td>0.9005069</td><td>0.023966030</td><td>0.000675534</td><td>0.006822758</td><td>Neurons</td></tr>
-    <tr><th scope=row>AAACATTTCCCGGATT-1_1_1_1</th><td>VLP40_1A</td><td>14901</td><td>4544</td><td>young</td><td>15460</td><td>4544</td><td>3</td><td>3</td><td>0.13274107</td><td>0.0026031003</td><td>0.0001558520</td><td>0.006728277</td><td>0.6066684</td><td>0.218612193</td><td>0.010717393</td><td>0.021773681</td><td>Neurons</td></tr>
+<tr><th scope="row">AAACAAGTATCTCCCA-1_1_1_1</th><td>VLP40_1A</td><td> 8421</td><td>3160</td><td>young</td><td>15335</td><td>3514</td><td>3</td><td>3</td><td>0.19143611</td><td>0.0006158916</td><td>0.0049827905</td><td>0.004197530</td><td>0.3236210</td><td>0.433052200</td><td>0.011450442</td><td>0.030644049</td><td>Oligos </td></tr>
+<tr><th scope="row">AAACACCAATAACTGC-1_1_1_1</th><td>VLP40_1A</td><td>23006</td><td>5649</td><td>young</td><td>16862</td><td>5507</td><td>0</td><td>0</td><td>0.11293516</td><td>0.0013890113</td><td>0.0006617161</td><td>0.011798306</td><td>0.8054124</td><td>0.062050025</td><td>0.002048477</td><td>0.003704872</td><td>Neurons</td></tr>
+<tr><th scope="row">AAACAGAGCGACTCCT-1_1_1_1</th><td>VLP40_1A</td><td>25131</td><td>6224</td><td>young</td><td>16782</td><td>5926</td><td>0</td><td>0</td><td>0.04871926</td><td>0.0073010556</td><td>0.0026329875</td><td>0.009357506</td><td>0.9132606</td><td>0.004827619</td><td>0.002313284</td><td>0.011587694</td><td>Neurons</td></tr>
+<tr><th scope="row">AAACAGCTTTCAGAAG-1_1_1_1</th><td>VLP40_1A</td><td>35993</td><td>7074</td><td>young</td><td>16298</td><td>5253</td><td>0</td><td>0</td><td>0.05981760</td><td>0.0019247194</td><td>0.0001026660</td><td>0.013729242</td><td>0.8918254</td><td>0.007285013</td><td>0.002966418</td><td>0.022348983</td><td>Neurons</td></tr>
+<tr><th scope="row">AAACAGGGTCTATATT-1_1_1_1</th><td>VLP40_1A</td><td>37738</td><td>7220</td><td>young</td><td>16163</td><td>5196</td><td>0</td><td>0</td><td>0.05777206</td><td>0.0014648800</td><td>0.0009153018</td><td>0.007876570</td><td>0.9005069</td><td>0.023966030</td><td>0.000675534</td><td>0.006822758</td><td>Neurons</td></tr>
+<tr><th scope="row">AAACATTTCCCGGATT-1_1_1_1</th><td>VLP40_1A</td><td>14901</td><td>4544</td><td>young</td><td>15460</td><td>4544</td><td>3</td><td>3</td><td>0.13274107</td><td>0.0026031003</td><td>0.0001558520</td><td>0.006728277</td><td>0.6066684</td><td>0.218612193</td><td>0.010717393</td><td>0.021773681</td><td>Neurons</td></tr>
 </tbody>
 </table>
-
-<h2 id="6">6. 绘图<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h2 id="6">6. 绘图<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="n">slice_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">RCTD_controls</span><span class="o">@</span><span class="n">group_ids</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span>
 <span class="n">myRCTD_full</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">RCTD_controls</span><span class="o">@</span><span class="n">RCTD.reps</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
 <span class="n">p_brain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plot_rctd</span><span class="p">(</span><span class="n">myRCTD_full</span><span class="p">,</span><span class="n">brain</span><span class="p">,</span><span class="n">image_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slice_id</span><span class="p">)</span><span class="o">+</span><span class="nf">ggtitle</span><span class="p">(</span><span class="n">slice_id</span><span class="p">)</span><span class="o">+</span>
-<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="o">+</span><span class="nf">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;Cell_Type&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;Cluster&quot;</span><span class="p">)</span><span class="o">+</span>
-<span class="w">    </span><span class="nf">guides</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="o">+</span><span class="nf">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s">"Cell_Type"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">"Cluster"</span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">guides</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"none"</span><span class="p">)</span>
 <span class="n">p_brain</span>
 </code></pre></div>
-
-<p><img alt="" src="brain-rctd.png"></p>
+<p><img alt="" src="brain-rctd.png"/></p>
 <div class="codehilite"><pre><span></span><code>
 </code></pre></div>
 
@@ -400,44 +454,34 @@ VLP40_1B_3  VLP40_1B_3       865
 
 
             <hr/>
+
+            <hr/>
+            <section class="article-meta-bottom">
+                <ul class="article-meta-inline">
+
+                <li><span class="meta-label">Published:</span><time itemprop="dateCreated" datetime="2023-05-09T00:00:00+08:00">2023年05月09日</time></li>
+
+
+                <li><span class="meta-label">Category:</span><a class="category-link" href="./categories.html#sheng-xin-ref">生信</a></li>
+
+                <li><span class="meta-label">Tags:</span><ul class="list-of-tags tags-in-article">
+                    <li><a href="./tags.html#chai-yi-biao-da-ref">差异表达
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#fan-juan-ji-ref">反卷积
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#ju-lei-ref">聚类
+                        <span>1</span>
+</a></li>
+                    <li><a href="./tags.html#visium-ref">Visium
+                        <span>1</span>
+</a></li>
+                </ul></li>
+
+                </ul>
+            </section>
         </div>
-        <section id="article-sidebar" class="span2">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2023-05-09T00:00:00+08:00">May 9, 2023</time>
-
-            <h4>Category</h4>
-            <a class="category-link" href="http://localhost:8000/categories.html#sheng-xin-ref">生信</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="http://localhost:8000/tags.html#chai-yi-biao-da-ref">差异表达
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#fan-juan-ji-ref">反卷积
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#ju-lei-ref">聚类
-                    <span>1</span>
-</a></li>
-                <li><a href="http://localhost:8000/tags.html#visium-ref">Visium
-                    <span>1</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-<div id="sidebar-social-link">
-</div>
-            
-
-
-
-
-
-            
-
-
-
-
-
-        </section>
 </div>
 </article>
                     </div>
@@ -463,6 +507,57 @@ VLP40_1B_3  VLP40_1B_3       865
             }
         </script>
 
+    <script>
+        (function () {
+            function setupTocFollow() {
+                var tocNav = document.querySelector('.table-of-content nav');
+                var tocCol = document.querySelector('.table-of-content');
+                if (!tocNav || !tocCol) {
+                    return;
+                }
+
+                var desktop = window.innerWidth > 979;
+                if (!desktop) {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.width = '';
+                    tocNav.style.left = '';
+                    return;
+                }
+
+                var topOffset = 72;
+                var navStartY = tocCol.getBoundingClientRect().top + window.pageYOffset;
+
+                function updateFixedState() {
+                    var shouldFix = window.pageYOffset >= (navStartY - topOffset);
+                    if (shouldFix) {
+                        var rect = tocCol.getBoundingClientRect();
+                        tocNav.classList.add('toc-follow-fixed');
+                        tocNav.style.left = rect.left + 'px';
+                        tocNav.style.width = rect.width + 'px';
+                    } else {
+                        tocNav.classList.remove('toc-follow-fixed');
+                        tocNav.style.left = '';
+                        tocNav.style.width = '';
+                    }
+                }
+
+                updateFixedState();
+                window.addEventListener('scroll', updateFixedState, { passive: true });
+                window.addEventListener('resize', function () {
+                    tocNav.classList.remove('toc-follow-fixed');
+                    tocNav.style.left = '';
+                    tocNav.style.width = '';
+                    setupTocFollow();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupTocFollow);
+            } else {
+                setupTocFollow();
+            }
+        })();
+    </script>
     <script>
     (function () {
         if (window.location.hash.match(/^#comment-\d+$/)) {

@@ -2,16 +2,13 @@
 Title: 在win10中使用ubuntu子系统WSL如何安装g++
 Date: 2020-09-15
 Modified: 2020-09-16
-Category: windows
+Category: 高效工具
 Tags: win10, ubuntu, g++ install, 安装
 Slug: install-gpp-in-windows10-wsl-ubuntu
 Authors: 章峰
 Summary: windows下使用linux (WSL)系统时如何正确安装g++
 Lang: zh
 ---
-
-
-
 [toc]
 
 ## 前言

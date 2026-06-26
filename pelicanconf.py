@@ -1,13 +1,23 @@
 AUTHOR = 'Feng'
 SITENAME = '生信小屋'
-SITEURL = "http://localhost:8000"
+SITEURL = ""
 
 PATH = "content"
+
+# 允许文章图片与 index.md 放在同一目录：
+# 1) 将 zh/post 下的非 Markdown 文件作为静态资源复制到 output
+# 2) 通过 {static}/zh/post/... 在文章中稳定引用
+# 3) 首页轮播图放在 pages/home 目录
+STATIC_PATHS = ['zh/post', 'pages/home']
+STATIC_EXCLUDES = ['**/*.md']
 
 TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
-LOCALE = ['C.utf8']
+LOCALE = ['zh_CN.UTF-8', 'zh_CN.utf8', 'zh_CN', 'C.utf8']
+DATE_FORMATS = {
+    'zh': '%Y年%m月%d日',
+}
 # LANGUAGES = { 
 #     'en': 'English',
 #     'zh': '中文',
@@ -22,6 +32,17 @@ PAGE_SAVE_AS = '{slug}.html'
 ARCHIVES_URL = 'archives.html'
 ARCHIVES_SAVE_AS = 'archives.html'
 LANDING_PAGE_TITLE = '关于我'
+
+# 首页排版配置
+HOMEPAGE_TOP_IMAGES = [
+    '/pages/home/slide1.png',
+    '/pages/home/slide2.png',
+    '/pages/home/slide3.jpg',
+]
+HOMEPAGE_CAROUSEL_INTERVAL = 4200
+CONTACT_EMAIL = 'fengzhang0709@hotmail.com'
+CONTACT_WECHAT = ''
+CONTACT_GITHUB = 'https://github.com/Feng-Zhang'
 
 TAGS_URL = 'tags.html'
 TAGS_SAVE_AS = 'tags.html'
@@ -51,14 +72,14 @@ SOCIAL = (
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
 THEME = 'pelican-themes/elegant'
 # THEME_STATIC_DIR = 'pelican-themes'
 THEME_TEMPLATES_OVERRIDES = ['custom_template']
 
 # plugin
 PLUGIN_PATHS = ['pelican-plugins', 'pelican-plugins/tipue_search/pelican/plugins']
-PLUGINS = ['tipue_search'] #, 'extract_toc'
+PLUGINS = ['tipue_search', 'extract_toc'] #
 # PLUGINS = [ ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {

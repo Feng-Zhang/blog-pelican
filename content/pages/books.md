@@ -1,15 +1,13 @@
 Title: 书籍
+Date: 2026-06-26 00:00
+Modified: 2026-06-26 00:00
 Slug: books
-Lang: zh
+Authors: Feng Zhang
+Summary: 书籍导航页，汇总站内书籍。
 Status: published
----
+Lang: zh
 
-这里是书籍导航页。
+这里收录站内的书籍内容，点击进入对应书籍主页：
 
-你可以把每本书拆成多个 Markdown 章节，然后在这里维护目录链接。
-
-## 示例目录
-
-- [示例书 1：第一章](#1)
-- [示例书 1：第二章](#2)
-- [示例书 2：导读](#3)
+- [Bpipe 文档]({filename}/pages/books/Bpipe文档/index.md)
+- [数学符号手册]({filename}/pages/books/数学符号手册/index.md)
