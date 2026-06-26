@@ -94,4 +94,8 @@ MARKDOWN = {
     "output_format": "html5",
 }
 
+# Comments (Utterances → GitHub Issues: Feng-Zhang/blog-pelican-comment)
+UTTERANCES_REPO = "Feng-Zhang/blog-pelican-comment"
+UTTERANCES_THEME = "github-light"
+COMMENTS_INTRO = "欢迎留言，使用 GitHub 账号登录即可评论。"
 
