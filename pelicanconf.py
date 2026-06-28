@@ -1,5 +1,5 @@
 AUTHOR = 'Feng'
-SITENAME = '生信小屋'
+SITENAME = '章峰的网站'
 SITEURL = ""
 
 PATH = "content"
@@ -89,6 +89,9 @@ MARKDOWN = {
         "markdown.extensions.meta": {},
         "markdown.extensions.toc": {
             "permalink": True,
+        },
+        "pymdownx.arithmatex": {
+            "generic": True,
         },
     },
     "output_format": "html5",
