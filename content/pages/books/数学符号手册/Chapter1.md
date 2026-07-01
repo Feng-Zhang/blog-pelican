@@ -1,5 +1,6 @@
 Title: 字母
 Date: 2020-08-26 00:00
+Modified: 2026-07-01 19:30
 Category: Books
 Slug: books-math-notation-chapter-1
 Authors: Feng Zhang
@@ -8,8 +9,6 @@ Lang: zh
 Order: 10
 
 [TOC]
-
-
 
 ## 1. 拉丁字母表
 
@@ -25,40 +24,40 @@ Order: 10
 
 　　另一种手写粗体的方法是重复一遍字母的形状。例如，可以用${\Bbb Z}$来替换粗体${\bf Z}$。 这种字母风格叫做黑板粗体，一般用来指代特殊的数字集，例如实数${\Bbb R}$或复数${\Bbb C}$。
 
-　　不同风格的字母对区别数学对象是十分有帮助的。例如，在线性代数中，我们使用小写斜体字母来表示无向量的变量，小写粗体字母来表示向量，大写字母表示矩阵。  
+　　不同风格的字母对区别数学对象是十分有帮助的。例如，在线性代数中，我们使用小写斜体字母来表示无向量的变量，小写粗体字母来表示向量，大写字母表示矩阵。
 
 ---
 
- <center>第1页</center>
+<center>第1页</center>
 
 ## 2. 希腊字母
 
 　　26个拉丁字母加上大小写一起也就52个，有时候即使加上不同风格的字母也是不够用的。因此，数学家引入了其它字母表。希腊字母是仅次于拉丁字母后使用最频繁的字母表。我们这里把希腊字母表展示在Figure 1.1。
 
-|   输入   |    显示    |  输入   |   显示    |   输入   |    显示    |   输入   |    显示    |
-| :------: | :--------: | :-----: | :-------: | :------: | :--------: | :------: | :--------: |
-|  \alpha  |  $\alpha$  |    A    |    $A$    |  \beta   |  $\beta$   |    B     |    $B$     |
-|  \gamma  |  $\gamma$  | \Gamma  | $\Gamma$  |  \delta  |  $\delta$  |  \Delta  |  $\Delta$  |
-| \epsilon | $\epsilon$ |    E    |    $E$    |  \zeta   |  $\zeta$   |    Z     |    $Z$     |
+
+|   输入   |    显示    |  输入  |   显示   |   输入   |    显示    |   输入   |    显示    |
+| :--------: | :----------: | :-------: | :---------: | :--------: | :----------: | :--------: | :----------: |
+|  \alpha  |  $\alpha$  |    A    |    $A$    |  \beta  |  $\beta$  |    B    |    $B$    |
+|  \gamma  |  $\gamma$  | \Gamma | $\Gamma$ |  \delta  |  $\delta$  |  \Delta  |  $\Delta$  |
+| \epsilon | $\epsilon$ |    E    |    $E$    |  \zeta  |  $\zeta$  |    Z    |    $Z$    |
 |   \eta   |   $\eta$   |    H    |    $H$    |  \theta  |  $\theta$  |  \Theta  |  $\Theta$  |
-|  \iota   |  $\iota$   |    I    |    $I$    |  \kappa  |  $\kappa$  |    K     |    $K$     |
-| \lambda  | $\lambda$  | \Lambda | $\Lambda$ |   \mu    |   $\mu$    |    M     |    $M$     |
-|   \nu    |   $\nu$    |    N    |    $N$    |   \xi    |   $\xi$    |   \Xi    |   $\Xi$    |
-|    o     |    $o$     |    O    |    $O$    |   \pi    |   $\pi$    |   \Pi    |   $\Pi$    |
+|  \iota  |  $\iota$  |    I    |    $I$    |  \kappa  |  $\kappa$  |    K    |    $K$    |
+| \lambda | $\lambda$ | \Lambda | $\Lambda$ |   \mu   |   $\mu$   |    M    |    $M$    |
+|   \nu   |   $\nu$   |    N    |    $N$    |   \xi   |   $\xi$   |   \Xi   |   $\Xi$   |
+|    o    |    $o$    |    O    |    $O$    |   \pi   |   $\pi$   |   \Pi   |   $\Pi$   |
 |   \rho   |   $\rho$   |    P    |    $P$    |  \sigma  |  $\sigma$  |  \Sigma  |  $\Sigma$  |
 |   \tau   |   $\tau$   |    T    |    $T$    | \upsilon | $\upsilon$ | \Upsilon | $\Upsilon$ |
-|   \phi   |   $\phi$   |  \Phi   |  $\Phi$   |   \chi   |   $\chi$   |    X     |    $X$     |
-|   \psi   |   $\psi$   |  \Psi   |  $\Psi$   |  \omega  |  $\omega$  |  \Omega  |  $\Omega$  |
-
-
+|   \phi   |   $\phi$   |  \Phi  |  $\Phi$  |   \chi   |   $\chi$   |    X    |    $X$    |
+|   \psi   |   $\psi$   |  \Psi  |  $\Psi$  |  \omega  |  $\omega$  |  \Omega  |  $\Omega$  |
 
 **部分字母有变量专用形式，以 `\var-` 开头。**
 
-| 小写形式 | 大写形式 |  变量形式   |                显示                 |
-| :------: | :------: | :---------: | :---------------------------------: |
-| \epsilon |    E     | \varepsilon | $\epsilon \mid E \mid \varepsilon$  |
+
+| 小写形式 | 大写形式 |  变量形式  |                显示                |
+| :--------: | :--------: | :-----------: | :-----------------------------------: |
+| \epsilon |    E    | \varepsilon | $\epsilon \mid E \mid \varepsilon$ |
 |  \theta  |  \Theta  |  \vartheta  | $\theta \mid \Theta \mid \vartheta$ |
-|   \rho   |    P     |   \varrho   |     $\rho \mid P \mid \varrho$      |
+|   \rho   |    P    |   \varrho   |     $\rho \mid P \mid \varrho$     |
 |  \sigma  |  \Sigma  |  \varsigma  | $\sigma \mid \Sigma \mid \varsigma$ |
 |   \phi   |   \Phi   |   \varphi   |    $\phi \mid \Phi \mid \varphi$    |
 
@@ -67,8 +66,6 @@ Order: 10
 　　有时候希腊字母看起来和拉丁字母一模一样，比如大写的mu和em，因此，不能用来表示不同的对象。
 
 　　而来自其它字母表的字母，如希伯来语$\aleph$，也被用在数学领域，但是在科学和工程学科中并不常见。
-
-
 
 ## 3. 装饰
 
@@ -80,7 +77,13 @@ Order: 10
 
 就像我们之前留意到的，在字母上加一个箭头来表示向量：$\vec v$ 。
 
-　　最常见的字母装饰是下标。例如，为了表示一个平面上的多个点时，很自然地这些点会用带下标的坐标来表示：$$　(x_1,y_1),(x_2,y_2), ... , (x_9,y_9)$$
+　　最常见的字母装饰是下标。例如，为了表示一个平面上的多个点时，很自然地这些点会用带下标的坐标来表示：
+
+$$
+(x_1,y_1),(x_2,y_2), ... , (x_9,y_9)
+
+$$
+
 
 　　字母上标的撇符号（$'$)与没有加上标的字母表示的对象是不同的。例如，$x$和$x'$表示的是两个不同的变量。多个撇符号表示的对象也是不同的，如：$a, a', a{''}, a{'''}$。不过超过三个撇符号则很难阅读。这种情况下，有人会使用小写拉丁字母来表示撇符号的数量，如用$a^{(iv)}$来代替$a{''''}$。不过在微积分中，撇符号则被用来表示微分。
 
@@ -91,7 +94,5 @@ Order: 10
 ## 4. 惯例
 
 　　原则上，任何字母都可以表示数学对象。但是在特定的学科中，约定熟成地会保留一些字母来表示特定的对象。例如，在很多科学和工程学科中，用$\pi$来表示圆周率，约等于3.14159。但是在数学其它领域中，符号$\pi$则有其它的意义。通常来说，最好用那个领域中大家约定熟成的符号来表示数学对象。
-
-
 
 <center>第3页</center>

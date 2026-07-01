@@ -28,34 +28,39 @@
 {% include '_includes/photos_header.html' %}
 <style>
     .article-meta-bottom {
-        margin-top: 18px;
-        padding-top: 12px;
-        border-top: 1px solid #ddd;
+        margin-top: 6px;
+        font-size: 13px;
+        color: #666;
     }
 
     .article-meta-inline {
-        display: block;
+        display: inline;
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
-    .article-meta-inline li {
-        display: block;
-        margin: 6px 0;
-        line-height: 1.7;
+    .article-meta-inline > li {
+        display: inline;
+        margin: 0;
+        line-height: 1.8;
+    }
+
+    .article-meta-inline > li + li::before {
+        content: "|";
+        margin: 0 8px;
+        color: #bbb;
     }
 
     .article-meta-inline .meta-label {
         font-weight: 600;
-        margin-right: 6px;
+        margin-right: 4px;
     }
 
     .article-meta-inline .tags-in-article {
-        display: inline-block;
+        display: inline;
         margin: 0;
         padding: 0;
-        vertical-align: middle;
     }
 
     .article-meta-inline .tags-in-article li {
@@ -102,6 +107,38 @@
                 {% endif %}
             </a>
         </h1>
+        <div class="article-meta-bottom">
+        {% from '_includes/_defaults.html' import READING_TIME_LOWER_LIMIT, CATEGORIES_URL, TAGS_URL with context %}
+        <ul class="article-meta-inline">
+        {% if article.stats and article.stats['read_mins'] and article.stats['read_mins'] > READING_TIME_LOWER_LIMIT %}
+        <li><span class="meta-label">Reading Time:</span>~{{ article.stats['read_mins'] }} min</li>
+        {% endif %}
+
+        {% if article.date %}
+        <li><span class="meta-label">Published:</span><time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></li>
+        {% endif %}
+
+        {% if article.modified %}
+        <li><span class="meta-label">Last Updated:</span><time datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified or article.modified.strftime('%Y年%m月%d日') }}</time></li>
+        {% endif %}
+
+        {% if article.category|trim|count > 0 %}
+        <li><span class="meta-label">Category:</span><a class="category-link" href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ category.slug }}-ref">{{ article.category }}</a></li>
+        {% endif %}
+
+        {% if article.tags and article.tags[0]|trim|count > 0 %}
+        <li><span class="meta-label">Tags:</span><ul class="list-of-tags tags-in-article">
+            {% for tag in article.tags|sort %}
+            <li><a href="{{ SITEURL }}/{{ TAGS_URL }}#{{ tag.slug }}-ref">{{ tag }}
+                {% for aTag, tagged_articles in tags if aTag == tag %}
+                <span>{{ tagged_articles|count }}</span>
+                {% endfor %}</a></li>
+            {% endfor %}
+        </ul></li>
+        {% endif %}
+
+        </ul>
+        </div>
     </header>
 </div>
 
@@ -139,8 +176,6 @@
             {{ share_links(article) }}
             {% from '_includes/article_author.html' import article_author with context %}
             {{ article_author(article) }}
-            {% from '_includes/comments.html' import comments_section with context %}
-            {{ comments_section(article) }}
             <hr/>
             {% include '_includes/related_posts.html' with context %}
             {% if article.prev_article or article.next_article %}
@@ -170,44 +205,8 @@
             </aside>
             {% endif %}
 
-            <hr/>
-            <section class="article-meta-bottom">
-                {% from '_includes/_defaults.html' import READING_TIME_LOWER_LIMIT, CATEGORIES_URL, TAGS_URL with context %}
-                <ul class="article-meta-inline">
-                {% if article.stats and article.stats['read_mins'] and article.stats['read_mins'] > READING_TIME_LOWER_LIMIT %}
-                <li><span class="meta-label">Reading Time:</span>~{{ article.stats['read_mins'] }} min</li>
-                {% endif %}
-
-                {% if article.date %}
-                <li><span class="meta-label">Published:</span><time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></li>
-                {% endif %}
-
-                {% if article.locale_modified and article.modified %}
-                {% set delta = (article.modified - article.date).days %}
-                {% if delta > 0 %}
-                <li><span class="meta-label">Last Updated:</span><time datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time></li>
-                {% endif %}
-                {% elif article.modified %}
-                <li><span class="meta-label">Last Updated:</span><time datetime="{{ article.modified.isoformat() }}">{{ article.modified.strftime('%Y年%m月%d日') }}</time></li>
-                {% endif %}
-
-                {% if article.category|trim|count > 0 %}
-                <li><span class="meta-label">Category:</span><a class="category-link" href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ category.slug }}-ref">{{ article.category }}</a></li>
-                {% endif %}
-
-                {% if article.tags and article.tags[0]|trim|count > 0 %}
-                <li><span class="meta-label">Tags:</span><ul class="list-of-tags tags-in-article">
-                    {% for tag in article.tags|sort %}
-                    <li><a href="{{ SITEURL }}/{{ TAGS_URL }}#{{ tag.slug }}-ref">{{ tag }}
-                        {% for aTag, tagged_articles in tags if aTag == tag %}
-                        <span>{{ tagged_articles|count }}</span>
-                        {% endfor %}</a></li>
-                    {% endfor %}
-                </ul></li>
-                {% endif %}
-
-                </ul>
-            </section>
+            {% from '_includes/comments.html' import comments_section with context %}
+            {{ comments_section(article) }}
         </div>
 </div>
 </article>

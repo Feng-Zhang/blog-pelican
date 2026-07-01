@@ -1,5 +1,6 @@
 Title: 数学符号手册
 Date: 2020-08-17 00:00
+Modified: 2026-07-01 19:30
 Category: Books
 Slug: books-math-notation
 Authors: Feng Zhang

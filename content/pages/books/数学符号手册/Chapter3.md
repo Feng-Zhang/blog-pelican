@@ -1,5 +1,6 @@
 Title: 逻辑
 Date: 2020-09-14 00:00
+Modified: 2026-07-01 19:30
 Category: Books
 Slug: books-math-notation-chapter-3
 Authors: Feng Zhang
