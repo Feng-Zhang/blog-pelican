@@ -33,12 +33,7 @@ ARCHIVES_URL = 'archives.html'
 ARCHIVES_SAVE_AS = 'archives.html'
 LANDING_PAGE_TITLE = '关于我'
 
-# 首页排版配置
-HOMEPAGE_TOP_IMAGES = [
-    '/pages/home/slide1.png',
-    '/pages/home/slide2.png',
-    '/pages/home/slide3.jpg',
-]
+# 首页排版配置（图片自动从 content/pages/home/ 下发现）
 HOMEPAGE_CAROUSEL_INTERVAL = 4200
 CONTACT_EMAIL = 'fengzhang0709@hotmail.com'
 CONTACT_WECHAT = ''
@@ -79,7 +74,7 @@ THEME_TEMPLATES_OVERRIDES = ['custom_template']
 
 # plugin
 PLUGIN_PATHS = ['pelican-plugins', 'pelican-plugins/tipue_search/pelican/plugins']
-PLUGINS = ['tipue_search', 'extract_toc', 'relative_images']
+PLUGINS = ['tipue_search', 'extract_toc', 'relative_images', 'home_images']
 # PLUGINS = [ ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {

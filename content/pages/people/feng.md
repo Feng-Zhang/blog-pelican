@@ -9,16 +9,22 @@ Authors: Feng Zhang
 Status: published
 Lang: en
 ---
+## Education
 
-## Education 
 ### PhD Student | Jiangxi Agricultural University, China & University of Alberta, Canada (2014–2017)
+
 My PhD research focused on understanding the genetic basis of feed efficiency in beef cattle through whole-genome sequencing and statistical genomics. My work involved genotype imputation, genome-wide association studies, and genomic prediction for economically important production traits.
 
 ### MSc Student | Jiangxi Agricultural University, China (2011–2014)
+
 My MSc research focused on dissecting the genetic architecture of complex traits in pigs using whole-genome sequencing data. I performed GWAS, developed the RegionPlot R package for GWAS visualization, and contributed to studies on pig evolution, genotype imputation, and QTL discovery.
 
-
 ## Publications
+
+- Liu L-X¹, He J¹, **Zhang F.¹**, Liu L-X, He J, Zhang F, Li X-Q, Xiao X-Y, Zhou X-Y, Yang Q-K, Wu M-H, Qiao X-H, Lu B-Q, Pang Z-Y, Sun H-W, Chen Z-X, HongShu Y-J, Xin H-B<sup>&#42;</sup>, Deng K-Y<sup>&#42;</sup>: Myeloid Cdc42 deficiency-mediated macrophage pyroptosis exacerbates diabetic cardiomyopathy in type 1 diabetes mellitus. Cardiovascular Diabetology 2026. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/42363173/)
+- Deng R, Ren Y, Hu K, Zhang Y, Xu Y, Zhang Q, Li Y, Huang X<sup>&#42;</sup>, **Zhang F.<sup>&#42;</sup>**: Integrated multi-omics analysis and functional validation reveal the role of TRIM2 as a potential novel biomarker in breast cancer. Breast Cancer Res 2026, 28(1). [Pubmed](https://pubmed.ncbi.nlm.nih.gov/41918119/)
+- Yang J¹, Wu W¹, Liu J, Li J, **Zhang F.<sup>&#42;</sup>**: Comprehensive integration of single-cell and bulk transcriptome to reveal plasma cell heterogeneity and a prognosis signature in head and neck squamous cell carcinoma. Oral Oncology 2025, 168:107595. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/40816131/)
+- Xu D, Wei L, Zeng L, Mukiibi R, Xin H, **Zhang F.<sup>&#42;</sup>**: An integrated mRNA-lncRNA signature for overall survival prediction in cholangiocarcinoma. Medicine (Baltimore) 2023, 102(39):e35348. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/37773863/)
 - Jiang Q., Chen M., Yang X., Zhuge D., Yin Q., Tian D., Li L., Zhang X., Xu W., Liu S., Li F., Weng C., Lin Y., Wang H., Rao D., Chen Y., Cai Q., Yan L., Wang L., Wang F., Lu X., Wen B., Zhao Y.<sup>&#42;</sup>, **Zhang F.<sup>&#42;</sup>**, Xia W.<sup>&#42;</sup>, Zhu H.<sup>&#42;</sup>, and Chen Y.<sup>&#42;</sup>, Doxorubicin Detoxification in Healthy Organs Improves Tolerability to High Drug Doses for Enhanced Antitumor Therapy. ACS Nano, 2023. 17(8): p. 7705-7720. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/37022161/)
 - Yang Y., Yu J., Xiong Y., Xiao J., Dai D.<sup>&#42;</sup>, and **Zhang F.<sup>&#42;</sup>**, Prognostic Analysis of Differentially Expressed DNA Damage Repair Genes in Bladder Cancer. Pathol Oncol Res, 2022. 28: p. 1610267. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/35685866/)
 - **Zhang, F.**, Y. Wang, R. Mukiibi, L. *et al.* Genetic architecture of quantitative traits in beef cattle revealed by genome wide association studies of imputed whole genome sequence variants: I: feed efficiency and component traits. BMC Genomics, 2020. 21(1):36. [Pubmed](https://pubmed.ncbi.nlm.nih.gov/31931702/)

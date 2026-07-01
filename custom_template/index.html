@@ -34,16 +34,16 @@
         {% endif %}
 
         {% if top_images %}
-        <section class="homepage-hero" style="margin: 0 0 22px;">
+        <section class="homepage-hero" style="margin: 0 0 22px; background: #e9ecef; border-radius: 10px;">
             {% if top_images|length > 1 %}
             <div id="homepage-carousel" class="carousel slide" style="margin-bottom: 0;">
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="background: #e9ecef; border-radius: 10px;">
                     {% for image in top_images %}
                     <div class="item {% if loop.first %}active{% endif %}">
                         <img
                             src="{{ SITEURL }}{{ image }}"
                             alt="{{ SITENAME }} 首页轮播图 {{ loop.index }}"
-                            style="width: 100%; max-height: 360px; object-fit: cover; border-radius: 10px;"
+                            style="width: 100%; height: 480px; object-fit: contain; border-radius: 10px;"
                         >
                     </div>
                     {% endfor %}
@@ -55,7 +55,7 @@
             <img
                 src="{{ SITEURL }}{{ top_images[0] }}"
                 alt="{{ SITENAME }} 首页顶部图"
-                style="width: 100%; max-height: 360px; object-fit: cover; border-radius: 10px;"
+                style="width: 100%; height: 480px; object-fit: contain; border-radius: 10px;"
             >
             {% endif %}
         </section>

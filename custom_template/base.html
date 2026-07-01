@@ -142,7 +142,7 @@
                                     >{{ '首页' if is_zh else 'Home' }}</a>
                                 </li>
                                 <li {% if page_name == 'categories' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ CATEGORIES_URL }}">{{ '博客' if is_zh else 'Blog' }}</a></li>
-                                <li {% if page and page.slug == 'books' %} class="active"{% endif %}><a href="{{ SITEURL }}/books.html">书籍</a></li>
+                                <li {% if page and page.slug == 'books' %} class="active"{% endif %}><a href="{{ SITEURL }}/books.html">教程</a></li>
                                 <li {% if page_name == 'tags' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ TAGS_URL }}">{{ '标签' if is_zh else 'Tags' }}</a></li>
                                 <li {% if page_name == 'archives' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">{{ '归档' if is_zh else 'Archives' }}</a></li>
                                 {% if DISPLAY_PAGES_ON_MENU %}
