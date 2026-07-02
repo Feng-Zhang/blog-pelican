@@ -8,6 +8,7 @@ Slug: RNA-seq-batch-effect
 Authors: Feng Zhang
 Summary: 使用不同方法对转录组数据进行规一化、PCA和批次效应矫正，并比较其差异
 Lang: zh
+featured_image: /zh/post/batch/unnamed-chunk-1-1.png
 ---
 [TOC]
 

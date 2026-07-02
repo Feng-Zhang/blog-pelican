@@ -7,6 +7,7 @@ Slug: plan
 Authors:  章峰
 Summary: 生信是一门交叉学科，要学习的东西非常多。如何快速入门是个问题，本文提供了一些入门的路线图。
 Lang: zh
+featured_image: /zh/post/bioTraining/featured.png
 
 ---
 

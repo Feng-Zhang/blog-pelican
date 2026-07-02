@@ -7,6 +7,7 @@ Slug: miRNA
 Authors: Feng Zhang
 Summary: miRNA的靶基因预测详细教程，自动化代码实现预测分析
 Lang: zh
+featured_image: /zh/post/miRNATarget/featured.jpg
 
 ---
 

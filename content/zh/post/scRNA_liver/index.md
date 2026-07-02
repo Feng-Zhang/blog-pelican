@@ -7,6 +7,7 @@ Slug: scRNA
 Authors: 章峰
 Summary: 复现单细胞文章: Single-cell RNA sequencing unravels the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma
 Lang: zh
+featured_image: /zh/post/scRNA_liver/LUSC_umap.jpg
 
 ---
 

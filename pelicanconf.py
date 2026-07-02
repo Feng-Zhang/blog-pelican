@@ -2,6 +2,9 @@ AUTHOR = '章峰'
 SITENAME = '章峰的网站'
 SITEURL = ""
 
+# Default social-share image fallback (used when an article/page has no featured_image)
+FEATURED_IMAGE = '/pages/home/bio-banner1.jpg'
+
 PATH = "content"
 
 # 允许文章图片与 index.md 放在同一目录：
@@ -94,6 +97,8 @@ MARKDOWN = {
 }
 
 # Comments (Utterances → GitHub Issues: Feng-Zhang/blog-pelican-comment)
+OUTPUT_RETENTION = ['.git', 'CNAME']
+
 UTTERANCES_REPO = "Feng-Zhang/blog-pelican-comment"
 UTTERANCES_THEME = "github-light"
 COMMENTS_INTRO = "欢迎留言，使用 GitHub 账号登录即可评论。"

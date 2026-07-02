@@ -1,6 +1,5 @@
-# omit folder
+# folder
 output/*
-!/output-results/.keep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

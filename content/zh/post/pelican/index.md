@@ -6,6 +6,7 @@ Tags: pelican
 Slug: pelican
 Authors: 章峰
 Lang: zh
+featured_image: /zh/post/pelican/cover.svg
 --------
 
 [TOC]
