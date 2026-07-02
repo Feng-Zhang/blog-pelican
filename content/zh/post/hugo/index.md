@@ -10,8 +10,7 @@ Lang: zh
 
 ---
 
-[TOC]
-
+[toc]
 
 ## 一、前言
 
@@ -127,7 +126,7 @@ git push origin master:master
 
 ### 3、用Netlify渲染网页
 
-最后我们用[Netlify](https://www.netlify.com)对托管到github上的静态网页进行渲染。很简单，可以看这篇[教程](https://kuleyu.github.io/hexolog/post/31808.html)。至此一个简陋的网页就建好了。记得改一下Netlify自动分配给你的域名，不过只能更改前缀。要求不高也还好了。下面简单描述一下操作步骤：
+如果要求不高，可以直接用Github Pages进行托管。但是Github在国内打开速度很慢，所以建议用[Netlify](https://www.netlify.com)对托管到github上的静态网页进行布署。很简单，可以看这篇[教程](https://kuleyu.github.io/hexolog/post/31808.html)。至此一个简陋的网页就建好了。记得改一下Netlify自动分配给你的域名，不过只能更改前缀。要求不高也还好了。下面简单描述一下操作步骤：
 
 1. 用github的账号登陆[Netlify](https://www.netlify.com)。
 2. 点击右上角的Create new site
@@ -208,11 +207,30 @@ git submodule update --init --recursive
 
 ## 六、域名
 
-最后为了装一下，怎么也得换个个性化的域名啊。网上到处看了看，感觉比较复杂。因为在国内买域名还得备案，听说很麻烦。后来直接到name.com购买了域名。
+最后为了装一下，怎么也得换个个性化的域名啊。网上到处看了看，感觉比较复杂。因为在国内买域名还得备案，听说很麻烦。后来直接到name.com购买了域名。用了一段时间后，发现有点贵，最后转到阿里云买域名。
 
 ### 域名解析
 
-可以参考这篇[博客](https://www.cnblogs.com/codernie/p/9062104.html)。值得注意的是：在你的域名购买商处管理DNS的时候，要加两条DNS。一条是没有www，一条是有www。
+可以参考这篇[博客](https://www.cnblogs.com/codernie/p/9062104.html)。
+部署成功，[Netlify](https://www.netlify.com/)会自动分配一个随机的域名给你。我们可以自行修改成方便记忆的，比如我这里使用的fengbuzhi.netlify.app。但是这个域名太长了，因此可以设置自定义域名。
+
+1. 登陆netlify。选择相对应的网站。
+2. 绑定域名。Domain settings-Add custom domain - 输入完整域名-保存。这时会出现一个警告，Check DNS configuration，这是因为这时还没有被域名服务商解析。
+3. 解析域名。登陆自己域名的服务商网站，这里以阿里云为例，添加一条CNAME解析。
+
+   1. 域名列表-找到域名并在域名右边点击解析设置
+      ![image](clipboard.png)
+   2. 在打开的窗口点击添加记录
+      记录类型：选择CNAME
+      主机记录：默认@，若要需要www访问可再添加一个
+      解析路线：默认
+      记录值：netlify中的默认域名（我的是fengbuzhi.netlify.app，请用自己的，否则将连到我的站点）
+      TTL：默认
+      ![image](clipboard1.png)
+4. 生成HTTPS证书，实现HTTPS访问。Domain settings-Verify DNS configuration-确定
+
+值得注意的是：你也可以增加A记录，解析IP地址。这是由netlify提供的，可过ping fengbuzhi.netlify.app来得到。但是有个疑问这个IP地址每次ping得到的都不一样，不知道什么意思？
+此外，在你的域名购买商处管理DNS的时候，要加两条DNS。一条是没有www，一条是有www。阿里云会自动添加，但在name服务商中需要手动添加。
 
 ![image-20200526113018470](https://i.loli.net/2020/05/26/3kwRGpLSuICDW8d.png)
 
