@@ -1,4 +1,4 @@
-AUTHOR = 'Feng'
+AUTHOR = '章峰'
 SITENAME = '章峰的网站'
 SITEURL = ""
 
@@ -85,6 +85,7 @@ MARKDOWN = {
         "markdown.extensions.toc": {
             "permalink": True,
         },
+        "markdown.extensions.sane_lists": {},
         "pymdownx.arithmatex": {
             "generic": True,
         },

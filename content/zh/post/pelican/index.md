@@ -1,6 +1,6 @@
 Title: pelican 创建静态网站
 Date: 2026-07-01 15:48
-Modified: 2026-07-01 19:30
+Modified: 2026-07-02 9:40
 Category: 网站
 Tags: pelican
 Slug: pelican
@@ -8,12 +8,15 @@ Authors: 章峰
 Lang: zh
 --------
 
+[TOC]
+
 ## 介绍
 
-之前用过hexo和hugo搭建静态网站，确实可以快速生一个网页，但是由于不懂JavaScript和GO语言，没有办法对网页样式进行细致地调整。此外，由于它们所使用主题的不断更新，可很难pull到自己的网站，导致网站出问题。实践中发现，主题什么的简单一点好，更主要是把精力放到内容创作上，因此我对网站生成器的要求变为：
+之前用过hexo和hugo搭建静态网站，确实可以快速生一个网页，详细信息见[免费创建个人静态网站最佳实践：hugo+github+netlify]({filename}/zh/post/hugo/index.md)。但是由于不懂JavaScript和GO语言，没有办法对网页样式进行细致地调整。此外，由于它们所使用主题的不断更新，可很难与自己的网站合并，导致网站出问题。实践中发现，主题什么的简单一点好，更主要是把精力放到内容创作上，因此我对网站生成器的要求变为：
 
 - 主要使用python语法
 - 配置要简单，不用花精力在配置上。
+- 没事不要去折腾主题
 
 Perlican是用Python实现的一个静态网站生成器，支持reStructuredText或Markdown。它支持以下功能：
 
@@ -97,7 +100,7 @@ Folder: / (root)
 
 ## 设置
 
-比较麻烦的还是配置这块，详细配置示例可以到https://github.com/Feng-Zhang/blog-pelican/blob/master/pelicanconf.py 查看。
+详细配置示例可以到https://github.com/Feng-Zhang/blog-pelican/blob/master/pelicanconf.py 查看，把个性化的东西进行更改就行。
 
 ### 时间和日期
 
@@ -180,8 +183,7 @@ git clone --recursive https://github.com/getpelican/pelican-themes
 
 ## 评论
 
-1. elegant主题有内置评论系统Utterances。只要在在 pelicanconf.py 中加入 Utterances 配置，文章页会加载评论组件。
-
+1. elegant主题有内置评论系统Utterances。只要在在 pelicanconf.py 中加入 Utterances 配置，文章页会加载评论组件。publishconf.py 会继承这些设置，发布时无需再改。
 ```
 # Comments (Utterances → GitHub Issues: Feng-Zhang/blog-pelican-comment)
 UTTERANCES_REPO = "Feng-Zhang/blog-pelican-comment"
@@ -189,8 +191,9 @@ UTTERANCES_THEME = "github-light"
 COMMENTS_INTRO = "欢迎留言，使用 GitHub 账号登录即可评论。"
 ```
 
-publishconf.py 会继承这些设置，发布时无需再改。
+
 你还需要在 GitHub 上完成这几步（否则评论区会空白或报错）：
+
 2. 确认 Feng-Zhang/blog-pelican-comment 是 公开仓库
 3. 在仓库 Settings → General → Features 里开启 Issues
 4. 打开 https://utteranc.es/，安装 Utterances GitHub App，并授权该仓库
@@ -200,6 +203,9 @@ publishconf.py 会继承这些设置，发布时无需再改。
 某篇文章不想开评论，在 front matter 里加 comments: false
 深色主题可改 UTTERANCES_THEME = "github-dark"
 关闭某篇评论：utterances_filter: on（需同时设 UTTERANCES_FILTER = True）
+
+## 小结
+实践过程中，通过上面的设置我可以得到一个还不错的网站。但是想要把网站修改成自己想要的样式，还是需要个性化写一些html的配置。喜欢折腾的朋友可以借助 vibe coding 的工具进行修改。
 
 ## 参考资料
 
