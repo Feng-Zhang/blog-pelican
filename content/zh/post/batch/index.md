@@ -8,14 +8,17 @@ Slug: RNA-seq-batch-effect
 Authors: Feng Zhang
 Summary: 使用不同方法对转录组数据进行规一化、PCA和批次效应矫正，并比较其差异
 Lang: zh
-featured_image: /zh/post/batch/unnamed-chunk-1-1.png
+
 ---
+
+
+
 [TOC]
 
 ### 1）规一化表达矩阵
 
 转录组差异表达分析时，需要对表达矩阵进行规一化。比较常用的方法有log2和DESeq2包的vst和rlog方法。那么它们有什么不一样呢？我们拿DESeq2的示例数据进行比较。
-
+```
     library(RNAseqFlow)
     library(DESeq2)
     library(corrplot)
@@ -93,6 +96,7 @@ featured_image: /zh/post/batch/unnamed-chunk-1-1.png
     corrplot(corr, order = "original", type = "upper", mar=c(1,5,5,1),tl.pos="n")
     corrplot(corr, add = TRUE, type = "lower", method = "number", order = "original",
              tl.pos="full",cl.pos="n")
+```
 
 ![v](unnamed-chunk-1-1.png)
 
@@ -111,15 +115,15 @@ featured_image: /zh/post/batch/unnamed-chunk-1-1.png
 
     plotPCA(ntd,intgroup=c("condition"))
 
-![](unnamed-chunk-2-1.png)
+![PCA condition ntd](unnamed-chunk-2-1.png)
 
     plotPCA(rld,intgroup=c("condition"))
 
-![](unnamed-chunk-2-2.png)
+![PCA condition rld](unnamed-chunk-2-2.png)
 
     plotPCA(vsd,intgroup=c("condition"))
 
-![](unnamed-chunk-2-3.png)
+![PCA condition vsd](unnamed-chunk-2-3.png)
 
 如果是log2的结果，可以用plot\_PCA展示：
 
@@ -127,7 +131,7 @@ featured_image: /zh/post/batch/unnamed-chunk-1-1.png
     library(ggplot2)
     plot_PCA(t(norm),phe=input[[2]],group = "condition")
 
-![](unnamed-chunk-3-1.png)
+![PCA condition log2](unnamed-chunk-3-1.png)
 
 plot\_PCA是bioTools包的函数，可用`devtools::install_github("Feng-Zhang/bioTools")`进行安装。
 plot\_PCA会使用prcomp函数计算距离矩阵，再用ggplot2画图。prcomp函数的输入文件是data.frame（n\*m），行(n)为样本，列(m)为多维变量。prcomp会将多维变量降维到n维。
@@ -146,19 +150,19 @@ plot\_PCA会使用prcomp函数计算距离矩阵，再用ggplot2画图。prcomp�
 
     plotPCA(ntd,intgroup=c("type"))
 
-![](unnamed-chunk-4-1.png)
+![PCA type ntd](unnamed-chunk-4-1.png)
 
     plotPCA(rld,intgroup=c("type"))
 
-![](unnamed-chunk-4-2.png)
+![PCA type rld](unnamed-chunk-4-2.png)
 
     plotPCA(vsd,intgroup=c("type"))
 
-![](unnamed-chunk-4-3.png)
+![unnamed chunk 4 3](unnamed-chunk-4-3.png)
 
     plot_PCA(t(norm),phe=input[[2]],group="type")
 
-![](unnamed-chunk-4-4.png)
+![unnamed chunk 4 4](unnamed-chunk-4-4.png)
 
 我们看到所有方法的规一化数据都表明，不同type之间的样本有明显的差别，即存在显著的批次效应。
 
@@ -171,31 +175,31 @@ plot\_PCA会使用prcomp函数计算距离矩阵，再用ggplot2画图。prcomp�
     assay(ntd) <- mat
     plotPCA(ntd,intgroup=c("condition"))
 
-![](unnamed-chunk-5-1.png)
+![unnamed chunk 5 1](unnamed-chunk-5-1.png)
 
     plotPCA(ntd,intgroup=c( "type"))
 
-![](unnamed-chunk-5-2.png)
+![unnamed chunk 5 2](unnamed-chunk-5-2.png)
 
     mat <- limma::removeBatchEffect(assay(rld), rld$type,design = model)
     assay(rld) <- mat
     plotPCA(rld, intgroup=c("condition"))
 
-![](unnamed-chunk-5-3.png)
+![unnamed chunk 5 3](unnamed-chunk-5-3.png)
 
     plotPCA(rld, intgroup=c( "type"))
 
-![](unnamed-chunk-5-4.png)
+![unnamed chunk 5 4](unnamed-chunk-5-4.png)
 
     mat <- limma::removeBatchEffect(assay(vsd), vsd$type,design = model)
     assay(vsd) <- mat
     plotPCA(vsd, intgroup=c("condition"))
 
-![](unnamed-chunk-5-5.png)
+![unnamed chunk 5 5](unnamed-chunk-5-5.png)
 
     plotPCA(vsd, intgroup=c("type"))
 
-![](unnamed-chunk-5-6.png)
+![unnamed chunk 5 6](unnamed-chunk-5-6.png)
 
 可以看到样本可以被condition分开，但不能被type分开，表明矫正成功。
 
@@ -210,10 +214,10 @@ plot\_PCA会使用prcomp函数计算距离矩阵，再用ggplot2画图。prcomp�
 
     plot_PCA(t(adjusted_expr),phe=phe,group = "condition")
 
-![](unnamed-chunk-6-1.png)
+![unnamed chunk 6 1](unnamed-chunk-6-1.png)
 
     plot_PCA(t(adjusted_expr),phe=phe,group = "type")
 
-![](unnamed-chunk-6-2.png)
+![unnamed chunk 6 2](unnamed-chunk-6-2.png)
 
 注意ComBat的输入文件是过滤且规一化的数据，不能是原始count。

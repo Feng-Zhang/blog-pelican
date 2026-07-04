@@ -1,5 +1,5 @@
 ---
-Title: 2026普通用户如何选择和使用 Vibe Coding 工具
+Title: 2026年普通用户如何选择和使用 Vibe Coding 工具
 Slug: vibe-coding-guide-for-everyone
 Date: 2026-07-04 8:40
 Modified: 2026-07-04 19:50
@@ -9,9 +9,11 @@ Tags: AI, Vibe Coding, reasonix, DeepSeek v4
 Summary: 面向普通用户的 Vibe Coding 入门指南，帮助你理解 AI 编程的发展、工具生态、学习路线以及如何根据自己的需求选择最适合的 AI 编程助手。
 Lang: zh
 Featured_image: /zh/post/vibe-coding/featured.jpg
-
 ---
-[TOC]
+
+![featured_image](featured.jpg)
+
+[toc]
 
 > AI 正在改变软件开发，但 Vibe Coding 并不只是程序员的专属能力。
 
@@ -77,7 +79,6 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 
 很多人第一次听到这个词时，会产生两个误解。
 
-
 ### 误解一：不会编程也能一句话做出 APP
 
 很多短视频喜欢展示这样的画面：
@@ -136,7 +137,7 @@ AI："已完成。"
 * 更容易描述需求
 
 但与过去相比，一个明显的变化是：**你不需要先学会所有知识，才能开始动手。** 以前的学习路径通常是：
-学习三个月 → 写第一个项目。现在则更像是：今天开始做项目 → 遇到问题再学习相关知识。**学习和实践第一次真正融合在了一起。** 
+学习三个月 → 写第一个项目。现在则更像是：今天开始做项目 → 遇到问题再学习相关知识。**学习和实践第一次真正融合在了一起。**
 
 ## 哪些人适合使用 Vibe Coding？
 
@@ -245,7 +246,6 @@ Agent 就会自动规划步骤、修改代码、运行测试，并根据结果�
 ## 越来越多优秀模型可供选择
 
 过去，很多 AI 工具只能使用单一模型。如今，开发者可以根据自己的需求灵活切换不同模型。例如：
-
 
 | 模型     | 特点                       | 更适合什么场景         |
 | ---------- | ---------------------------- | ------------------------ |
@@ -630,6 +630,7 @@ Claude Code 更擅长：
 首先，前往 [Reasonix官网](https://reasonix.io/) 下载安装程序。安装过程与普通软件基本一致，一路点击"下一步"即可。安装完成后，启动 Reasonix。
 
 ## Step 2：配置key
+
 ![连接Reasonix](reasonix-key.png)
 
 第一次打开时会跳出一个窗口，让你粘贴一个DeepSeek API key。这个key是你调用 DeepSeek 模型 API 的“身份凭证 + 计费钥匙”，没有它，你就不能通过程序或工具使用 DeepSeek 的模型。会报`Authentication failed (HTTP 401): your API key is missing or unset. Add it to .env or run`reasonix setup`. (DEEPSEEK_API_KEY)`错误。
@@ -681,7 +682,7 @@ Vibe coding 的关键在于把你的想法准确地传达给它，核心就是�
 AI 会继续修改代码及文件。整个过程，你几乎不需要自己写代码。
 ![prompt2](game2.png)
 
-这是最终生成的[游戏](snake-game.html),打开就直接可以玩。
+这是最终生成的[游戏]({static}/zh/post/vibe-coding/snake-game.html)，打开就直接可以玩。
 
 ## 如果 AI 写错了怎么办？
 
@@ -696,11 +697,9 @@ AI 会继续修改代码及文件。整个过程，你几乎不需要自己写�
 
 很多时候，这比自己在搜索引擎中查找错误信息更高效。
 
-
 # 总结
 
 Vibe Coding 不是一款软件，而是一种新的工作方式。真正重要的不是追逐最新工具，而是学会如何与 AI 协作。对于大多数普通人来说，一套简单而高效的组合就足够了：
-
 
 | 用户类型 | 推荐组合                   |
 | ---------- | ---------------------------- |

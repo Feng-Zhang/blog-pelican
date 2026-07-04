@@ -1,6 +1,7 @@
 {% macro translations_for(article) %}
 {% if article.translations %}
-{% set is_zh = DEFAULT_LANG == 'zh' %}
+{% set normalized_lang = DEFAULT_LANG|lower|replace('-', '_') %}
+{% set is_zh = normalized_lang in ['zh', 'zh_cn', 'zh_tw', 'zh_hk', 'zh_sg'] %}
 <p id="list-of-translations">
 {{ '这篇文章也有以下语言版本：' if is_zh else 'This post is also available in:' }}
     {% for translation in article.translations|sort(attribute='lang') %}

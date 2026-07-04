@@ -11,6 +11,7 @@ featured_image: /zh/post/anaconda/cover.svg
 
 ---
 
+![featured_image](cover.svg)
 [toc]
 
 # Anaconda使用教程

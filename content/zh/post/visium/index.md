@@ -7,12 +7,10 @@ Slug: visium-spatial-transcriptomics-analysis-workflow
 Authors: 章峰
 Summary: Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析
 Lang: zh
-featured_image: /zh/post/visium/brain-rctd.png
-toc: true
 
 ---
 
-[TOC]
+[toc]
 
 ```R
 # Analysis, visualization, and integration of spatial datasets with Seurat at https://satijalab.org/seurat/articles/spatial_vignette.html
@@ -209,7 +207,10 @@ top.features <- c("Calb2","Gng4","Ttr","S100a5","Nrgn","Doc2g")
 SpatialFeaturePlot(brain, features = top.features, ncol = 3, alpha = c(0.1, 1))
 ```
 
-    Computing Moran's I
+```
+Computing Moran's I
+```
+
 
 ![png](output_9_1.png)
 
@@ -234,11 +235,18 @@ res <- dga_treat(DGEList=y,ref_level = "young")
 head(res$table)
 ```
 
-    aged young
+```
+aged young
     10715 11479
+```
 
-    DataFrame with 6 rows and 11 columns
-                orig.ident nCount_Spatial nFeature_Spatial       group nCount_SCT`<character>`      `<numeric>`        `<integer>` `<character>`  `<numeric>`
+
+```
+DataFrame with 6 rows and 11 columns
+                orig.ident nCount_Spatial nFeature_Spatial       group nCount_SCT
+```
+
+`<character>`      `<numeric>`        `<integer>` `<character>`  `<numeric>`
     VLP40_1A_1    VLP40_1A             NA               NA       young         NA
     VLP40_1A_2    VLP40_1A             NA               NA       young         NA
     VLP40_1A_3    VLP40_1A             NA               NA       young         NA
@@ -344,6 +352,4 @@ p_brain <- plot_rctd(myRCTD_full,brain,image_name = slice_id)+ggtitle(slice_id)+
 p_brain
 ```
 
-![](brain-rctd.png)
-
-
+![brain rctd](brain-rctd.png)

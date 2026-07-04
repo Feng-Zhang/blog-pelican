@@ -12,14 +12,19 @@ PATH = "content"
 # 2) 通过 {static}/zh/post/... 在文章中稳定引用
 # 3) 首页轮播图放在 pages/home 目录
 STATIC_PATHS = ['zh/post', 'pages/home']
-STATIC_EXCLUDES = ['**/*.md','**/*.html']
+STATIC_EXCLUDES = ['**/*.md']
 
 TIMEZONE = 'Asia/Shanghai'
 
-DEFAULT_LANG = 'zh'
+DEFAULT_LANG = 'zh_cn'
 LOCALE = ['zh_CN.UTF-8', 'zh_CN.utf8', 'zh_CN', 'C.utf8']
 DATE_FORMATS = {
+    'zh_cn': '%Y年%m月%d日',
     'zh': '%Y年%m月%d日',
+}
+# Docutils does not provide a plain "zh" locale; use simplified Chinese locale explicitly.
+DOCUTILS_SETTINGS = {
+    'language_code': 'zh_cn',
 }
 # LANGUAGES = { 
 #     'en': 'English',
@@ -95,6 +100,11 @@ MARKDOWN = {
         },
     },
     "output_format": "html5",
+}
+
+# Keep standalone .html files as static assets (do not parse them as Pelican content).
+READERS = {
+    'html': None,
 }
 
 # Comments (Utterances → GitHub Issues: Feng-Zhang/blog-pelican-comment)

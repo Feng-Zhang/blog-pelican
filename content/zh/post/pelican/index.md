@@ -7,8 +7,9 @@ Slug: pelican
 Authors: 章峰
 Lang: zh
 featured_image: /zh/post/pelican/cover.svg
---------
+------------------------------------------
 
+![featured_image](cover.svg)
 [TOC]
 
 ## 介绍
@@ -185,6 +186,7 @@ git clone --recursive https://github.com/getpelican/pelican-themes
 ## 评论
 
 1. elegant主题有内置评论系统Utterances。只要在在 pelicanconf.py 中加入 Utterances 配置，文章页会加载评论组件。publishconf.py 会继承这些设置，发布时无需再改。
+
 ```
 # Comments (Utterances → GitHub Issues: Feng-Zhang/blog-pelican-comment)
 UTTERANCES_REPO = "Feng-Zhang/blog-pelican-comment"
@@ -192,13 +194,12 @@ UTTERANCES_THEME = "github-light"
 COMMENTS_INTRO = "欢迎留言，使用 GitHub 账号登录即可评论。"
 ```
 
-
 你还需要在 GitHub 上完成这几步（否则评论区会空白或报错）：
 
 2. 确认 Feng-Zhang/blog-pelican-comment 是 公开仓库
 3. 在仓库 Settings → General → Features 里开启 Issues
 4. 打开 https://utteranc.es/，安装 Utterances GitHub App，并授权该仓库
-完成后重新部署网站，打开任意文章页，点击 Comments 折叠区即可看到评论框。
+   完成后重新部署网站，打开任意文章页，点击 Comments 折叠区即可看到评论框。
 
 可选设置：
 某篇文章不想开评论，在 front matter 里加 comments: false
@@ -206,6 +207,7 @@ COMMENTS_INTRO = "欢迎留言，使用 GitHub 账号登录即可评论。"
 关闭某篇评论：utterances_filter: on（需同时设 UTTERANCES_FILTER = True）
 
 ## 小结
+
 实践过程中，通过上面的设置我可以得到一个还不错的网站。但是想要把网站修改成自己想要的样式，还是需要个性化写一些html的配置。喜欢折腾的朋友可以借助 vibe coding 的工具进行修改。
 
 ## 参考资料

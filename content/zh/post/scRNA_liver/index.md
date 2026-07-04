@@ -7,9 +7,10 @@ Slug: scRNA
 Authors: 章峰
 Summary: 复现单细胞文章: Single-cell RNA sequencing unravels the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma
 Lang: zh
-featured_image: /zh/post/scRNA_liver/LUSC_umap.jpg
+
 
 ---
+
 
 [TOC]
 
@@ -132,11 +133,11 @@ I conduct the PCA analysis for all cells :
     load("cluster/3_cluster/cleanSeurats_standard.RData")
     DimPlot(object = cleanSeurats, reduction = "pca",label =T)
 
-![](unnamed-chunk-5-1.png)
+![unnamed chunk 5 1](unnamed-chunk-5-1.png)
 
     DimPlot(object = cleanSeurats, reduction = "pca",label =T,group.by = "orig.ident")
 
-![](unnamed-chunk-5-2.png)
+![unnamed chunk 5 2](unnamed-chunk-5-2.png)
 
 The PCA plots show that maybe batch effect exist. The CCA method is used
 to adjust batch effect. I then perform the CCA analysis to adjust the
@@ -145,11 +146,11 @@ batch effect:
     load("cluster/3_cluster/cleanSeurats_adjusted.RData")
     DimPlot(object = cleanAdjustSeurats, reduction = "tsne",label =T,group.by = "orig.ident")
 
-![](unnamed-chunk-6-1.png)
+![unnamed chunk 6 1](unnamed-chunk-6-1.png)
 
     DimPlot(object = cleanAdjustSeurats, reduction = "umap",label =T,group.by = "orig.ident")
 
-![](unnamed-chunk-6-2.png)
+![unnamed chunk 6 2](unnamed-chunk-6-2.png)
 
 Due to the heterogeneity patients with liver cancer, the tumor cell
 across cancer samples should be independent each other. However, these
@@ -164,11 +165,11 @@ The UMAP and TSNE plot are drew below:
     load("cluster/3_cluster/cleanSeurats_standard.RData")
     DimPlot(object = cleanSeurats, reduction = "tsne",label =T)
 
-![](unnamed-chunk-7-1.png)
+![unnamed chunk 7 1](unnamed-chunk-7-1.png)
 
     DimPlot(object = cleanSeurats, reduction = "tsne",label =T,group.by = "orig.ident")
 
-![](unnamed-chunk-7-2.png)
+![unnamed chunk 7 2](unnamed-chunk-7-2.png)
 
 The patients with tumor cell are split, which is coincident with our
 common sense.
@@ -180,11 +181,11 @@ cells.
 
     DimPlot(object = cleanSeurats, reduction = "umap",label =T)
 
-![](unnamed-chunk-8-1.png)
+![unnamed chunk 8 1](unnamed-chunk-8-1.png)
 
     DimPlot(object = cleanSeurats, reduction = "umap",label =T,group.by = "orig.ident")
 
-![](unnamed-chunk-8-2.png)
+![unnamed chunk 8 2](unnamed-chunk-8-2.png)
 
 Taken together, we used UMAP to show the cluster of different cell
 types. The SingleR and markers are combined to define different cell
@@ -193,7 +194,7 @@ types.
     load("cluster/3_cluster/cleanSeurats_anno.RData")
     DimPlot(object = cleanSeurats, reduction = "umap",label =T,group.by = "celltype_fine")
 
-![](unnamed-chunk-9-1.png)
+![unnamed chunk 9 1](unnamed-chunk-9-1.png)
 
 ## The downstream analyses of Single cell RNA-seq data
 
@@ -204,7 +205,7 @@ together:
 
     DimPlot(object = cleanSeurats, reduction = "umap",label =T,group.by = "celltype_fine")
 
-![](unnamed-chunk-10-1.png)
+![unnamed chunk 10 1](unnamed-chunk-10-1.png)
 
 However, different HCC case have different proportion of immune cells.
 The proportion of different cells in 8 HCC cases are calculated :
@@ -242,7 +243,7 @@ The proportion of different cells in 8 HCC cases are calculated :
               bty ="n"
             ))
 
-![](unnamed-chunk-11-1.png)
+![unnamed chunk 11 1](unnamed-chunk-11-1.png)
 
 ### T cells and macrophages
 
@@ -256,7 +257,7 @@ The correlation between proportion of T cells and macrophages in cases are calcu
       labs(title="scRNA-seq cohort", x="M2 macrophages proportion", y="CD8T proportion")+
       theme(plot.title = element_text(hjust = 0.5))
 
-![](unnamed-chunk-12-1.png)
+![unnamed chunk 12 1](unnamed-chunk-12-1.png)
 
 To compared with bulk RNA-seq , the immune cell deconvolution analysis is performed, and the correaltion relationship is represent by linear model :
 
@@ -269,7 +270,7 @@ To compared with bulk RNA-seq , the immune cell deconvolution analysis is perfor
       labs(title="TCGA LIHC cohort", x="M2 macrophages proportion", y="CD8T proportion")+
       theme(plot.title = element_text(hjust = 0.5))
 
-![](unnamed-chunk-13-1.png)
+![unnamed chunk 13 1](unnamed-chunk-13-1.png)
 
 We also detect inverse correlation between the proportions of infiltrating T cells and macrophages.
 
@@ -280,11 +281,11 @@ We examined the expression of reported immunosuppressive genes in TAMs:
     load("cluster/3_cluster/cleanSeurats_anno.RData")
     FeaturePlot(cleanSeurats, features = c("LAIR1","HAVCR2","LGALS9","VSIR"))
 
-![](unnamed-chunk-14-1.png)
+![unnamed chunk 14 1](unnamed-chunk-14-1.png)
 
     DimPlot(object = cleanSeurats, label =T,group.by = "celltype_fine")
 
-![](unnamed-chunk-14-2.png)
+![unnamed chunk 14 2](unnamed-chunk-14-2.png)
 
 These markers are enriched in TAM cells.
 In addition, the pattern of CD163 (M2 macrophages marker) expression and LAIR1 is similar:
@@ -292,7 +293,7 @@ In addition, the pattern of CD163 (M2 macrophages marker) expression and LAIR1 i
     cellKeep = colnames(cleanSeurats)[cleanSeurats@meta.data$celltype_main=="Macrophages"]
     VlnPlot(subset(cleanSeurats,cells=cellKeep), features = c("CD163", "LAIR1", "CD68","HAVCR2","LGALS9","VSIR"))
 
-![](unnamed-chunk-15-1.png)
+![unnamed chunk 15 1](unnamed-chunk-15-1.png)
 
 These suggest the immunosuppressive function of TAMs might be exerted via LAIR1.
 In addition, the high expression of `LAIR1` and `HAVCR2` is significantly associated with poorer overall or disease-free survival of HCC patients.
@@ -301,7 +302,7 @@ The overall survival for LAIR1 ![LAIR1](Overall_LAIR1.png),
 and for HAVCR2 ![HAVCR2](Overall_HAVCR2.png).
 
 The disease-free survival for LAIR1
-![LAIR1](Disease_Free_LAIR1%20.png), and for HAVCR2
+![LAIR1](Disease_Free_LAIR1.png), and for HAVCR2
 ![HAVCR2](Disease_Free_HAVCR2.png).
 
 ### Cell trajectory
@@ -335,14 +336,14 @@ We do the single cell trajectory for CD8 population, and observed that gradual t
                color_cells_by = "pseudotime",
                show_trajectory_graph=F)
 
-![](unnamed-chunk-17-1.png)
+![unnamed chunk 17 1](unnamed-chunk-17-1.png)
 
     plot_cells(cds_subset,
                label_cell_groups=T,
                genes=c("PDCD1","TIGIT"),
                show_trajectory_graph=F)
 
-![](unnamed-chunk-17-2.png)
+![unnamed chunk 17 2](unnamed-chunk-17-2.png)
 
 We find that exhaustion status was indicated by the downregulation of FCGR3A (activation marker) and upregulation of KLRC1 (exhaustion marker).
 
@@ -357,14 +358,14 @@ We find that exhaustion status was indicated by the downregulation of FCGR3A (ac
                color_cells_by = "pseudotime",
                show_trajectory_graph=F)
 
-![](unnamed-chunk-18-1.png)
+![unnamed chunk 18 1](unnamed-chunk-18-1.png)
 
     plot_cells(cds_subset,
                label_cell_groups=T,
                genes=c("FCGR3A","KLRC1"),
                show_trajectory_graph=F)
 
-![](unnamed-chunk-18-2.png)
+![unnamed chunk 18 2](unnamed-chunk-18-2.png)
 
 We find the transition toward a more immunosuppressive state for Treg cells, as indicated by the enriched PDCD1 expression.
 
@@ -377,14 +378,14 @@ We find the transition toward a more immunosuppressive state for Treg cells, as 
                color_cells_by = "pseudotime",
                show_trajectory_graph=F)
 
-![](unnamed-chunk-19-1.png)
+![unnamed chunk 19 1](unnamed-chunk-19-1.png)
 
     plot_cells(cds_subset,
                label_cell_groups=T,
                genes=c("PDCD1"),
                show_trajectory_graph=F)
 
-![](unnamed-chunk-19-2.png)
+![unnamed chunk 19 2](unnamed-chunk-19-2.png)
 
 For macrophages, a dynamic transition towards more immunosuppressive M2 macrophages featured by CD163 and LAIR1 expression.
 
@@ -399,14 +400,14 @@ For macrophages, a dynamic transition towards more immunosuppressive M2 macropha
                color_cells_by = "pseudotime",
                show_trajectory_graph=F)
 
-![](unnamed-chunk-20-1.png)
+![unnamed chunk 20 1](unnamed-chunk-20-1.png)
 
     plot_cells(cds_subset,
                label_cell_groups=T,
                genes=c("CD163","LAIR1"),
                show_trajectory_graph=F)
 
-![](unnamed-chunk-20-2.png)
+![unnamed chunk 20 2](unnamed-chunk-20-2.png)
 
 Regarding the CD4 T cells, they were mainly type 1 (Th1) and type 2T helper (Th2) cells, as indicated by their respective enrichment in the expression of STAT4 (cell cluster 11) and GATA3 (cell cluster 12).
 
@@ -419,14 +420,14 @@ Regarding the CD4 T cells, they were mainly type 1 (Th1) and type 2T helper (Th2
                color_cells_by = "pseudotime",
                show_trajectory_graph=F)
 
-![](unnamed-chunk-21-1.png)
+![unnamed chunk 21 1](unnamed-chunk-21-1.png)
 
     plot_cells(cds_subset,
                label_cell_groups=T,
                genes=c("STAT4","GATA3"),
                show_trajectory_graph=F)
 
-![](unnamed-chunk-21-2.png)
+![unnamed chunk 21 2](unnamed-chunk-21-2.png)
 
 ### Immune checkpoints
 
@@ -468,7 +469,7 @@ We examined the cell-cell interaction status in different cell, and the co-stimu
       theme_bw()+ labs(x="",y="")+
       theme(axis.text.x = element_text(angle = -45,hjust = -0.1,vjust = 0.8))
 
-![](unnamed-chunk-22-1.png)
+![unnamed chunk 22 1](unnamed-chunk-22-1.png)
 
     # plot for co-inhibitory
     meansdf = mymeans %>% dplyr::filter(interacting_pair %in% coinhibitory) %>%
@@ -498,13 +499,13 @@ We examined the cell-cell interaction status in different cell, and the co-stimu
       theme_bw()+ labs(x="",y="")+
       theme(axis.text.x = element_text(angle = -45,hjust = -0.1,vjust = 0.8))
 
-![](unnamed-chunk-22-2.png)
+![unnamed chunk 22 2](unnamed-chunk-22-2.png)
 
 We identified a prominent co-inhibitory signal via the *TIGIT-NECTIN2* axis in T cells and antigen-presenting cells (APCs, i.e. macrophages and tumor cells):
 
     FeaturePlot(cleanSeurats, features = c("TIGIT","NECTIN2"))
 
-![](unnamed-chunk-23-1.png)
+![unnamed chunk 23 1](unnamed-chunk-23-1.png)
 
 ### Cell interactions
 
@@ -525,7 +526,7 @@ presented as :
     meansdf = meansdf[apply(pvalsdf,1,function(x) { sum(x<0.05)>3}),]
     pheatmap::pheatmap(meansdf)
 
-![](unnamed-chunk-24-1.png)
+![unnamed chunk 24 1](unnamed-chunk-24-1.png)
 
     # plot for tumor receptor
     meansdf = mymeans %>% dplyr::select("interacting_pair",ends_with("Tumor"))
@@ -539,7 +540,7 @@ presented as :
     meansdf = meansdf[apply(pvalsdf,1,function(x) { sum(x<0.05)>3}),]
     pheatmap::pheatmap(meansdf)
 
-![](unnamed-chunk-24-2.png)
+![unnamed chunk 24 2](unnamed-chunk-24-2.png)
 
     #plot for TAM ligand
     meansdf = mymeans %>% dplyr::select("interacting_pair",starts_with("Macrophages"))
@@ -553,7 +554,7 @@ presented as :
     meansdf = meansdf[apply(pvalsdf,1,function(x) { sum(x<0.05)>3}),]
     pheatmap::pheatmap(meansdf)
 
-![](unnamed-chunk-25-1.png)
+![unnamed chunk 25 1](unnamed-chunk-25-1.png)
 
     # plot for TAM receptor
     meansdf = mymeans %>% dplyr::select("interacting_pair",ends_with("Macrophages"))
@@ -567,7 +568,7 @@ presented as :
     meansdf = meansdf[apply(pvalsdf,1,function(x) { sum(x<0.05)>3}),]
     pheatmap::pheatmap(meansdf)
 
-![](unnamed-chunk-25-2.png)
+![unnamed chunk 25 2](unnamed-chunk-25-2.png)
 
 In general, HCC tumor cells frequently interacted with immune cells.
 

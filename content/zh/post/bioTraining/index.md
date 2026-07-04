@@ -7,15 +7,15 @@ Slug: plan
 Authors:  章峰
 Summary: 生信是一门交叉学科，要学习的东西非常多。如何快速入门是个问题，本文提供了一些入门的路线图。
 Lang: zh
-featured_image: /zh/post/bioTraining/featured.png
+Featured_image: /zh/post/bioTraining/featured.png
 
 ---
 
+![featured_image](featured.png)
 [TOC]
 
-# 生物信息最佳入门实践路线图
 
-### 介绍
+## 介绍
 
 　　生信是一门交叉学科，要学习的东西非常多。本人从2011年开始学习生信，深知它的博大精深。因此，给大家推荐一些学习资料，可以快速入门。由于我是一位喜欢阅读多过视听学习的人，所以书籍都是亲自阅读过的，但是视频并没有认真看过。
 
@@ -25,19 +25,19 @@ featured_image: /zh/post/bioTraining/featured.png
 
 　　所有资料我都尽量用开源免费的，这样省掉很多学习成本。另外有一些收集的pdf书籍放在百度云上，[链接](https://pan.baidu.com/s/1RyV2Mlm1fuUEroJAIzeXsw)，提取码：bioT。如果失效了请在最下方的评论区提醒一下。
 
-![](https://raw.githubusercontent.com/Feng-Zhang/figures/master/blog/生物信息数据分析.png)
+![生物信息数据分析路线图](https://raw.githubusercontent.com/Feng-Zhang/figures/master/blog/生物信息数据分析.png)
 
-### R语言
+## R语言
 
 如果你想快速入门深信，请**必学**R语言。这是一门开源的编程语言，主要优势在于统计和绘图，以及极其丰富的软件包。
 
-#### R语言资料
+### R语言资料
 
 - 如果你是一位喜欢视听学习这种方式的，请参考[生信技能树的生信人应该这样学R语言](https://www.bilibili.com/video/av25643438)。
 - 如果你是一位喜欢阅读学习这种方式，请参考**R for beginners**和**R现代统计图形**。如果你有余力还可以学习**R语言实战**及**ggplot2:数据分析与图形艺术**等深入内容。
 - 最后进行这[20个R语言习题](http://www.bio-info-trainee.com/3409.html)进行实践，加深印象。如果你没有时间，而且入门资料都能看得懂，也可以跳过这步，在项目实践阶段结合自己课题进行练习。
 
-### linux
+## linux
 
 如果要对测序后的原始数据进行上游分析的话，你一定得学会Linux。如果你不用处理多组学数据的原始序列，那么这个可以跳过。
 
@@ -45,7 +45,7 @@ featured_image: /zh/post/bioTraining/featured.png
 - 书籍：**[鸟哥的linux私房菜](http://linux.vbird.org/linux_basic/)**是繁体字，也有转成[简体中文](http://shouce.jb51.net/vbird-linux-basic-4/index-2.html)版本。
 - linux 实践：http://www.bio-info-trainee.com/2900.html
 
-### python
+## python
 
 python是一门胶水语言，基本上什么都干，尤其是在机器学习方面。目前很多机器学习和神经网络的开源项目都是用python写的，如果你有兴趣往这方面发展。python是非学不可的。
 
@@ -53,7 +53,7 @@ python是一门胶水语言，基本上什么都干，尤其是在机器学习�
 - 机器学习入门：python机器学习基础教程（Andreas C.Muller and Sarah Guido著， 张亮译）
 - 神经网络入门：[Python深度学习（Francois Chollet 著， 张亮译）
 
-### 项目实践
+## 项目实践
 
 目前没找到好的开源项目进行实践，这个跟课题组的研究内容相关。不过下面列出一些组学的内容可以用来实践。
 

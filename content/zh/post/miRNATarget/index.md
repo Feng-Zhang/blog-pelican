@@ -7,10 +7,11 @@ Slug: miRNA
 Authors: Feng Zhang
 Summary: miRNA的靶基因预测详细教程，自动化代码实现预测分析
 Lang: zh
-featured_image: /zh/post/miRNATarget/featured.jpg
+Featured_image: /zh/post/miRNATarget/featured.jpg
 
 ---
 
+![featured_image](featured.jpg)
 [TOC]
 
 　　
@@ -55,7 +56,6 @@ source=paste0(species,'-',miRNAs)
 miRTarBase = read.csv("miRTarBase_MTI.csv",head=T)
 miRDB = read.table("miRDB_v5.0_prediction_result.txt",head=F)
 targetscan = read.table("Predicted_Targets_Context_Scores.default_predictions.txt",head=T,sep="\t")
-
 
 ## miRTarBase
 miRTarBase_mRNA = miRTarBase[str_detect(miRTarBase$miRNA,paste0('^',source,'$|^',source,'-[35]p')),]
