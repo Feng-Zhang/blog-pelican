@@ -12,7 +12,7 @@ PATH = "content"
 # 2) 通过 {static}/zh/post/... 在文章中稳定引用
 # 3) 首页轮播图放在 pages/home 目录
 STATIC_PATHS = ['zh/post', 'pages/home']
-STATIC_EXCLUDES = ['**/*.md']
+STATIC_EXCLUDES = ['**/*.md','**/*.html']
 
 TIMEZONE = 'Asia/Shanghai'
 
@@ -82,6 +82,7 @@ PLUGINS = ['tipue_search', 'extract_toc', 'relative_images', 'home_images']
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 MARKDOWN = {
     "extension_configs": {
+        "fix_toc_marker": {},
         "markdown.extensions.extra": {},
         "markdown.extensions.codehilite": {},
         "markdown.extensions.meta": {},

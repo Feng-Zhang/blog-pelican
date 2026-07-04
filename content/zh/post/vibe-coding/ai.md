@@ -1,26 +1,22 @@
 ---
-title: 普通人如何选择和使用 Vibe Coding 工具（2026 入门指南）
-slug: vibe-coding-guide-for-everyone
-date: 2026-07-04
-authors: Feng Zhang
-category: AI
-tags:
-  - AI
-  - Vibe Coding
-  - Cursor
-  - Claude Code
-  - GitHub Copilot
-  - VS Code
-  - MCP
-summary: 面向普通用户的 Vibe Coding 入门指南，帮助你理解 AI 编程的发展、工具生态、学习路线以及如何根据自己的需求选择最适合的 AI 编程助手。
----
-[toc]
+Title: 2026普通用户如何选择和使用 Vibe Coding 工具
+Slug: vibe-coding-guide-for-everyone
+Date: 2026-07-04 8:40
+Modified: 2026-07-04 19:50
+Authors: 章峰
+Category: 高效工具
+Tags: AI, Vibe Coding, reasonix, DeepSeek v4
+Summary: 面向普通用户的 Vibe Coding 入门指南，帮助你理解 AI 编程的发展、工具生态、学习路线以及如何根据自己的需求选择最适合的 AI 编程助手。
+Lang: zh
+Featured_image: /zh/post/vibe-coding/featured.jpg
 
-# 普通用户如何选择和使用 Vibe Coding 工具
+---
+[TOC]
 
 > AI 正在改变软件开发，但 Vibe Coding 并不只是程序员的专属能力。
 
 过去，软件开发最大的成本之一，是把自己的想法转换成代码。而现在，这个转换过程正在被 AI 大幅缩短。
+
 你的角色，也逐渐从"代码编写者"转变为：
 
 - 提出目标的人
@@ -34,10 +30,9 @@ summary: 面向普通用户的 Vibe Coding 入门指南，帮助你理解 AI 编
 
 1. 什么是 Vibe Coding？
 2. 为什么越来越多人开始使用它？
-3. 我应该选择什么工具？
-4. 我应该怎样开始使用？
-
----
+3. Vibe Coding是怎么工作的？
+4. 我应该选择什么工具？
+5. 我应该怎样开始使用？
 
 # 第一章：什么是 Vibe Coding？
 
@@ -82,11 +77,12 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 
 很多人第一次听到这个词时，会产生两个误解。
 
+
 ### 误解一：不会编程也能一句话做出 APP
 
 很多短视频喜欢展示这样的画面：
 
-> 「一句 Prompt，5 分钟开发一个 APP。」
+**「一句 Prompt，5 分钟开发一个 APP。」**
 
 现实并没有这么简单。AI 的确可以快速生成代码，但真正的软件开发仍然需要不断修改、测试、优化和迭代。如果需求不够清晰，AI 同样可能理解错误。因此，Vibe Coding 并不是一句话完成所有工作，而是 **通过不断交流，让 AI 逐步完成开发任务** 。
 
@@ -107,10 +103,7 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 
 但真正决定**做什么、为什么这样做、是否符合需求**的人，依然是开发者。
 
-换句话说：
-
-> **AI 负责执行，人负责决策。**
-> 这也是目前几乎所有主流 AI 编程工具的发展方向。
+换句话说：**AI 负责执行，人负责决策。**这也是目前几乎所有主流 AI 编程工具的发展方向。
 
 ## 为什么叫 "Vibe Coding"？
 
@@ -118,22 +111,22 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 
 整个开发过程更像是在不断"对话"：
 
-> 用户："帮我做一个博客网站。"
-> AI："已经完成首页。"
+```
+用户："帮我做一个博客网站。"
+AI："已经完成首页。"
 
-> 用户："导航栏太复杂，简单一点。"
-> AI："已经修改。"
+用户："导航栏太复杂，简单一点。"
+AI："已经修改。"
 
-> 用户："增加深色模式。"
-> AI："已完成。"
+用户："增加深色模式。"
+AI："已完成。"
+```
 
 这种"边交流、边开发、边调整"的过程，就是很多人所说的  **Vibe Coding** 。它更接近与一位同事协作，而不是单纯使用一个代码生成工具。
 
 ## Vibe Coding 并不是不需要编程技术
 
-很多文章喜欢把 Vibe Coding 描述成：
-
-> "零基础也能开发软件。"
+很多文章喜欢把 Vibe Coding 描述成：**零基础也能开发软件。**
 
 这种说法容易让人产生误解。事实上，编程知识依然很有价值。了解一点 Python、HTML 或 JavaScript，可以帮助你：
 
@@ -143,7 +136,7 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 * 更容易描述需求
 
 但与过去相比，一个明显的变化是：**你不需要先学会所有知识，才能开始动手。** 以前的学习路径通常是：
-学习三个月 → 写第一个项目。现在则更像是：今天开始做项目 → 遇到问题再学习相关知识。学习和实践第一次真正融合在了一起。
+学习三个月 → 写第一个项目。现在则更像是：今天开始做项目 → 遇到问题再学习相关知识。**学习和实践第一次真正融合在了一起。** 
 
 ## 哪些人适合使用 Vibe Coding？
 
@@ -189,11 +182,13 @@ Vibe Coding 并不是一种新的编程语言，也不是某一款软件，而�
 
 例如，你可以直接告诉 AI：
 
+```
 > 帮我把整个项目升级到最新版本。
 
 或者：
 
 > 把所有数据库操作改成异步。
+```
 
 AI 会分析整个代码仓库，而不是只关注当前这一行代码。这意味着，AI 的角色已经从"代码补全工具"逐渐演变为"开发助手"。
 
@@ -219,7 +214,9 @@ AI 会分析整个代码仓库，而不是只关注当前这一行代码。这�
 
 开发者只需要提出目标：
 
+```
 > 给这个网站增加用户登录功能。
+```
 
 Agent 就会自动规划步骤、修改代码、运行测试，并根据结果继续调整。这种从"回答问题"到"完成任务"的转变，是 Vibe Coding 快速发展的重要原因。
 
@@ -262,9 +259,7 @@ Agent 就会自动规划步骤、修改代码、运行测试，并根据结果�
 
 # 第三章：理解整个 Vibe Coding 生态
 
-对于刚接触 AI 编程的人来说，最大的困惑往往不是不会用，而是：
-
-> **为什么工具这么多？**
+对于刚接触 AI 编程的人来说，最大的困惑往往不是不会用，而是：**为什么工具这么多？**
 
 网上每天都会出现新的名字：
 
@@ -285,23 +280,7 @@ Agent 就会自动规划步骤、修改代码、运行测试，并根据结果�
 
 ## 整个生态可以分为四层
 
-```text
-                                  用户
-                      │
-                      ▼
-      IDE / CLI（人与 AI 协作界面）
- Cursor · VS Code · Claude Code · Gemini CLI
-                      │
-                      ▼
-             Agent（任务执行者）
-      Planning · Memory · Tool Calling
-                      │
-          ┌───────────┴───────────┐
-          ▼                       ▼
-      LLM（负责思考）       MCP（连接工具）
- Claude · GPT · Gemini      Browser · Git · SSH
- DeepSeek · Qwen            Docker · Database
-```
+![vibe system](vibe-coding.png)
 
 整套系统中：
 
@@ -489,9 +468,7 @@ MCP：修改代码
 
 ## 为什么市面上会有这么多工具？
 
-理解整个架构之后，就很容易明白：
-
-为什么 Cursor、Claude Code、GitHub Copilot、Trae、Reasonix 看起来都很像，却又各不相同。
+理解整个架构之后，就很容易明白：为什么 Cursor、Claude Code、GitHub Copilot、Trae、Reasonix 看起来都很像，却又各不相同。
 
 因为它们的区别，往往并不是"有没有 AI"，而是：
 
@@ -552,14 +529,19 @@ Trae 提供**国内版**和**国际版**两个版本。对于大多数国内用�
 如果以后希望体验 Claude、GPT、Gemini 等国际模型，再考虑国际版即可。国际版支持更多海外模型，但需要能够访问外网，同时采用订阅制，每月15$，更适合已经有一定使用经验的用户。
 
 ### Reasonix
+
 优点：
+
 - [Reasonix](https://reasonix.io/) 同样是一款面向普通用户的 AI IDE。它最大的特点是界面简洁、配置较少，能够帮助用户快速进入 AI 编程的工作流。
 - 不需要访问外网
-- 总体用下来，体验感会更好，而且deepsekk价格也非常便宜。具体请看[Deepseek 官网价格](https://api-docs.deepseek.com/zh-cn/quick_start/pricing)。
+- 极高的缓存命中率：Reasonix 通过特殊的缓存机制，可以让 API 调用的缓存命中率高达 90% 以上。而 DeepSeek 的缓存命中价格只有未命中价格的 1/50。这意味着同样的工作，使用 Reasonix 产生的 API 费用可能只有直接调用 API 的 20% 左右。
+- DeepSeek V4 在推理方面性能很不错。原来V3跟GPT等国外大模型有差距，现在在编程方面的差距在缩小。
+- 总体用下来，体验感会更好，而且调用DeepSeek价格也非常便宜。具体请看[Deepseek 官网价格](https://api-docs.deepseek.com/zh-cn/quick_start/pricing)。
 
 缺点在于：
+
 - 只能调用deepseek模型，需要冲值获得deepseek的key才行。
-如果你只是想体验："告诉 AI 自己想做什么，然后一步步完成项目"。 Reasonix 是一个不错的起点。对于新手来说，这个阶段最重要的不是模型有多强，而是：**尽快完成自己的第一个项目。**
+  如果你只是想体验："告诉 AI 自己想做什么，然后一步步完成项目"。 Reasonix 是一个不错的起点。对于新手来说，这个阶段最重要的不是模型有多强，而是：**尽快完成自己的第一个项目。**
 
 ## 轻度开发者：选择一款能够长期使用的 AI IDE
 
@@ -621,8 +603,6 @@ Trae 提供**国内版**和**国际版**两个版本。对于大多数国内用�
 - 不仅需要能访问外网，还要有国外手机号验证。可以通过全局模式下使用国内手机注册，不过后面不一定行。
 - 价格有点贵，20$每月。具体请看[Cursor官网价格](https://cursor.com/pricing)。
 
-
-
 ### Claude Code
 
 Claude Code 更擅长：
@@ -635,181 +615,77 @@ Claude Code 更擅长：
 - 与 Git、终端等工具协同工作。
 
 不足：
+
 - 每月22$，按年付18$每月。具体看[Claude官网价格](https://claude.com/pricing)。
 - 需要访问外网，不需要国外手机号码验证。
 
 两者结合，既能兼顾日常开发体验，又能充分发挥 Agent 的能力。随着项目越来越复杂，再逐步引入 MCP、自动化工作流等高级功能即可。
 
-# 第六章：10 分钟开始你的第一次 Vibe Coding
+# 第五章：10 分钟开始你的第一次 Vibe Coding
 
 读到这里，相信你已经了解了什么是 Vibe Coding，也知道了各种工具之间的区别。但是，如果一直停留在"了解"阶段，你仍然不会真正感受到 AI 编程的魅力。所以，这一章我们不再介绍概念，而是一起完成一个真正的小项目。整个过程非常简单。即使你从来没有写过代码，也可以跟着完成。
-
 
 ## Step 1：安装 Reasonix
 
 首先，前往 [Reasonix官网](https://reasonix.io/) 下载安装程序。安装过程与普通软件基本一致，一路点击"下一步"即可。安装完成后，启动 Reasonix。
-第一次打开时，你会看到一个类似 VS Code 的界面。不用担心里面各种按钮是什么意思。你只需要知道：
 
-> **左边是文件。**
+## Step 2：配置key
+![连接Reasonix](reasonix-key.png)
 
-> **中间是代码。**
+第一次打开时会跳出一个窗口，让你粘贴一个DeepSeek API key。这个key是你调用 DeepSeek 模型 API 的“身份凭证 + 计费钥匙”，没有它，你就不能通过程序或工具使用 DeepSeek 的模型。会报`Authentication failed (HTTP 401): your API key is missing or unset. Add it to .env or run`reasonix setup`. (DEEPSEEK_API_KEY)`错误。
 
-> **右边（或聊天窗口）是 AI。**
+最好一开始就输入密钥，而不是稍后设置。Reasonix的设置有点bug，在本次尝试中点击设置没有反应，而需要手动配置，有点麻烦。windows系统需要在 `%AppData%\reasonix\` 目录下，创建一个`.env`文件保存key。具体如下：
+
+```
+DEEPSEEK_API_KEY=sk-xx # 输入你自己的key
+```
+
+如果想免费使用，可以参考[Reasonix + DeepSeek + Opencode 最省钱姿势](https://global.v2ex.co/t/1224540#reply0)。 不过初学者建议不要浪费时间去折腾，直接在[DeepSeek API网站](https://platform.deepseek.com/usage)充值几块钱，就可以用很久了。我尝试一整天调用DeepSeek V4 Flash 模型才花了1块钱，调用pro模型会贵一些。
+
+配置好后会看到一个类似deepseek 的界面。不用担心里面各种按钮是什么意思。你只需要知道：
+
+* **左边是会话记录**
+* **中间是当前聊天窗口。**
+* **右边是文件**
 
 这就够了。
 
+## Step 3：明确项目需要
 
-## Step 2：登录账号
+对项目目标一定要清晰，不能模糊。
 
-根据提示登录账号。如果使用免费版本，可以直接体验免费的模型额度。对于第一次体验来说，这已经完全足够。
-现在还不用考虑：
+假设我们要做一个简单的贪吃蛇游戏。那一般来说，我们需要新建一个文件夹，存放所有相关代码。
 
-* 哪个模型最好；
-* 要不要购买会员；
-* 要不要切换模型。
+1. 在你有编辑权限的文件夹中创建一个新建文件夹，比如命名为`snake-game `
+2. Reasonix左侧右上角点击`添加新项目`按钮，选择使用现有文件夹，选择`snake-game `所在目录。你的第一个 AI 项目就准备好了。
 
-把默认配置保留即可。
+## Step 4：写好prompt
 
-## Step 3：创建一个新的项目
+Vibe coding 的关键在于把你的想法准确地传达给它，核心就是给它一个清晰、具体、结构化的 Prompt。一个优秀的 Prompt，就像是给游戏写的详细“产品需求文档”。
 
-点击：
+这里我们只是测试，只需要一个很简单的prompt就行。
 
-**File → New Folder（新建文件夹）**
+> 你是一位经验丰富的前端开发专家。请为我开发一个经典的“贪吃蛇”游戏，使用原生 HTML、CSS 和 JavaScript 编写在单个 HTML 文件中。
 
-例如创建：
+![prompt1](game1.png)
+一分钟左右，就会在`snake-game `目录中生成一个snake-game文件。使用浏览器打开就可以玩了。
 
-<pre class="overflow-visible! px-0!" data-start="847" data-end="867"><div class="relative w-full mt-4 mb-1"><div class=""><div class="contents"><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="relative"><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼd ͼr"><div class="cm-scroller"><pre class="cm-content q9tKkq_readonly m-0"><code><span>hello_ai</span></code></pre></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></div></pre>
+## Step 5：继续和 AI 对话
 
-然后在里面新建一个文件：
-
-<pre class="overflow-visible! px-0!" data-start="883" data-end="903"><div class="relative w-full mt-4 mb-1"><div class=""><div class="contents"><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="relative"><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼd ͼr"><div class="cm-scroller"><pre class="cm-content q9tKkq_readonly m-0"><code><span>hello.py</span></code></pre></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></div></pre>
-
-你的第一个 AI 项目就准备好了。
-
----
-
-## Step 4：不要写代码，先告诉 AI 你想做什么
-
-很多人第一次使用 AI 编程，仍然会习惯自己开始写代码。
-
-其实，不妨换一种思路。
-
-直接在聊天窗口输入：
-
-> 帮我写一个天气查询程序。
->
-> 使用 Python 编写。
->
-> 输入城市名称后，可以显示未来几天的天气。
->
-> 如果可能，请把代码写得容易理解，并添加必要的注释。
-
-点击发送。
-
-几秒钟后，你会看到 AI 开始工作。
-
-它可能会：
-
-* 创建代码；
-* 解释思路；
-* 告诉你需要安装哪些依赖；
-* 提示如何运行程序。
-
-整个过程就像一位经验丰富的程序员坐在你的旁边。
-
----
-
-## Step 5：运行程序
-
-按照 AI 给出的提示，在终端中运行程序。
-
-例如：
-
-<pre class="overflow-visible! px-0!" data-start="1255" data-end="1282"><div class="relative w-full mt-4 mb-1"><div class=""><div class="contents"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="relative h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!"><div class="sticky bg-token-border-light"></div></div></div><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class=""><div class="relative"><div class=""><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼd ͼr"><div class="cm-scroller"><pre class="cm-content q9tKkq_readonly m-0"><code><span>python hello.py</span></code></pre></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></div></div></div></pre>
-
-如果程序顺利运行，那么恭喜你！
-
-你已经完成了人生中的第一次 Vibe Coding。
-
----
-
-## Step 6：继续和 AI 对话
-
-真正的 Vibe Coding，并不是代码生成结束。
-
-而是从这里才开始。
+真正的 Vibe Coding，并不是代码生成结束，而是从这里才开始。
 
 例如，你可以继续说：
 
-> 页面太简单了，换一个更漂亮的界面。
+> 页面太小了，换一个更大的窗口。
 
-或者：
+AI 会继续修改代码及文件。整个过程，你几乎不需要自己写代码。
+![prompt2](game2.png)
 
-> 增加天气图标。
+这是最终生成的[游戏](snake-game.html),打开就直接可以玩。
 
-又或者：
+## 如果 AI 写错了怎么办？
 
-> 增加空气质量显示。
-
-甚至：
-
-> 我希望能够记住最近查询过的城市。
-
-AI 会继续修改程序。
-
-整个过程，你几乎不需要自己写代码。
-
----
-
-# 体验一下真正的"协作"
-
-为了帮助大家理解 Vibe Coding，我建议尝试下面几个连续的需求。
-
-不要一次全部发送。
-
-而是一条一条告诉 AI。
-
-例如：
-
-第一步：
-
-> 帮我做一个待办事项（To-Do）应用。
-
-AI 完成以后，再继续说：
-
-> 增加删除功能。
-
-然后：
-
-> 增加完成状态。
-
-接着：
-
-> 完成后自动排序。
-
-最后：
-
-> 界面改得更现代一点。
-
-你会发现：
-
-整个开发过程越来越像是在和一位开发同事讨论需求，而不是自己写代码。
-
-这就是 Vibe Coding 最特别的地方。
-
----
-
-# 如果 AI 写错了怎么办？
-
-这是很多新手都会遇到的问题。
-
-事实上，即使是目前最先进的大模型，也并不是每一次都能生成正确的代码。
-
-如果程序运行失败，不要着急自己修改。
-
-可以直接把错误信息复制给 AI，例如：
-
-> 程序运行时报了这个错误，请帮我分析原因并修复。
+这是很多新手都会遇到的问题。事实上，即使是目前最先进的大模型，也并不是每一次都能生成正确的代码。如果程序运行失败，不要着急自己修改。可以直接把错误信息复制给 AI，例如：`程序运行时报了这个错误，请帮我分析原因并修复。`
 
 大多数情况下，AI 会：
 
@@ -820,88 +696,10 @@ AI 完成以后，再继续说：
 
 很多时候，这比自己在搜索引擎中查找错误信息更高效。
 
----
-
-# 学会"描述需求"，比学会 Prompt 更重要
-
-很多教程都会教你各种"万能 Prompt"。
-
-实际上，真正决定 AI 编程效果的，并不是某一句神奇的 Prompt，而是 **你能否清楚地表达自己的需求** 。
-
-举个例子。
-
-不要只说：
-
-> 帮我写一个网站。
-
-可以改成：
-
-> 帮我开发一个个人博客首页。
->
-> 风格简洁，采用浅色主题。
->
-> 首页包含个人介绍、最新文章和联系方式。
->
-> 页面需要适配手机和电脑浏览器。
-
-你会发现，AI 返回的结果通常会好得多。
-
-描述得越具体，AI 越容易理解你的想法。
-
----
-
-# 第一个项目，不要追求完美
-
-很多人第一次使用 AI 编程，总希望直接做一个完整的产品。
-
-例如：
-
-* 一个电商网站；
-* 一个微信小程序；
-* 一个大型管理系统。
-
-结果往往是：
-
-需求太复杂，AI 和自己都容易迷失方向。
-
-更好的方法是：
-
-先完成一个足够小的项目。
-
-例如：
-
-* 一个计算器；
-* 一个天气查询工具；
-* 一个待办事项应用；
-* 一个番茄钟；
-* 一个个人主页；
-* 一个 Markdown 转 PDF 工具。
-
-当你完成几个小项目之后，再去挑战更大的目标。
-
-这样不仅更容易获得成就感，也更能理解 AI 的工作方式。
-
----
-
-## 小结
-
-完成第一个 AI 项目，并不需要成为程序员，也不需要掌握复杂的开发知识。
-
-你真正需要做的，只有三件事：
-
-1. **大胆开始，不要害怕不会写代码；**
-2. **把需求描述清楚，而不是急着写代码；**
-3. **把 AI 当作开发伙伴，而不是代码生成器。**
-
-当你真正完成第一个项目之后，你会发现：Vibe Coding 并没有想象中那么复杂。它更像是一种新的工作方式——你负责提出想法、不断调整方向，AI 则负责完成大量具体的实现工作。
 
 # 总结
 
-Vibe Coding 不是一款软件，而是一种新的工作方式。
-
-真正重要的不是追逐最新工具，而是学会如何与 AI 协作。
-
-对于大多数普通人来说，一套简单而高效的组合就足够了：
+Vibe Coding 不是一款软件，而是一种新的工作方式。真正重要的不是追逐最新工具，而是学会如何与 AI 协作。对于大多数普通人来说，一套简单而高效的组合就足够了：
 
 
 | 用户类型 | 推荐组合                   |
@@ -911,48 +709,3 @@ Vibe Coding 不是一款软件，而是一种新的工作方式。
 | 深度开发 | Cursor + Claude Code + MCP |
 
 希望这篇指南能帮助你少走弯路，更快进入 Vibe Coding 的世界，把更多时间投入到创造真正有价值的东西。
-
-## 从「写代码」到「描述需求」
-
-介绍传统开发流程与 AI 驱动开发方式的变化。
-
-例如：
-
-以前：
-
-> 我来写代码。
-
-现在：
-
-> 我告诉 AI 我要什么。
-
----
-
-## Vibe Coding 到底是什么？
-
-解释：
-
-- 并不是不会编程
-- 也不是一句 Prompt 自动生成 APP
-- 本质是人与 AI 协同开发
-
-强调：
-
-> AI 负责执行，人在负责决策。
-
----
-
-## 哪些人适合使用 Vibe Coding？
-
-举例：
-
-- 想做个人网站
-- 做自动化办公
-- 数据分析
-- 科研
-- Python 脚本
-- 小程序
-- Web 网站
-- 学习编程
-
----
