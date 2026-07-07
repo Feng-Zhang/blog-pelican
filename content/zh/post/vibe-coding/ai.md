@@ -10,7 +10,6 @@ Summary: 面向普通用户的 Vibe Coding 入门指南，帮助你理解 AI 编
 Lang: zh
 Featured_image: /zh/post/vibe-coding/featured.jpg
 ---
-
 ![featured_image](featured.jpg)
 
 [toc]
@@ -246,6 +245,7 @@ Agent 就会自动规划步骤、修改代码、运行测试，并根据结果�
 ## 越来越多优秀模型可供选择
 
 过去，很多 AI 工具只能使用单一模型。如今，开发者可以根据自己的需求灵活切换不同模型。例如：
+
 
 | 模型     | 特点                       | 更适合什么场景         |
 | ---------- | ---------------------------- | ------------------------ |
@@ -540,8 +540,9 @@ Trae 提供**国内版**和**国际版**两个版本。对于大多数国内用�
 
 缺点在于：
 
-- 只能调用deepseek模型，需要冲值获得deepseek的key才行。
-  如果你只是想体验："告诉 AI 自己想做什么，然后一步步完成项目"。 Reasonix 是一个不错的起点。对于新手来说，这个阶段最重要的不是模型有多强，而是：**尽快完成自己的第一个项目。**
+* 只能调用deepseek模型，需要冲值获得deepseek的key才行。
+
+如果你只是想体验："告诉 AI 自己想做什么，然后一步步完成项目"。 Reasonix 是一个不错的起点。对于新手来说，这个阶段最重要的不是模型有多强，而是：**尽快完成自己的第一个项目。**
 
 ## 轻度开发者：选择一款能够长期使用的 AI IDE
 
@@ -633,7 +634,7 @@ Claude Code 更擅长：
 
 ![连接Reasonix](reasonix-key.png)
 
-第一次打开时会跳出一个窗口，让你粘贴一个DeepSeek API key。这个key是你调用 DeepSeek 模型 API 的“身份凭证 + 计费钥匙”，没有它，你就不能通过程序或工具使用 DeepSeek 的模型。会报`Authentication failed (HTTP 401): your API key is missing or unset. Add it to .env or run`reasonix setup`. (DEEPSEEK_API_KEY)`错误。
+第一次打开时会跳出一个窗口，让你粘贴一个DeepSeek API key。这个key是你调用 DeepSeek 模型 API 的“身份凭证 + 计费钥匙”，没有它，你就不能通过程序或工具使用 DeepSeek 的模型。会报`Authentication failed (HTTP 401): your API key is missing or unset. Add it to .env or run reasonix setup. (DEEPSEEK_API_KEY)`错误。
 
 最好一开始就输入密钥，而不是稍后设置。Reasonix的设置有点bug，在本次尝试中点击设置没有反应，而需要手动配置，有点麻烦。windows系统需要在 `%AppData%\reasonix\` 目录下，创建一个`.env`文件保存key。具体如下：
 
@@ -700,6 +701,7 @@ AI 会继续修改代码及文件。整个过程，你几乎不需要自己写�
 # 总结
 
 Vibe Coding 不是一款软件，而是一种新的工作方式。真正重要的不是追逐最新工具，而是学会如何与 AI 协作。对于大多数普通人来说，一套简单而高效的组合就足够了：
+
 
 | 用户类型 | 推荐组合                   |
 | ---------- | ---------------------------- |

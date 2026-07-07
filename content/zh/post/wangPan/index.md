@@ -7,6 +7,7 @@ Slug: business-cloud-storage-and-private-cloud-setup
 Authors: 章峰
 Summary: 推荐好用的同步网盘，及构建私有网盘策
 Lang: zh
+Featured_image: /zh/post/wangPan/cover.jpg
 
 ---
 
